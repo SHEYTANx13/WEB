@@ -1,0 +1,103 @@
+/*
+ * SHARE LINK button (v2.5.3) — styling for the copy-link control the
+ * ShareLink island docks into the article tags row's actions slot.
+ *
+ * Visual language deliberately matches the CodeCopy instrument:
+ * quiet mono label, hairline border that turns red on hover/focus,
+ * state driven by [data-copied] (green for success, red for failure
+ * — the same feedback palette, so the two islands read as one
+ * system). No animation beyond color/border transitions.
+ *
+ * Print: the whole actions slot is hidden by article.module.css;
+ * this module carries no print rules of its own.
+ */
+
+.shareButton {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 6px 13px;
+
+  border: 1px solid
+    var(--line, rgba(255, 255, 255, 0.12));
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.02);
+
+  color: var(--text-muted, #8b93a3);
+
+  font-family: var(--font-mono, monospace);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background-color 160ms ease;
+}
+
+.shareButton:hover,
+.shareButton:focus-visible {
+  border-color:
+    rgba(255, 32, 32, 0.4);
+
+  color: var(--text, #f2f4f8);
+
+  background:
+    rgba(255, 32, 32, 0.05);
+}
+
+.shareButton:focus-visible {
+  outline: 1px solid
+    var(--red-hot, #ff4036);
+
+  outline-offset: 2px;
+}
+
+.shareButton[data-copied="copied"] {
+  color: #7fe0a8;
+
+  border-color:
+    rgba(127, 224, 168, 0.4);
+
+  background: transparent;
+}
+
+.shareButton[data-copied="error"] {
+  color: var(--red-hot, #ff4036);
+
+  border-color:
+    rgba(255, 32, 32, 0.4);
+
+  background: transparent;
+}
+
+@media (max-width: 760px) {
+  /*
+   * On narrow screens the actions slot drops below the tag group;
+   * let the button span the row width for a comfortable 44px+
+   * touch target height and obvious affordance.
+   */
+  .shareButton {
+    width: 100%;
+
+    justify-content: center;
+
+    min-height: 36px;
+  }
+}

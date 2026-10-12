@@ -1,0 +1,241 @@
+/* app/not-found.module.css — the static 404 document (v4.0.1).
+ *
+ * Same visual identity as the rest of the site: near-black paper,
+ * red accent, mono kickers and quiet ink. Deliberately plain — the
+ * 404 must render from static HTML with zero JavaScript.
+ */
+
+.root {
+  min-height: 100vh;
+  min-height: 100svh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 96px 24px 64px;
+
+  background:
+    radial-gradient(
+      1200px 600px at 70% -10%,
+      rgba(255, 32, 32, 0.08),
+      transparent 60%
+    ),
+    #070707;
+
+  color: #f5f7fb;
+}
+
+.inner {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.signal {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 32px;
+
+  color: #ff2020;
+
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.signalDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  background: #ff2020;
+
+  box-shadow: 0 0 12px rgba(255, 32, 32, 0.8);
+}
+
+.code {
+  margin: 0 0 8px;
+
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: clamp(64px, 14vw, 112px);
+  font-weight: 700;
+  line-height: 1;
+
+  color: #ff2020;
+
+  text-shadow: 0 0 40px rgba(255, 32, 32, 0.35);
+}
+
+.title {
+  margin: 0 0 24px;
+
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+
+  color: #f5f7fb;
+}
+
+.explanation {
+  max-width: 60ch;
+  margin: 0 0 40px;
+
+  font-size: 16px;
+  line-height: 1.7;
+
+  color: rgba(245, 247, 251, 0.72);
+}
+
+.explanation code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 14px;
+
+  color: rgba(245, 247, 251, 0.9);
+
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+
+  padding: 1px 6px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  margin-bottom: 56px;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  border: 1px solid rgba(255, 32, 32, 0.55);
+  border-radius: 999px;
+
+  padding: 12px 22px;
+
+  color: #ff4638;
+  background: rgba(255, 32, 32, 0.08);
+
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.action:hover,
+.action:focus-visible {
+  background: rgba(255, 32, 32, 0.18);
+  border-color: #ff2020;
+  color: #ff6a5e;
+}
+
+.actionPrimary {
+  background: #ff2020;
+  border-color: #ff2020;
+  color: #0a0505;
+}
+
+.actionPrimary:hover,
+.actionPrimary:focus-visible {
+  background: #ff4638;
+  border-color: #ff4638;
+  color: #0a0505;
+}
+
+.areasLabel {
+  margin: 0 0 16px;
+
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  color: rgba(245, 247, 251, 0.45);
+}
+
+.areas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.area {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+
+  padding: 14px 16px;
+
+  text-decoration: none;
+
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.area:hover,
+.area:focus-visible {
+  border-color: rgba(255, 32, 32, 0.5);
+  background: rgba(255, 32, 32, 0.06);
+}
+
+.areaKind {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  color: rgba(245, 247, 251, 0.4);
+}
+
+.areaName {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+
+  color: rgba(245, 247, 251, 0.88);
+}
+
+@media (max-width: 640px) {
+  .root {
+    padding: 72px 20px 48px;
+  }
+
+  .actions {
+    margin-bottom: 48px;
+  }
+
+  .areas {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action,
+  .area {
+    transition: none;
+  }
+}

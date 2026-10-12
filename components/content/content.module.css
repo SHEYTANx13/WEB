@@ -1,0 +1,2957 @@
+/*
+ * CONTENT ROUTE STYLES (v3.1) — shared by /about/, /work/, and the
+ * topic hubs. Built on the global design tokens (globals.css): the
+ * same dark surface, red accents, mono kickers, and Inter text as
+ * the world shell and the blog. No new palette, no documentation
+ * theme — these routes must read as the same website.
+ *
+ * Zero-positioning layout: everything is normal document flow, so
+ * the pages work at 320px without a separate mobile system.
+ */
+
+/*
+ * The full-screen contract (min-height stack, flex column, page
+ * accent tokens, data-page identity) is owned by
+ * FullScreenPageShell.module.css — this class only adds the
+ * document shell's local positioning context.
+ */
+.shell {
+  position: relative;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Header — a light mirror of the world HUD / blog header.                     */
+/* -------------------------------------------------------------------------- */
+
+/*
+ * HEADER CONTRACT (v3.6.1) — one header system shared by all six
+ * tabs: sticky (in-flow, so no page needs padding compensation),
+ * z-index 1000, and the exact height/rail/brand geometry every
+ * other header uses. The 1px border lives INSIDE the contract
+ * height (inner is 1px shorter), so the first-screen formula
+ * `100svh - var(--page-header-height)` is exact on every tab.
+ */
+.header {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 1000;
+
+  border-bottom: 1px solid var(--line-soft);
+
+  background: rgba(5, 5, 5, 0.86);
+
+  backdrop-filter: blur(14px);
+}
+
+.headerInner {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px 16px;
+
+  /* The shared alignment rail — identical to hero/footer rails. */
+  width: min(
+    calc(100% - 2 * var(--page-gutter)),
+    var(--page-content-width)
+  );
+
+  min-height: calc(var(--page-header-height) - 1px);
+
+  margin: 0 auto;
+}
+
+.brand {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: var(--text);
+
+  text-decoration: none;
+}
+
+.brand:focus-visible {
+  outline: 2px solid var(--red-hot);
+
+  outline-offset: 4px;
+
+  border-radius: 4px;
+}
+
+/*
+ * Brand geometry is part of the header contract (v3.6.1): the same
+ * 32px star and 15px/800 name as the world HUD and the blog header.
+ */
+.brand img {
+  width: 32px;
+
+  height: 32px;
+}
+
+.brandName {
+  font-size: 15px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+}
+
+/*
+ * UNIFIED NAVIGATION (v3.4) — placement only. The header gives the
+ * unified nav the flexible slot the old headerNav row owned; the
+ * track centers itself in it (world-HUD behavior) and the ≤860px
+ * disclosure trigger right-aligns. All nav geometry, accents, states
+ * and hover identities live in UnifiedSiteNav.module.css.
+ */
+.contentNav {
+  flex: 1 1 auto;
+
+  min-width: 0;
+
+  display: flex;
+
+  justify-content: center;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Main document column.                                                       */
+/* -------------------------------------------------------------------------- */
+
+.main {
+  flex: 1;
+
+  width: 100%;
+
+  /* Footer spacing is contract-owned: identical on all six tabs. */
+  padding: 0 0 var(--page-footer-spacing);
+}
+
+/*
+ * THE DOCUMENT MEASURE — long-form reading column below the hero.
+ * Deliberately narrower than the page rail (readability), identical
+ * on every document tab.
+ */
+.doc {
+  width: 100%;
+
+  max-width: var(--page-doc-width);
+
+  margin: 0 auto;
+
+  padding: 0 var(--page-gutter);
+}
+
+/*
+ * THE HERO RAIL (v3.6.1) — the hero's text block starts on the same
+ * alignment rail as the header brand, the home hero, the blog hero
+ * and the footer: x = max(gutter, (viewport − content-width)/2).
+ * Like .page-container, the gutter lives in the WIDTH formula — no
+ * inner padding, or the text would sit a gutter to the right of
+ * every other tab's rail. Text is capped to the shared readable
+ * measures by .title/.lead, not by the container.
+ */
+.heroDoc {
+  width:
+    min(
+      calc(100% - 2 * var(--page-gutter)),
+      var(--page-content-width)
+    );
+
+  margin: 0 auto;
+}
+
+.crumbs {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin: 0 0 26px;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+}
+
+.crumbLink {
+  color: var(--text-muted);
+
+  text-decoration: none;
+}
+
+.crumbLink:hover {
+  color: var(--text);
+}
+
+.crumbLink:focus-visible {
+  outline: 2px solid var(--red-hot);
+
+  outline-offset: 3px;
+
+  border-radius: 2px;
+}
+
+.crumbCurrent {
+  color: var(--red-hot);
+}
+
+.crumbSeparator {
+  color: var(--text-muted);
+
+  opacity: 0.55;
+}
+
+.docKicker {
+  margin: 0 0 14px;
+
+  color:
+    var(
+      --page-accent,
+      var(--red-hot)
+    );
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.26em;
+
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+
+  /* Shared H1 scale (v3.6.1) — same token as the blog hero title. */
+  font-size: var(--page-h1-scale);
+
+  font-weight: 800;
+
+  letter-spacing: -0.03em;
+
+  line-height: 1.12;
+
+  /* Same maximum readable measure as the blog hero title. */
+  max-width: var(--page-doc-width);
+
+  text-wrap: balance;
+}
+
+.lead {
+  /* Shared lead measure (v3.6.1) — same cap as home and blog leads. */
+  max-width: var(--page-lead-measure);
+
+  margin: 22px 0 0;
+}
+
+.leadParagraph {
+  margin: 0 0 14px;
+
+  color: var(--text-soft);
+
+  font-size: 17px;
+
+  line-height: 1.75;
+}
+
+@media (max-width: 560px) {
+  /*
+   * Mobile stacking (v3.6): tighter section rhythm and one step
+   * down in lead size — comfortable reading without a separate
+   * mobile design system. Gutters come from the shared token scale.
+   */
+  .section {
+    margin-top: 48px;
+  }
+
+  .leadParagraph {
+    font-size: 16px;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* FULL-SCREEN HERO (v4.0.5) — the first screen of every document route.       */
+/*                                                                             */
+/* One formula, token-owned:                                                    */
+/*   min-height = max(--page-hero-min-height, 100vh/svh/dvh − header)           */
+/* The header is sticky (in-flow), so header + hero compose EXACTLY one         */
+/* viewport on every route — no per-page compensation anywhere.                 */
+/*                                                                             */
+/* VERTICAL COMPOSITION CONTRACT (v4.0.5): the hero is TOP-ANCHORED —           */
+/* content starts at one consistent spacing token below the header on           */
+/* every route. Vertical centering would move the title baseline with           */
+/* the amount of lead text (About carries three lead paragraphs,                */
+/* Contact two); the top-anchored model keeps the crumbs, kicker and H1         */
+/* at IDENTICAL positions on every document, and the document below             */
+/* simply continues for as long as it needs.                                    */
+/* -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-start;
+
+  min-height:
+    max(
+      var(--page-hero-min-height),
+      calc(
+        100vh -
+          var(--page-header-height)
+      )
+    );
+
+  min-height:
+    max(
+      var(--page-hero-min-height),
+      calc(
+        100svh -
+          var(--page-header-height)
+      )
+    );
+
+  min-height:
+    max(
+      var(--page-hero-min-height),
+      calc(
+        100dvh -
+          var(--page-header-height)
+      )
+    );
+
+  /* One spacing model on every route — not content-dependent. */
+  padding:
+    clamp(44px, 7.5vh, 96px)
+    0
+    clamp(64px, 10vh, 116px);
+
+  overflow: clip;
+}
+
+/*
+ * Identity field — decorative, pointer-transparent, themed per tab
+ * by the shell's data-page accent. Rings and axes reuse the world
+ * scene language at document scale.
+ */
+.heroField {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  color:
+    var(
+      --page-accent,
+      var(--red-hot)
+    );
+}
+
+.heroRing,
+.heroAxis,
+.heroNode {
+  position: absolute;
+
+  display: none;
+}
+
+.heroRing {
+  border:
+    1px solid
+    currentColor;
+
+  border-radius: 50%;
+
+  opacity: 0.16;
+}
+
+.heroAxis {
+  background: currentColor;
+
+  opacity: 0.14;
+}
+
+.heroNode {
+  width: 5px;
+
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+
+  opacity: 0.4;
+}
+
+/*
+ * HERO IDENTITY (v4.0.5) — the stable title system of EVERY document
+ * route: the shared signal mark beside the title copy. Normal
+ * document flow (no absolute positioning, no route-specific
+ * geometry): the signal can never overlap the crumbs, the H1, or
+ * the lead, never depends on how much lead text a route carries,
+ * and never clips on narrow screens — the flow itself guarantees
+ * all of it on every route identically.
+ */
+.heroIdentity {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: clamp(16px, 2.4vw, 26px);
+}
+
+.heroCopy {
+  /* Flex child of the identity row: keeps its width in flow and */
+  /* lets long words wrap instead of overflowing the rail.        */
+  flex: 1;
+
+  min-width: 0;
+}
+
+/*
+ * HERO SIGNAL (v4.0.5) — the shared identity animation of the
+ * document routes, rendered by ContentShell for every document.
+ *
+ * Geometry contract: IN FLOW beside the title copy (the heroIdentity
+ * row above) — a 22px flex item, so its position is owned by the
+ * same flow on every route and can never overlap or clip anything.
+ * Themed per route through the shell's --page-accent.
+ *
+ * Motion contract: compositor-only (transform: rotate on the arc,
+ * opacity on the core); under prefers-reduced-motion the arc
+ * collapses to a static thin ring and the core stops breathing —
+ * the same reduced-motion treatment as the scene loader's signal.
+ */
+.heroSignal {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  width: 22px;
+
+  height: 22px;
+
+  /* Optical alignment with the kicker line that opens heroCopy. */
+  margin-top: 2px;
+
+  color:
+    var(
+      --page-accent,
+      var(--red-hot)
+    );
+}
+
+.heroSignalRing {
+  position: absolute;
+
+  inset: 0;
+
+  border:
+    1px solid
+    currentColor;
+
+  border-radius: 50%;
+
+  opacity: 0.5;
+}
+
+.heroSignalCore {
+  position: absolute;
+
+  top: 50%;
+
+  left: 50%;
+
+  width: 4px;
+
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  opacity: 0.85;
+}
+
+/*
+ * TRANSMISSION ARC — the same conic sweep the scene loader orbits
+ * around the 13-point star, at document scale. currentColor through
+ * color-mix keeps the per-tab accent identity; the radial mask turns
+ * the disc into a thin orbit ring.
+ */
+.heroSignal::after {
+  content: "";
+
+  position: absolute;
+
+  inset: -4px;
+
+  border-radius: 50%;
+
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 288deg,
+      color-mix(
+        in srgb,
+        currentColor
+          85%,
+        transparent
+      )
+      348deg,
+      currentColor 360deg
+    );
+
+  mask-image:
+    radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 60%,
+      black 64%,
+      black 100%
+    );
+
+  -webkit-mask-image:
+    radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 60%,
+      black 64%,
+      black 100%
+    );
+
+  opacity: 0.9;
+}
+
+@media
+  (prefers-reduced-motion: no-preference) {
+  .heroSignal::after {
+    animation:
+      heroSignalOrbit
+      2.6s
+      linear
+      infinite;
+  }
+
+  .heroSignalCore {
+    animation:
+      heroSignalBreathe
+      2.6s
+      ease-in-out
+      infinite;
+  }
+}
+
+@media
+  (prefers-reduced-motion: reduce) {
+  /*
+   * Reduced motion: the sweep collapses to a static thin ring around
+   * the node — presence without motion (same treatment as the scene
+   * loader's signal arc).
+   */
+  .heroSignal::after {
+    background:
+      radial-gradient(
+        circle at center,
+        transparent 60%,
+        color-mix(
+          in srgb,
+          currentColor
+            55%,
+          transparent
+        )
+        64%,
+        color-mix(
+          in srgb,
+          currentColor
+            55%,
+          transparent
+        )
+        100%
+      );
+
+    mask-image: none;
+
+    -webkit-mask-image: none;
+  }
+}
+
+@keyframes
+  heroSignalOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes
+  heroSignalBreathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 0.95;
+  }
+}
+
+/*
+ * ABOUT — portrait halo: one large ring off the right shoulder,
+ * a fine inner ring, a vertical plumb line, two orbit points.
+ */
+:global([data-page="about"])
+  .heroRingOne {
+  display: block;
+
+  top: 50%;
+
+  right: clamp(
+    -140px,
+    2vw,
+    60px
+  );
+
+  width:
+    min(
+      62vw,
+      560px
+    );
+
+  height:
+    min(
+      62vw,
+      560px
+    );
+
+  transform:
+    translateY(-50%);
+}
+
+:global([data-page="about"])
+  .heroRingTwo {
+  display: block;
+
+  top: 50%;
+
+  right: clamp(
+    -60px,
+    7vw,
+    130px
+  );
+
+  width:
+    min(
+      40vw,
+      350px
+    );
+
+  height:
+    min(
+      40vw,
+      350px
+    );
+
+  transform:
+    translateY(-50%);
+
+  opacity: 0.1;
+}
+
+:global([data-page="about"])
+  .heroAxis {
+  display: block;
+
+  top: 12%;
+
+  bottom: 12%;
+
+  left: clamp(
+    12px,
+    6vw,
+    84px
+  );
+
+  width: 1px;
+}
+
+:global([data-page="about"])
+  .heroNodeOne {
+  display: block;
+
+  top: 24%;
+
+  left: clamp(
+    12px,
+    6vw,
+    84px
+  );
+}
+
+:global([data-page="about"])
+  .heroNodeTwo {
+  display: block;
+
+  bottom: 20%;
+
+  left: clamp(
+    12px,
+    6vw,
+    84px
+  );
+}
+
+/*
+ * WORK — engineering evidence: a fine tick grid and one long
+ * construction line; a single large reference circle.
+ */
+:global([data-page="work"])
+  .heroField {
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      color-mix(
+        in srgb,
+        currentColor
+          6%,
+        transparent
+      )
+        0,
+      color-mix(
+        in srgb,
+        currentColor
+          6%,
+        transparent
+      )
+        1px,
+      transparent
+        1px,
+      transparent
+        72px
+    );
+}
+
+:global([data-page="work"])
+  .heroRingOne {
+  display: block;
+
+  top: -180px;
+
+  left: -160px;
+
+  width: 480px;
+
+  height: 480px;
+
+  opacity: 0.1;
+}
+
+:global([data-page="work"])
+  .heroAxis {
+  display: block;
+
+  top: 58%;
+
+  right: 0;
+
+  left: 0;
+
+  height: 1px;
+}
+
+:global([data-page="work"])
+  .heroNodeOne {
+  display: block;
+
+  top: 58%;
+
+  left: 72px;
+
+  transform:
+    translateY(-50%);
+}
+
+:global([data-page="work"])
+  .heroNodeTwo {
+  display: block;
+
+  top: 58%;
+
+  right: 72px;
+
+  transform:
+    translateY(-50%);
+}
+
+/*
+ * RESEARCH — signal measurement: concentric radar rings around a
+ * crosshair, one marker lit.
+ */
+:global([data-page="research"])
+  .heroRingOne {
+  display: block;
+
+  top: 50%;
+
+  right: -170px;
+
+  width: 520px;
+
+  height: 520px;
+
+  transform:
+    translateY(-50%);
+
+  opacity: 0.14;
+}
+
+:global([data-page="research"])
+  .heroRingTwo {
+  display: block;
+
+  top: 50%;
+
+  right: -60px;
+
+  width: 300px;
+
+  height: 300px;
+
+  transform:
+    translateY(-50%);
+
+  opacity: 0.18;
+}
+
+:global([data-page="research"])
+  .heroRingThree {
+  display: block;
+
+  top: 50%;
+
+  right: 55px;
+
+  width: 120px;
+
+  height: 120px;
+
+  transform:
+    translateY(-50%);
+
+  opacity: 0.22;
+}
+
+:global([data-page="research"])
+  .heroAxis {
+  display: block;
+
+  top: 50%;
+
+  right: -170px;
+
+  left: -80px;
+
+  height: 1px;
+
+  transform:
+    translateY(-50%);
+}
+
+:global([data-page="research"])
+  .heroNodeOne {
+  display: block;
+
+  top: 50%;
+
+  right: 110px;
+
+  transform:
+    translate(
+      50%,
+      -50%
+    );
+}
+
+/*
+ * CONTACT — transmission: ripples radiating from the left edge
+ * toward the CTA copy.
+ */
+:global([data-page="contact"])
+  .heroRingOne {
+  display: block;
+
+  top: 50%;
+
+  left: -220px;
+
+  width: 560px;
+
+  height: 560px;
+
+  transform:
+    translateY(-50%);
+
+  opacity: 0.12;
+}
+
+:global([data-page="contact"])
+  .heroRingTwo {
+  display: block;
+
+  top: 50%;
+
+  left: -120px;
+
+  width: 360px;
+
+  height: 360px;
+
+  transform:
+    translateY(-50%);
+
+  opacity: 0.16;
+}
+
+:global([data-page="contact"])
+  .heroRingThree {
+  display: block;
+
+  top: 50%;
+
+  left: -20px;
+
+  width: 160px;
+
+  height: 160px;
+
+  transform:
+    translateY(-50%);
+
+  opacity: 0.2;
+}
+
+:global([data-page="contact"])
+  .heroAxis {
+  display: block;
+
+  top: 50%;
+
+  right: 0;
+
+  left: 0;
+
+  height: 1px;
+
+  transform:
+    translateY(-50%);
+}
+
+/*
+ * BLOG + hubs — editorial baseline rules under the title measure.
+ */
+:global([data-page="blog"])
+  .heroField,
+:global([data-page="hub"])
+  .heroField {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      color-mix(
+        in srgb,
+        currentColor
+          5%,
+        transparent
+      )
+        0,
+      color-mix(
+        in srgb,
+        currentColor
+          5%,
+        transparent
+      )
+        1px,
+      transparent
+        1px,
+      transparent
+        88px
+    );
+}
+
+:global([data-page="blog"])
+  .heroAxis,
+:global([data-page="hub"])
+  .heroAxis {
+  display: block;
+
+  top: 0;
+
+  bottom: 0;
+
+  left: clamp(
+    12px,
+    6vw,
+    84px
+  );
+
+  width: 1px;
+}
+
+/*
+ * One slow breath per page — decorative only, and only for
+ * motion-capable pointers and no-preference users.
+ */
+@media
+  (prefers-reduced-motion: no-preference) {
+  :global([data-page="about"])
+    .heroNodeOne,
+  :global([data-page="research"])
+    .heroNodeOne,
+  :global([data-page="contact"])
+    .heroRingThree,
+  :global([data-page="work"])
+    .heroNodeOne {
+    animation:
+      heroFieldPulse
+      5.2s
+      ease-in-out
+      infinite;
+  }
+}
+
+@keyframes
+  heroFieldPulse {
+  0%,
+  100% {
+    opacity: 0.18;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/*
+ * Scroll cue — the honest statement that the document continues.
+ */
+.heroCue {
+  position: absolute;
+
+  bottom: 26px;
+
+  left: 50%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 8px;
+
+  transform:
+    translateX(-50%);
+
+  color:
+    var(--text-muted);
+
+  font-family:
+    var(--font-mono);
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing:
+    0.22em;
+}
+
+.heroCueLine {
+  width: 1px;
+
+  height: 34px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(
+        --page-accent,
+        var(--red-hot)
+      ),
+      transparent
+    );
+}
+
+@media
+  (prefers-reduced-motion: no-preference) {
+  .heroCueLine {
+    animation:
+      heroCueTrace
+      2.6s
+      ease-in-out
+      infinite;
+  }
+}
+
+@keyframes
+  heroCueTrace {
+  0%,
+  100% {
+    transform:
+      scaleY(0.55);
+
+    transform-origin: top;
+  }
+
+  50% {
+    transform:
+      scaleY(1);
+
+    transform-origin: top;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    /*
+     * The phone floor is token-owned (--page-hero-min-height drops
+     * to 380px in globals.css) — only the spacing is local here,
+     * and it stays top-anchored like every other width.
+     */
+    padding-top: 40px;
+
+    padding-bottom: 84px;
+  }
+
+  .heroIdentity {
+    gap: 14px;
+  }
+
+  .heroCue {
+    bottom: 18px;
+  }
+
+  /*
+   * Narrow screens: keep the identity but pull the motifs closer
+   * to the edges so they never fight the text measure.
+   */
+  :global([data-page="about"])
+    .heroRingOne {
+    right: -190px;
+  }
+
+  :global([data-page="research"])
+    .heroRingOne {
+    right: -260px;
+  }
+
+  :global([data-page="contact"])
+    .heroRingOne {
+    left: -300px;
+  }
+
+  :global([data-page="work"])
+    .heroField {
+    background-size: 48px
+      100%;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Sections.                                                                   */
+/* -------------------------------------------------------------------------- */
+
+.section {
+  margin-top: 64px;
+}
+
+.sectionTitle {
+  margin: 0 0 8px;
+
+  font-size: clamp(21px, 3vw, 27px);
+
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+
+  line-height: 1.25;
+}
+
+.sectionRule {
+  width: 64px;
+
+  height: 2px;
+
+  margin: 0 0 22px;
+
+  border: 0;
+
+  background: linear-gradient(
+    90deg,
+    var(--red),
+    rgba(255, 32, 32, 0)
+  );
+}
+
+.body {
+  margin: 0;
+
+  color: var(--text-soft);
+
+  font-size: 16px;
+
+  line-height: 1.8;
+}
+
+.body p {
+  margin: 0 0 14px;
+}
+
+.body a {
+  color: var(--text);
+
+  text-decoration: underline;
+
+  text-decoration-color: rgba(255, 32, 32, 0.5);
+
+  text-underline-offset: 3px;
+}
+
+.body a:hover {
+  color: #ffffff;
+
+  text-decoration-color: var(--red-hot);
+}
+
+.body a:focus-visible {
+  outline: 2px solid var(--red-hot);
+
+  outline-offset: 3px;
+
+  border-radius: 2px;
+}
+
+.body strong {
+  color: var(--text);
+}
+
+/* Focus areas — bordered blocks with a red left edge. */
+
+.focusList {
+  display: grid;
+
+  gap: 14px;
+
+  margin-top: 22px;
+}
+
+.focusItem {
+  padding: 18px 20px;
+
+  border: 1px solid var(--line-soft);
+
+  border-left: 2px solid var(--red-deep);
+
+  border-radius: 10px;
+
+  background: var(--panel);
+}
+
+.focusItemTitle {
+  margin: 0 0 6px;
+
+  color: var(--text);
+
+  font-size: 15px;
+
+  font-weight: 700;
+}
+
+.focusItemBody {
+  margin: 0;
+
+  color: var(--text-soft);
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+@media (max-width: 560px) {
+  .section {
+    margin-top: 48px;
+  }
+
+  .focusItem {
+    padding: 14px 14px;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Project entries.                                                            */
+/* -------------------------------------------------------------------------- */
+
+.projectList {
+  display: grid;
+
+  gap: 16px;
+
+  margin-top: 22px;
+}
+
+.projectCard {
+  padding: 22px 24px;
+
+  border: 1px solid var(--line-soft);
+
+  border-radius: 12px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(18, 20, 27, 0.82),
+    rgba(9, 10, 14, 0.74)
+  );
+
+  transition: border-color 140ms ease;
+}
+
+.projectCard:hover {
+  border-color: rgba(255, 32, 32, 0.28);
+}
+
+.projectHead {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: baseline;
+
+  justify-content: space-between;
+
+  gap: 8px;
+}
+
+.projectName {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 18px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.01em;
+}
+
+.projectMeta {
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+}
+
+.projectNumber {
+  color: var(--red-hot);
+
+  font-family: var(--font-mono);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+}
+
+.projectWhat {
+  margin: 10px 0 0;
+
+  color: var(--text-soft);
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+.projectWhy {
+  margin: 8px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+.projectWhy strong {
+  color: var(--text-soft);
+
+  font-weight: 600;
+}
+
+.projectLinks {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px 18px;
+
+  margin-top: 14px;
+}
+
+.projectLink {
+  color: var(--red-hot);
+
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+
+  letter-spacing: 0.06em;
+
+  text-decoration: none;
+}
+
+.projectLink:hover {
+  color: #ffffff;
+
+  text-shadow: 0 0 18px rgba(255, 32, 32, 0.35);
+}
+
+.projectLink:focus-visible {
+  outline: 2px solid var(--red-hot);
+
+  outline-offset: 3px;
+
+  border-radius: 2px;
+}
+
+@media (max-width: 560px) {
+  .projectCard {
+    padding: 16px;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Article cards.                                                              */
+/* -------------------------------------------------------------------------- */
+
+.articleList {
+  display: grid;
+
+  gap: 14px;
+
+  margin-top: 22px;
+}
+
+.articleCard {
+  display: block;
+
+  padding: 18px 20px;
+
+  border: 1px solid var(--line-soft);
+
+  border-radius: 12px;
+
+  background: var(--panel);
+
+  text-decoration: none;
+
+  transition: border-color 140ms ease;
+}
+
+.articleCard:hover {
+  border-color: rgba(255, 32, 32, 0.32);
+}
+
+.articleCard:focus-visible {
+  outline: 2px solid var(--red-hot);
+
+  outline-offset: 3px;
+}
+
+.articleCardTitle {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  line-height: 1.4;
+}
+
+.articleCard:hover .articleCardTitle {
+  color: #ffffff;
+
+  text-shadow: 0 0 20px rgba(255, 32, 32, 0.2);
+}
+
+.articleCardNote {
+  margin: 6px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+.articleCardMeta {
+  margin: 10px 0 0;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Cross-link and next-step rows.                                              */
+/* -------------------------------------------------------------------------- */
+
+.linkRow {
+  display: grid;
+
+  gap: 12px;
+
+  margin-top: 22px;
+}
+
+@media (min-width: 720px) {
+  .linkRow {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(240px, 1fr)
+    );
+  }
+}
+
+.linkCard {
+  display: block;
+
+  padding: 16px 18px;
+
+  border: 1px solid var(--line-soft);
+
+  border-radius: 12px;
+
+  background: var(--panel);
+
+  text-decoration: none;
+
+  transition: border-color 140ms ease;
+}
+
+.linkCard:hover {
+  border-color: rgba(255, 32, 32, 0.32);
+}
+
+.linkCard:focus-visible {
+  outline: 2px solid var(--red-hot);
+
+  outline-offset: 3px;
+}
+
+.linkLabel {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 15px;
+
+  font-weight: 700;
+}
+
+.linkCard:hover .linkLabel {
+  color: #ffffff;
+}
+
+.linkNote {
+  margin: 5px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+.nextStep {
+  margin-top: 64px;
+
+  padding: 24px 26px;
+
+  border: 1px solid rgba(255, 32, 32, 0.22);
+
+  border-radius: 14px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(18, 20, 27, 0.82),
+    rgba(9, 10, 14, 0.74)
+  );
+
+  box-shadow: var(--shadow-red);
+}
+
+.nextStepText {
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+.nextStepLinks {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-top: 14px;
+}
+
+.nextStepLink {
+  color: var(--text);
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  line-height: 1.5;
+
+  text-decoration: none;
+}
+
+.nextStepLink:hover {
+  color: #ffffff;
+
+  text-shadow: 0 0 18px rgba(255, 32, 32, 0.25);
+}
+
+.nextStepLink:focus-visible {
+  outline: 2px solid var(--red-hot);
+
+  outline-offset: 3px;
+
+  border-radius: 2px;
+}
+
+.nextStepNote {
+  color: var(--text-muted);
+
+  font-size: 13px;
+
+  font-weight: 400;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Profiles (about route).                                                     */
+/* -------------------------------------------------------------------------- */
+
+.profileGrid {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+.profileLink {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 10px 16px;
+
+  border: 1px solid var(--line-soft);
+
+  border-radius: 999px;
+
+  background: var(--panel);
+
+  color: var(--text);
+
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  transition: border-color 140ms ease;
+}
+
+.profileLink:hover {
+  border-color: rgba(255, 32, 32, 0.4);
+}
+
+.profileLink:focus-visible {
+  outline: 2px solid var(--red-hot);
+
+  outline-offset: 3px;
+}
+
+/*
+ * CONTACT CTA ROW (v3.2) — the primary/secondary action row of the
+ * /contact/ route. The buttons reuse the global button classes; this
+ * block only arranges them and gives the touch targets breathing
+ * room.
+ */
+.contactCtaRow {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 20px 0 8px;
+}
+
+/* ------------------------------------------------------------------
+ * VISUAL PROJECT CARDS (v3.7) — /work/ presentation upgrade
+ * ------------------------------------------------------------------
+ */
+
+/*
+ * The visual project list: each system leads with its real visual
+ * identity (committed article cover, or the truthful geometric
+ * identity card), then the scannable summary, then the deep
+ * documentation — inside one card, one column of meaning.
+ */
+.projectVisualList {
+  display: grid;
+
+  gap: 18px;
+
+  margin-top: 22px;
+}
+
+.projectVisualCard {
+  display: grid;
+
+  grid-template-columns:
+    minmax(220px, 0.9fr)
+    minmax(0, 1.1fr);
+
+  overflow: hidden;
+
+  border: 1px solid var(--line-soft);
+
+  border-radius: 12px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(18, 20, 27, 0.82),
+    rgba(9, 10, 14, 0.74)
+  );
+
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.projectVisualCard:hover {
+  border-color: rgba(255, 32, 32, 0.28);
+
+  box-shadow: var(--shadow-red);
+}
+
+/*
+ * The media cell: aspect-locked cover, object-fit cover, lazy after
+ * the first two cards (the eager ones are the first impression).
+ */
+.projectVisualMedia {
+  display: block;
+
+  min-height: 240px;
+
+  overflow: hidden;
+
+  border-right: 1px solid var(--line-soft);
+
+  background: #070707;
+}
+
+.projectVisualMedia img {
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+/*
+ * Truthful identity card for systems without a dedicated cover:
+ * the 13-point star identity over a technical grid, with the
+ * system's own type vocabulary as the label. Never a fake
+ * screenshot.
+ */
+.projectVisualIdentity {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 16px;
+
+  background:
+    radial-gradient(
+      90% 70% at 50% 30%,
+      rgba(255, 32, 32, 0.07),
+      transparent 60%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 23px,
+      rgba(255, 255, 255, 0.025) 23px 24px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 23px,
+      rgba(255, 255, 255, 0.025) 23px 24px
+    ),
+    #07080a;
+}
+
+.projectVisualIdentity img {
+  width: 54px;
+
+  height: 54px;
+
+  object-fit: contain;
+}
+
+.projectVisualIdentityLabel {
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.26em;
+
+  line-height: 1.9;
+
+  text-align: center;
+
+  text-transform: uppercase;
+}
+
+.projectVisualContent {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+  padding: 26px 28px;
+}
+
+.projectVisualHead {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: baseline;
+
+  justify-content: space-between;
+
+  gap: 8px;
+}
+
+.projectVisualName {
+  margin: 0;
+
+  font-size: 21px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+}
+
+/*
+ * One-sentence purpose — the scannable summary line.
+ */
+.projectPurpose {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 15px;
+
+  line-height: 1.65;
+}
+
+/*
+ * Key signal — a measured or structural fact, mono, red-accented.
+ */
+.projectSignal {
+  margin: 0;
+
+  padding: 8px 12px;
+
+  border-left: 2px solid
+    rgba(255, 32, 32, 0.55);
+
+  background:
+    rgba(255, 32, 32, 0.045);
+
+  border-radius: 0 4px 4px 0;
+
+  color: var(--red-hot);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+
+  line-height: 1.7;
+}
+
+/*
+ * Deep documentation below the visual summary — same card, quieter
+ * register. Spanning the full width under the two-column head.
+ */
+.projectVisualDetail {
+  grid-column: 1 / -1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+  padding: 20px 28px 24px;
+
+  border-top: 1px solid var(--line-soft);
+
+  background:
+    rgba(255, 255, 255, 0.012);
+}
+
+@media (max-width: 880px) {
+  .projectVisualCard {
+    grid-template-columns: 1fr;
+  }
+
+  .projectVisualMedia {
+    min-height: 190px;
+
+    border-right: none;
+
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .projectVisualContent {
+    padding: 20px;
+  }
+
+  .projectVisualDetail {
+    padding: 18px 20px 22px;
+  }
+}
+
+/* ------------------------------------------------------------------
+ * RESEARCH MODULES (v3.7) — /research/ presentation upgrade
+ * ------------------------------------------------------------------
+ */
+
+/*
+ * The research map as modules: each research line renders as a
+ * QUESTION → METHOD → FRAMEWORK → MEASUREMENT → ARTIFACT chain —
+ * the actual structure of the programme, readable in seconds before
+ * the prose begins.
+ */
+.researchModules {
+  display: grid;
+
+  gap: 16px;
+
+  margin-top: 22px;
+}
+
+.researchModule {
+  padding: 24px;
+
+  border: 1px solid var(--line-soft);
+
+  border-radius: 12px;
+
+  background: linear-gradient(
+    150deg,
+    rgba(18, 20, 27, 0.82),
+    rgba(9, 10, 14, 0.74)
+  );
+
+  transition: border-color 160ms ease;
+}
+
+.researchModule:hover {
+  border-color: rgba(255, 32, 32, 0.28);
+}
+
+.researchModuleTitle {
+  margin: 0 0 18px;
+
+  font-size: 20px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+}
+
+/*
+ * SYSTEM EDGE (v3.9) — the per-module "SYSTEM → Selected Work" row.
+ * A quiet mono footer inside the module card: label chip in the
+ * muted red, then the descriptive anchor to the canonical system
+ * document.
+ */
+.researchModuleSystem {
+  margin: 18px 0 0;
+
+  padding-top: 14px;
+
+  border-top: 1px solid var(--line-soft);
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: baseline;
+
+  gap: 4px 10px;
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+.researchModuleSystem span {
+  color: var(--red-hot);
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+}
+
+.researchModuleSystem a {
+  color: var(--text);
+
+  font-weight: 600;
+
+  transition: color 160ms ease;
+}
+
+.researchModuleSystem a:hover,
+.researchModuleSystem a:focus-visible {
+  color: var(--red-hot);
+}
+
+/*
+ * The chain: five labeled steps with connector arrows. Desktop is
+ * one horizontal row; mobile stacks the SAME nodes vertically with
+ * a left rail — one system, two layouts, no separate mobile build.
+ */
+.researchChain {
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  gap: 10px;
+}
+
+.researchStep {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+
+  min-width: 0;
+}
+
+.researchStepLabel {
+  color: var(--red-hot);
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.2em;
+
+  text-transform: uppercase;
+}
+
+.researchStepBody {
+  color: var(--text);
+
+  font-size: 13px;
+
+  line-height: 1.55;
+}
+
+.researchStepBody a {
+  color: var(--red-hot);
+
+  text-decoration: none;
+}
+
+.researchStepBody a:hover {
+  color: #ffffff;
+
+  text-decoration: underline;
+
+  text-decoration-color: rgba(255, 32, 32, 0.5);
+}
+
+/*
+ * The connector between steps — a quiet red arrow that reflows
+ * into a left rail on narrow screens.
+ */
+.researchArrow {
+  align-self: center;
+
+  color: rgba(255, 64, 54, 0.65);
+
+  font-family: var(--font-mono);
+
+  font-size: 13px;
+
+  user-select: none;
+}
+
+@media (max-width: 920px) {
+  .researchChain {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+  .researchStep {
+    position: relative;
+
+    padding: 10px 0 10px 26px;
+  }
+
+  .researchStep::before {
+    content: "";
+
+    position: absolute;
+
+    left: 6px;
+
+    top: 0;
+
+    bottom: 0;
+
+    width: 1px;
+
+    background:
+      rgba(255, 32, 32, 0.22);
+  }
+
+  .researchStep:first-child::before {
+    top: 14px;
+  }
+
+  .researchStep:last-child::before {
+    bottom: auto;
+
+    height: 14px;
+  }
+
+  .researchStep::after {
+    content: "";
+
+    position: absolute;
+
+    left: 3px;
+
+    top: 15px;
+
+    width: 7px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--red-hot);
+
+    box-shadow:
+      0 0 8px
+        rgba(255, 64, 54, 0.55);
+  }
+
+  .researchArrow {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* PAGE ARTIFACT HEADER (v4.0.5) — shared voice of the About/Contact   */
+/* identity artifacts                                                  */
+/* ------------------------------------------------------------------ */
+
+/*
+ * The one header vocabulary both unique artifacts speak: the 13-point
+ * star, one mono kicker, one title, one summary line. The per-route
+ * accent comes from the shell's --page-accent, so the same classes
+ * read warm orange on /about/ and house red on /contact/ without a
+ * fork. Page-specific artifact STRUCTURE lives in the blocks below;
+ * this header is what makes both artifacts read as one system.
+ */
+
+.artifactHead {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.artifactStar {
+  flex: 0 0 auto;
+
+  width: 22px;
+
+  height: 22px;
+}
+
+.artifactKicker {
+  margin: 0;
+
+  color:
+    var(
+      --page-accent,
+      var(--red-hot)
+    );
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.26em;
+
+  text-transform: uppercase;
+}
+
+.artifactTitle {
+  margin: 14px 0 0;
+
+  /* Same heading scale as the shared section titles. */
+  font-size: clamp(21px, 3vw, 27px);
+
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+
+  line-height: 1.25;
+}
+
+.artifactSummary {
+  max-width: var(--page-lead-measure);
+
+  margin: 8px 0 0;
+
+  color: var(--text-soft);
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+/* ------------------------------------------------------------------ */
+/* ABOUT IDENTITY ARTIFACT (v4.0.5) — /about/ first document block     */
+/* ------------------------------------------------------------------ */
+
+/*
+ * The identity/practice matrix: the three tracks of the practice
+ * (RESEARCH / ENGINEERING / PRODUCT) on one connected signal rail —
+ * a compact answer to "what is this page" before the prose begins,
+ * leading directly into "What I do" and "How I work".
+ *
+ * Page-specific ARTIFACT styling only: the shared document measure,
+ * section rhythm, and typography tokens are consumed, never
+ * redefined. Pure flex/grid — no absolute positioning, so nothing in
+ * the artifact can overlap text or clip on narrow screens. The only
+ * motion is an opacity pulse on the rail nodes, gated behind
+ * prefers-reduced-motion: no-preference; the static state (full
+ * opacity, static rail) is the complete, usable artifact.
+ */
+
+.identityArtifact {
+  border: 1px solid var(--line-soft);
+
+  border-radius: 14px;
+
+  background:
+    radial-gradient(
+      90% 70% at 18% 0%,
+      color-mix(
+        in srgb,
+        var(--page-accent, var(--red-hot)) 8%,
+        transparent
+      ),
+      transparent 62%
+    ),
+    linear-gradient(
+      150deg,
+      rgba(18, 20, 27, 0.82),
+      rgba(9, 10, 14, 0.74)
+    );
+
+  padding: 26px 28px;
+}
+
+/*
+ * The signal rail — three nodes on one line, aligned to the track
+ * columns below. Decorative (aria-hidden in the markup): the cards
+ * carry the content.
+ */
+.identityArtifactRail {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap: 18px;
+
+  margin: 24px 0 0;
+}
+
+.identityArtifactRailCell {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  min-height: 12px;
+}
+
+.identityArtifactRailLine {
+  flex: 1;
+
+  height: 1px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--page-accent, var(--red-hot)) 30%,
+      transparent
+    );
+}
+
+/*
+ * The outer half-segments (left of the first node, right of the
+ * last) keep their space but paint nothing, so every node stays
+ * centered above its own track column.
+ */
+.identityArtifactRailLineGhost {
+  visibility: hidden;
+}
+
+.identityArtifactRailNode {
+  flex: 0 0 auto;
+
+  width: 7px;
+
+  height: 7px;
+
+  border-radius: 50%;
+
+  background:
+    var(
+      --page-accent,
+      var(--red-hot)
+    );
+
+  box-shadow:
+    0 0 10px
+      color-mix(
+        in srgb,
+        var(--page-accent, var(--red-hot)) 55%,
+        transparent
+      );
+}
+
+.identityArtifactTracks {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap: 18px;
+
+  margin: 12px 0 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+.identityArtifactTrack {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+  padding: 18px 20px;
+
+  border: 1px solid var(--line-soft);
+
+  border-radius: 12px;
+
+  background: var(--panel);
+
+  transition: border-color 140ms ease;
+}
+
+.identityArtifactTrack:hover {
+  border-color:
+    color-mix(
+      in srgb,
+      var(--page-accent, var(--red-hot)) 32%,
+      transparent
+    );
+}
+
+.identityArtifactTrackName {
+  margin: 0;
+
+  color:
+    var(
+      --page-accent,
+      var(--red-hot)
+    );
+
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.2em;
+
+  text-transform: uppercase;
+}
+
+.identityArtifactTrackScope {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  line-height: 1.5;
+}
+
+.identityArtifactTrackNote {
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-size: 13px;
+
+  line-height: 1.65;
+}
+
+.identityArtifactTrackLink {
+  margin-top: 4px;
+
+  color:
+    var(
+      --page-accent,
+      var(--red-hot)
+    );
+
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+
+  letter-spacing: 0.06em;
+
+  text-decoration: none;
+}
+
+.identityArtifactTrackLink:hover {
+  color: #ffffff;
+
+  text-shadow:
+    0 0 18px
+      rgba(255, 32, 32, 0.35);
+}
+
+.identityArtifactTrackLink:focus-visible {
+  outline: 2px solid var(--red-hot);
+
+  outline-offset: 3px;
+
+  border-radius: 2px;
+}
+
+/*
+ * Motion: one quiet opacity pulse on the rail nodes — the same
+ * rhythm as the hero field pulse. transform/opacity only; under
+ * reduced motion the nodes hold their static full opacity.
+ */
+@media
+  (prefers-reduced-motion: no-preference) {
+  .identityArtifactRailNode {
+    animation:
+      identityNodePulse
+      5.2s
+      ease-in-out
+      infinite;
+  }
+}
+
+@keyframes
+  identityNodePulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 880px) {
+  .identityArtifact {
+    padding: 20px;
+  }
+
+  /*
+   * Stacked: the horizontal rail no longer applies — it steps
+   * aside entirely and the cards carry the connection through a
+   * shared left accent edge (the same treatment as the focus list
+   * on narrow screens). No overlap, no clipping, no orphan nodes.
+   */
+  .identityArtifactRail {
+    display: none;
+  }
+
+  .identityArtifactTracks {
+    grid-template-columns: 1fr;
+  }
+
+  .identityArtifactTrack {
+    border-left: 2px solid
+      color-mix(
+        in srgb,
+        var(--page-accent, var(--red-hot)) 45%,
+        transparent
+      );
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* CONTACT TRANSMISSION ARTIFACT (v4.0.5) — /contact/ first doc block  */
+/* ------------------------------------------------------------------ */
+
+/*
+ * The transmission instrument: the four collaboration intents the
+ * page actually serves, wired over one line to the ONE primary
+ * action (the verified mailto), with GitHub / LinkedIn as the
+ * secondary paths. The visual language extends the unified nav's
+ * contact identity (navContactRipple / navContactPacket) at document
+ * scale — packet dots on each intent, a wired line into the action
+ * node, one quiet ripple. transform/opacity only; static under
+ * reduced motion; no pointer tracking, no canvas, no client code.
+ */
+
+.transmissionArtifact {
+  border: 1px solid var(--line-red);
+
+  border-radius: 14px;
+
+  background:
+    radial-gradient(
+      80% 80% at 88% 30%,
+      rgba(255, 32, 32, 0.07),
+      transparent 60%
+    ),
+    linear-gradient(
+      150deg,
+      rgba(18, 20, 27, 0.82),
+      rgba(9, 10, 14, 0.74)
+    );
+
+  padding: 26px 28px;
+}
+
+.transmissionConsole {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(64px, 0.35fr)
+    minmax(0, 0.85fr);
+
+  align-items: center;
+
+  gap: 18px;
+
+  margin: 24px 0 0;
+}
+
+.transmissionIntents {
+  display: grid;
+
+  gap: 8px;
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+.transmissionIntent {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 9px 12px;
+
+  border: 1px solid var(--line-soft);
+
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.015);
+
+  color: var(--text);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+
+  line-height: 1.5;
+
+  text-transform: uppercase;
+}
+
+.transmissionIntentDot {
+  flex: 0 0 auto;
+
+  width: 5px;
+
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: var(--red-hot);
+
+  opacity: 0.85;
+}
+
+.transmissionWire {
+  display: flex;
+
+  align-items: center;
+}
+
+.transmissionWireLine {
+  flex: 1;
+
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 32, 32, 0.06),
+    rgba(255, 70, 56, 0.65)
+  );
+}
+
+.transmissionWireNode {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  width: 9px;
+
+  height: 9px;
+
+  border-radius: 50%;
+
+  background: var(--red-hot);
+
+  box-shadow:
+    0 0 12px
+      rgba(255, 70, 56, 0.7);
+}
+
+/*
+ * The ripple rings: static by default — one thin ring visible, one
+ * hidden — so the reduced-motion state is calm and stable. Only
+ * under prefers-reduced-motion: no-preference do both rings emit
+ * (scale + opacity, compositor-only, the navContactRipple cadence).
+ */
+.transmissionWireNode::before,
+.transmissionWireNode::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  border:
+    1px solid
+      rgba(255, 70, 56, 0.55);
+
+  border-radius: 50%;
+}
+
+.transmissionWireNode::after {
+  opacity: 0;
+}
+
+@media
+  (prefers-reduced-motion: no-preference) {
+  .transmissionWireNode::before,
+  .transmissionWireNode::after {
+    animation:
+      transmissionRipple
+      2.6s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      )
+      infinite;
+  }
+
+  .transmissionWireNode::after {
+    animation-delay: 1.3s;
+  }
+}
+
+@keyframes
+  transmissionRipple {
+  0% {
+    opacity: 0.75;
+
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform: scale(3.4);
+  }
+}
+
+.transmissionAction {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 10px;
+}
+
+.transmissionAddress {
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+}
+
+.transmissionSecondary {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 22px;
+
+  padding-top: 18px;
+
+  border-top: 1px solid var(--line-soft);
+}
+
+.transmissionSecondaryLabel {
+  margin-right: 4px;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.22em;
+
+  text-transform: uppercase;
+}
+
+.transmissionSecondaryLink {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 8px 14px;
+
+  border: 1px solid var(--line-soft);
+
+  border-radius: 999px;
+
+  background: var(--panel);
+
+  color: var(--text);
+
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  transition: border-color 140ms ease;
+}
+
+.transmissionSecondaryLink:hover {
+  border-color: rgba(255, 32, 32, 0.4);
+}
+
+.transmissionSecondaryLink:focus-visible {
+  outline: 2px solid var(--red-hot);
+
+  outline-offset: 3px;
+}
+
+@media (max-width: 880px) {
+  .transmissionArtifact {
+    padding: 20px;
+  }
+
+  /*
+   * Stacked: intents, a short centered connector, then the action —
+   * the console reads top-to-bottom with the same meaning, and the
+   * CTA stays a comfortable touch target.
+   */
+  .transmissionConsole {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+  }
+
+  .transmissionWire {
+    min-height: 20px;
+  }
+
+  .transmissionWireLine {
+    max-width: 96px;
+  }
+}

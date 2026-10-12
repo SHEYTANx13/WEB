@@ -1,0 +1,238 @@
+/*
+ * HEADER CONTRACT (v3.6.1) — the blog header is the same header
+ * system as the world HUD and the content tabs: sticky (in-flow, so
+ * no page needs padding compensation), z-index 1000, shared rail,
+ * shared height (--page-header-height). The gradient face is the
+ * blog's editorial identity; the geometry underneath is shared.
+ */
+.blogHeader {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 1000;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(4, 4, 5, 0.94),
+      rgba(4, 4, 5, 0.76) 68%,
+      rgba(4, 4, 5, 0)
+    );
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.blogHeaderInner {
+  /* The shared alignment rail — identical to hero/footer rails. */
+  width:
+    min(
+      calc(100% - 2 * var(--page-gutter)),
+      var(--page-content-width)
+    );
+
+  min-height: var(--page-header-height);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 22px;
+
+  margin: 0 auto;
+
+  pointer-events: auto;
+}
+
+.brand {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  min-width: max-content;
+}
+
+.brandEye {
+  width: 32px;
+  height: 32px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: visible;
+}
+
+.brandEye img {
+  display: block;
+
+  width: 32px;
+  height: 32px;
+}
+
+.brandName {
+  color: #f5f7fb;
+
+  font-size: 15px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+
+  transition: color 160ms ease;
+}
+
+.brand:hover .brandName {
+  color: #ffffff;
+}
+
+/*
+ * HEADER STATUS (v4.0.5) — removed from this sheet. The blog's
+ * status is the shared SiteHeaderStatus component (same dot, same
+ * pulse, same typography as the world HUD and the content routes);
+ * this header owns PLACEMENT only. The old breakpoint-hiding rules
+ * (≤1100px / ≤760px display:none) are gone with it: the current
+ * tab identity remains visible on tablet and mobile — the compact
+ * hierarchy is brand → status → menu trigger, and the header's
+ * flex/gap rhythm (tightened below) is what makes it fit.
+ */
+
+/*
+ * UNIFIED NAVIGATION (v3.4) — placement only. The navigation's own
+ * geometry, modes and animations live in UnifiedSiteNav.module.css;
+ * the header gives the nav the flexible middle slot the old scene
+ * link row owned.
+ *
+ * v3.6.1: the slot is a FLEX row that centers the track on desktop,
+ * exactly like the content header's .contentNav slot. Without flex,
+ * the ≤860px disclosure trigger could not keep the unified nav's
+ * end-alignment contract (the trigger hugged the brand on phones —
+ * a Blog-only nav misalignment).
+ */
+.blogNav {
+  flex: 1 1 auto;
+
+  min-width: 0;
+
+  display: flex;
+
+  justify-content: center;
+}
+
+.headerActions {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  min-width: max-content;
+}
+
+.githubLink {
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  /*
+   * Touch-target sizing (WCAG 2.5.8): a bare 10px text link is an
+   * ~12px target on tablets. Padded inline-flex grows the tappable
+   * box to ~28px without altering the header's visual rhythm.
+   */
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 9px 4px;
+
+  transition: color 160ms ease;
+}
+
+.githubLink:hover {
+  color: var(--text);
+}
+
+@media (max-width: 1100px) {
+  /*
+   * The status stays (v4.0.5): the freed-slot hiding rule is gone
+   * and the header tightens its rhythm instead, so the unified
+   * track keeps usable width beside the identity.
+   */
+  .blogHeaderInner {
+    gap: 14px;
+  }
+}
+
+/*
+ * COMPACT NAVIGATION MODE (v3.4) — ≤860px (phones and narrow
+ * portrait tablets). The unified track stands down (the component
+ * hides it itself) and its disclosure trigger takes over; the GitHub
+ * text link joins the menu panel as a utility entry, so nothing is
+ * lost — only un-crowded.
+ */
+@media (max-width: 860px) {
+  .githubLink {
+    display: none;
+  }
+
+  /*
+   * The nav slot carries the disclosure trigger end-aligned (the
+   * component right-aligns its own trigger); the actions group
+   * keeps the row's right edge job explicit.
+   */
+  .headerActions {
+    gap: 12px;
+
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  /*
+   * v3.6.1: height (68px) and gutter are token-owned; only the
+   * safe-area insets stay local — the tokens cannot know about
+   * notched edges.
+   */
+  .blogHeaderInner {
+    width:
+      min(
+        calc(
+          100% - 2 * var(--page-gutter) -
+          env(safe-area-inset-left, 0px) -
+          env(safe-area-inset-right, 0px)
+        ),
+        var(--page-content-width)
+      );
+
+    gap: 12px;
+  }
+}
+
+@media (max-width: 560px) {
+  .brandName {
+    display: none;
+  }
+}
+
+/* Print (v2.5.1): the fixed HUD is screen-only navigation. */
+@media print {
+  .blogHeader {
+    display: none !important;
+  }
+}

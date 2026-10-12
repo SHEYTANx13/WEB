@@ -1,0 +1,1674 @@
+:root {
+  --background: #050505;
+  --background-soft: #090909;
+
+  --panel: rgba(16, 18, 24, 0.82);
+  --panel-solid: #101218;
+  --panel-light: #171a22;
+
+  --text: #f5f7fb;
+  --text-soft: #c4c9d4;
+  --text-muted: #7f8796;
+
+  --red: #ff2020;
+  --red-hot: #ff4638;
+  --red-deep: #a50707;
+  --red-dark: #430606;
+
+  --line: rgba(255, 255, 255, 0.08);
+  --line-soft: rgba(255, 255, 255, 0.045);
+  --line-red: rgba(255, 32, 32, 0.22);
+
+  /*
+   * Category accents (v2.5.3) — a deterministic three-color code for
+   * the blog's categories. Systems stays on the site's brand red;
+   * research and engineering get neighbouring hues that hold up on
+   * the dark surface. Purely presentational: applied through
+   * data-category attributes and ::before dots, never as the only
+   * carrier of meaning (the category name is always spelled out).
+   */
+  --cat-systems: var(--red-hot);
+  --cat-research: #ffb03a;
+  --cat-engineering: #35d9a4;
+
+  --shadow:
+    0 24px 70px
+    rgba(0, 0, 0, 0.48);
+
+  --shadow-red:
+    0 0 45px
+    rgba(255, 32, 32, 0.14);
+
+  /*
+   * UNIFIED PAGE-FRAME CONTRACT (v3.6.1) — the one geometry system
+   * every primary tab (HOME · ABOUT · WORK · RESEARCH · BLOG ·
+   * CONTACT) composes from. Six tabs, six identities, ONE set of
+   * layout primitives: no page may introduce its own width, header
+   * height, gutter, hero height, section rhythm, or footer spacing.
+   */
+  --page-content-width: 1240px;
+
+  /* Long-form reading measure (document body below the hero). */
+  --page-doc-width: 860px;
+
+  /* Lead paragraph measure — shared "maximum readable" lead width. */
+  --page-lead-measure: 720px;
+
+  /* Shared H1 scale for document tabs (home keeps its own identity scale). */
+  --page-h1-scale: clamp(34px, 6vw, 58px);
+
+  --page-gutter: 32px;
+
+  --page-header-height: 76px;
+
+  --page-hero-min-height: 440px;
+
+  --page-section-gap: 64px;
+
+  --page-footer-spacing: 88px;
+
+  /*
+   * Legacy token aliases — every pre-existing reference
+   * (scenes, blog, TOC, article scroll-margins) now resolves to the
+   * unified contract instead of an independent value.
+   */
+  --content-width: var(--page-content-width);
+  --shell-width: var(--page-content-width);
+  --shell-header: var(--page-header-height);
+
+  --font-sans:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --font-mono:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Reset                                                                      */
+/* -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+
+  background:
+    var(--background);
+
+  text-rendering:
+    optimizeLegibility;
+
+  -webkit-font-smoothing:
+    antialiased;
+
+  -moz-osx-font-smoothing:
+    grayscale;
+}
+
+/*
+ * Smooth scrolling only for users who have not asked the system for
+ * reduced motion (WCAG 2.3.3 / vestibular safety). Fragment jumps,
+ * focus navigation and programmatic scrolls stay instant under
+ * prefers-reduced-motion: reduce — matching the JS-side gating of
+ * every smooth scrollIntoView in the app.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior:
+      smooth;
+  }
+}
+
+body {
+  min-height:
+    100vh;
+
+  min-height:
+    100svh;
+
+  min-height:
+    100dvh;
+
+  margin:
+    0;
+
+  overflow-x:
+    hidden;
+
+  color:
+    var(--text);
+
+  font-family:
+    var(--font-sans);
+
+  background:
+    radial-gradient(
+      circle at 78% 8%,
+      rgba(
+        255,
+        20,
+        20,
+        0.075
+      ),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 12% 85%,
+      rgba(
+        128,
+        0,
+        0,
+        0.07
+      ),
+      transparent 30%
+    ),
+    var(--background);
+}
+
+body::before {
+  content:
+    "";
+
+  position:
+    fixed;
+
+  inset:
+    0;
+
+  z-index:
+    -3;
+
+  pointer-events:
+    none;
+
+  opacity:
+    0.24;
+
+  background-image:
+    linear-gradient(
+      rgba(
+        255,
+        255,
+        255,
+        0.022
+      ) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(
+        255,
+        255,
+        255,
+        0.022
+      ) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    36px 36px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 78%
+    );
+}
+
+body::after {
+  content:
+    "";
+
+  position:
+    fixed;
+
+  inset:
+    0;
+
+  z-index:
+    -4;
+
+  pointer-events:
+    none;
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(
+        255,
+        0,
+        0,
+        0.035
+      ),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(
+        255,
+        255,
+        255,
+        0.012
+      ),
+      transparent 24%
+    );
+}
+
+a {
+  color:
+    inherit;
+
+  text-decoration:
+    none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color:
+    transparent;
+}
+
+button {
+  font:
+    inherit;
+}
+
+img,
+svg,
+canvas {
+  max-width:
+    100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap:
+    break-word;
+}
+
+p + p {
+  margin-top:
+    1em;
+}
+
+::selection {
+  background:
+    rgba(
+      255,
+      32,
+      32,
+      0.34
+    );
+
+  color:
+    #ffffff;
+}
+
+:focus-visible {
+  outline:
+    2px solid
+    rgba(
+      255,
+      65,
+      65,
+      0.95
+    );
+
+  outline-offset:
+    4px;
+}
+
+/*
+ * Keyboard hints (v2.5.3) — bare <kbd> used inside navigation labels
+ * (adjacent-article J/K hints, the "/" search hint) and nowhere else.
+ * Styled as a quiet instrument chip: mono, small, bordered. Hidden
+ * from print and from the reduced-motion override set (opacity-only
+ * styling, nothing animated).
+ */
+kbd {
+  display: inline-block;
+
+  padding: 1px 6px 2px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.16);
+
+  border-bottom-width: 2px;
+
+  border-radius: 4px;
+
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  line-height: 1.5;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+
+  vertical-align: 1px;
+
+  white-space: nowrap;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Scrollbar                                                                  */
+/* -------------------------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width:
+    10px;
+}
+
+::-webkit-scrollbar-track {
+  background:
+    #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background:
+    #2a2d35;
+
+  border:
+    2px solid
+    #050505;
+
+  border-radius:
+    999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:
+    #4b4f59;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Global layout                                                              */
+/* -------------------------------------------------------------------------- */
+
+.page-container {
+  /*
+   * THE SHARED ALIGNMENT RAIL (v3.6.1): one formula — every rail
+   * consumer (header, hero, document sections, footer) starts at
+   * x = max(var(--page-gutter), (viewport − --page-content-width)/2)
+   * at every viewport, on every tab.
+   */
+  width:
+    min(
+      calc(100% - 2 * var(--page-gutter)),
+      var(--page-content-width)
+    );
+
+  margin:
+    0 auto;
+}
+
+.section {
+  position:
+    relative;
+
+  padding:
+    112px 0;
+
+  content-visibility:
+    auto;
+
+  contain-intrinsic-size:
+    900px;
+}
+
+.section-tight {
+  padding:
+    80px 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Shared typography                                                          */
+/* -------------------------------------------------------------------------- */
+
+.kicker {
+  margin:
+    0;
+
+  color:
+    var(--text-muted);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    11px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.2em;
+
+  line-height:
+    1.4;
+
+  text-transform:
+    uppercase;
+}
+
+.hero-title {
+  margin:
+    0;
+
+  max-width:
+    920px;
+
+  font-size:
+    clamp(
+      3.25rem,
+      8vw,
+      7.8rem
+    );
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    -0.065em;
+
+  line-height:
+    1.02;
+
+  text-wrap:
+    balance;
+}
+
+.hero-title-accent {
+  color:
+    var(--red);
+
+  text-shadow:
+    0 0 22px
+      rgba(
+        255,
+        32,
+        32,
+        0.2
+      ),
+    0 0 70px
+      rgba(
+        255,
+        32,
+        32,
+        0.1
+      );
+}
+
+.section-title {
+  margin:
+    8px 0 0;
+
+  max-width:
+    900px;
+
+  font-size:
+    clamp(
+      2.3rem,
+      5vw,
+      4.8rem
+    );
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    -0.045em;
+
+  line-height:
+    1.04;
+
+  text-wrap:
+    balance;
+}
+
+.body-large {
+  margin:
+    0;
+
+  color:
+    var(--text-soft);
+
+  font-size:
+    clamp(
+      1.05rem,
+      1.7vw,
+      1.35rem
+    );
+
+  line-height:
+    1.8;
+
+  overflow-wrap:
+    break-word;
+}
+
+.body {
+  margin:
+    0;
+
+  color:
+    var(--text-soft);
+
+  /*
+   * READABILITY (v3.0): 1rem → 1.0625rem (17px) — inside the
+   * 1.05–1.12rem comfort range for interface body copy while the
+   * mono/label hierarchy stays untouched.
+   */
+  font-size:
+    1.0625rem;
+
+  line-height:
+    1.8;
+
+  overflow-wrap:
+    break-word;
+}
+
+.muted {
+  color:
+    var(--text-muted);
+}
+
+strong,
+h1,
+h2,
+h3,
+h4,
+p,
+span {
+  text-wrap:
+    pretty;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Shared hero primitives                                                     */
+/* -------------------------------------------------------------------------- */
+
+.hero {
+  position:
+    relative;
+
+  min-height:
+    max(
+      var(--page-hero-min-height),
+      calc(
+        100vh -
+        var(--page-header-height)
+      )
+    );
+
+  min-height:
+    max(
+      var(--page-hero-min-height),
+      calc(
+        100svh -
+        var(--page-header-height)
+      )
+    );
+
+  min-height:
+    max(
+      var(--page-hero-min-height),
+      calc(
+        100dvh -
+        var(--page-header-height)
+      )
+    );
+
+  display:
+    grid;
+
+  align-items:
+    center;
+
+  overflow:
+    clip;
+
+  padding:
+    76px 0 96px;
+}
+
+.hero-grid {
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1.08fr
+    )
+    minmax(
+      330px,
+      0.92fr
+    );
+
+  align-items:
+    center;
+
+  gap:
+    48px;
+}
+
+.hero-copy {
+  min-width:
+    0;
+}
+
+.hero-status {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    9px;
+
+  margin-bottom:
+    24px;
+
+  color:
+    #8d95a5;
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    11px;
+
+  letter-spacing:
+    0.16em;
+
+  text-transform:
+    uppercase;
+}
+
+.status-dot {
+  width:
+    8px;
+
+  height:
+    8px;
+
+  flex:
+    0 0 auto;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--red);
+
+  box-shadow:
+    0 0 10px
+      rgba(
+        255,
+        32,
+        32,
+        0.6
+      ),
+    0 0 24px
+      rgba(
+        255,
+        32,
+        32,
+        0.24
+      );
+
+  animation:
+    status-pulse
+    2s
+    ease-in-out
+    infinite;
+}
+
+@keyframes status-pulse {
+  0%,
+  100% {
+    opacity:
+      0.4;
+
+    transform:
+      scale(
+        0.82
+      );
+  }
+
+  50% {
+    opacity:
+      1;
+
+    transform:
+      scale(
+        1.08
+      );
+  }
+}
+
+.hero-description {
+  max-width:
+    770px;
+
+  margin:
+    28px 0 0;
+
+  overflow-wrap:
+    break-word;
+}
+
+.hero-actions {
+  display:
+    flex;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    12px;
+
+  margin-top:
+    34px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Shared buttons                                                             */
+/* -------------------------------------------------------------------------- */
+
+.button {
+  position:
+    relative;
+
+  min-height:
+    46px;
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    10px;
+
+  padding:
+    0 18px;
+
+  border:
+    1px solid
+    transparent;
+
+  border-radius:
+    3px;
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.12em;
+
+  line-height:
+    1;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+}
+
+/*
+ * INTERACTION SYSTEM (v3.0) — hover, press, release, focus.
+ *
+ * One coherent language for every shared button:
+ * - hover: lift + border/glow response (180–240ms). The lift is a
+ *   motion enhancement guarded by prefers-reduced-motion; color,
+ *   border and shadow feedback apply regardless.
+ * - press: transform compresses toward the surface with a fast
+ *   90ms transition so the down-step reads as contact, not drift
+ * - release: the resting 200ms ease returns the button smoothly
+ * - focus-visible: a red ring that matches the site-wide outline
+ * All properties are transform/color/shadow — no layout animation.
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .button:hover {
+    transform:
+      translateY(
+        -2px
+      );
+  }
+}
+
+.button:active {
+  transition-duration:
+    90ms;
+
+  box-shadow:
+    none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .button:active {
+    transform:
+      translateY(0)
+      scale(0.98);
+  }
+}
+
+.button:focus-visible {
+  outline:
+    2px solid
+    rgba(
+      255,
+      65,
+      65,
+      0.95
+    );
+
+  outline-offset:
+    4px;
+}
+
+.button:disabled,
+.button[aria-disabled="true"] {
+  opacity:
+    0.45;
+
+  pointer-events:
+    none;
+}
+
+.button-primary {
+  color:
+    #ffffff;
+
+  border-color:
+    rgba(
+      255,
+      32,
+      32,
+      0.55
+    );
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff2020,
+      #c40d0d
+    );
+
+  box-shadow:
+    0 10px 32px
+      rgba(
+        255,
+        32,
+        32,
+        0.18
+      );
+}
+
+.button-primary:hover {
+  border-color:
+    rgba(
+      255,
+      80,
+      70,
+      0.8
+    );
+
+  box-shadow:
+    0 14px 40px
+      rgba(
+        255,
+        32,
+        32,
+        0.28
+      );
+}
+
+.button-secondary {
+  color:
+    var(--text-soft);
+
+  border-color:
+    var(--line);
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.018
+    );
+}
+
+.button-secondary:hover {
+  color:
+    var(--text);
+
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.16
+    );
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.035
+    );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Shared panels                                                              */
+/* -------------------------------------------------------------------------- */
+
+.panel {
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(
+        18,
+        20,
+        27,
+        0.78
+      ),
+      rgba(
+        9,
+        10,
+        14,
+        0.72
+      )
+    );
+
+  box-shadow:
+    var(--shadow);
+
+  isolation:
+    isolate;
+}
+
+.panel-content {
+  padding:
+    30px;
+}
+
+.panel-signal {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    5px;
+}
+
+.panel-signal span {
+  width:
+    4px;
+
+  height:
+    4px;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--red);
+
+  box-shadow:
+    0 0 8px
+      rgba(
+        255,
+        32,
+        32,
+        0.45
+      );
+
+  animation:
+    signal-blink
+    2.2s
+    ease-in-out
+    infinite;
+}
+
+.panel-signal span:nth-child(2) {
+  animation-delay:
+    0.24s;
+}
+
+.panel-signal span:nth-child(3) {
+  animation-delay:
+    0.48s;
+}
+
+@keyframes signal-blink {
+  0%,
+  100% {
+    opacity:
+      0.25;
+  }
+
+  50% {
+    opacity:
+      1;
+  }
+}
+
+.panel-label {
+  color:
+    var(--text-muted);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    9px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.16em;
+
+  text-transform:
+    uppercase;
+}
+
+.panel-title {
+  margin:
+    12px 0 0;
+
+  color:
+    var(--text);
+
+  font-size:
+    22px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    -0.025em;
+
+  line-height:
+    1.1;
+}
+
+.panel-copy {
+  margin:
+    12px 0 0;
+
+  color:
+    var(--text-muted);
+
+  font-size:
+    14px;
+
+  line-height:
+    1.7;
+
+  overflow-wrap:
+    break-word;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Shared responsive layout                                                   */
+/* -------------------------------------------------------------------------- */
+
+/*
+ * RESPONSIVE TOKEN SCALE (v3.6.1) — one breakpoint strategy for the
+ * whole site. Tokens (not per-page literals) carry the responsive
+ * changes, so every consumer reflows together:
+ *   ≤860px  — compact navigation mode + tablet gutter + mobile header
+ *   ≤560px  — phone gutter + phone hero floor
+ */
+@media (max-width: 860px) {
+  :root {
+    --page-gutter: 24px;
+
+    --page-header-height: 68px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .hero-grid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      36px;
+  }
+}
+
+@media (max-width: 760px) {
+  .section {
+    padding:
+      84px 0;
+  }
+
+  .section-tight {
+    padding:
+      64px 0;
+  }
+
+  .hero {
+    padding:
+      54px 0 72px;
+  }
+
+  .hero-grid {
+    gap:
+      28px;
+  }
+
+  .hero-actions {
+    gap:
+      10px;
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --page-hero-min-height: 380px;
+  }
+
+  .section {
+    padding:
+      68px 0;
+  }
+
+  .hero {
+    padding:
+      40px 0 58px;
+  }
+
+  .button {
+    min-height:
+      44px;
+
+    padding:
+      0 15px;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Motion tokens (v2.2)                                                       */
+/*                                                                            */
+/* One transition vocabulary for the whole site. Durations are chosen so      */
+/* every band stays inside a comfortable perceptual window and remains        */
+/* compositor-friendly: opacity + transform only, never layout properties.    */
+/* Individual modules may reference these tokens; they must not invent        */
+/* their own one-off durations for the same perceptual band.                  */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  /* MICRO — interaction feedback (hover, press, focus). */
+  --motion-micro: 140ms;
+
+  /* SHORT — item/card/tag reveal. */
+  --motion-short: 240ms;
+
+  /* MEDIUM — panels, filtered lists, scene content settle. */
+  --motion-medium: 420ms;
+
+  /* LONG — organism/environmental transitions. */
+  --motion-long: 900ms;
+
+  /* Easing family — one decelerate curve, one standard curve. */
+  --ease-out-soft:
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+
+  --ease-standard:
+    cubic-bezier(
+      0.4,
+      0,
+      0.2,
+      1
+    );
+
+  /* Stagger unit for grouped reveals (cards, tags, nav items). */
+  --motion-stagger: 45ms;
+
+  /* Reveal travel distance — small by design; cheap to composite. */
+  --reveal-shift: 14px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Reveal system (v2.2)                                                       */
+/*                                                                            */
+/* Appearance/disappearance language shared by every appropriate UI surface.  */
+/* Elements opt in with `data-reveal`; a single IntersectionObserver          */
+/* controller (components/MotionReveal.tsx) marks them `data-revealed`.       */
+/*                                                                            */
+/* Safety law: the hidden state exists ONLY under `html.reveal-js`, which is  */
+/* set by an inline pre-paint script in app/layout.tsx. Without JavaScript    */
+/* the class is absent and every element is permanently visible — animation   */
+/* is enhancement, never a gate.                                              */
+/* -------------------------------------------------------------------------- */
+
+.reveal-js [data-reveal] {
+  opacity: 0;
+
+  transform:
+    translate3d(
+      0,
+      var(--reveal-shift),
+      0
+    );
+
+  will-change:
+    opacity,
+    transform;
+}
+
+.reveal-js [data-reveal][data-revealed="true"] {
+  opacity: 1;
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+  transition:
+    opacity
+      var(--motion-medium)
+      var(--ease-out-soft),
+    transform
+      var(--motion-medium)
+      var(--ease-out-soft);
+
+  transition-delay:
+    var(
+      --reveal-delay,
+      0ms
+    );
+
+  will-change:
+    auto;
+}
+
+/*
+ * Variant: reveal-from-scale for panels and featured surfaces — same
+ * compositor properties, slightly different character.
+ */
+.reveal-js [data-reveal="scale"] {
+  transform:
+    translate3d(
+      0,
+      calc(var(--reveal-shift) * 0.6),
+      0
+    )
+    scale(0.985);
+}
+
+.reveal-js [data-reveal="scale"][data-revealed="true"] {
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    )
+    scale(1);
+}
+
+/*
+ * Variant: flow (v2.7) — reversible reveal for the article cover.
+ * The base transition declared for [data-revealed="true"] above is
+ * what animates the reveal; this block keeps the transition active
+ * in BOTH directions so leaving the viewport eases the cover back
+ * toward its quiet state instead of snapping. Transform and opacity
+ * only — the image's box never changes size, so there is no layout
+ * shift in either direction.
+ */
+.reveal-js [data-reveal="flow"] {
+  transform:
+    translate3d(
+      0,
+      calc(var(--reveal-shift) * 1.6),
+      0
+    )
+    scale(0.988);
+
+  opacity:
+    0.001;
+
+  transition:
+    opacity
+      var(--motion-medium)
+      var(--ease-out-soft),
+    transform
+      var(--motion-medium)
+      var(--ease-out-soft);
+}
+
+.reveal-js [data-reveal="flow"][data-revealed="true"] {
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    )
+    scale(1);
+
+  opacity:
+    1;
+}
+
+/*
+ * The observer is one-shot: once revealed, an element keeps its state.
+ * `data-reveal="instant"` skips the travel entirely (metadata rows and
+ * other surfaces that should only fade).
+ */
+.reveal-js [data-reveal="instant"] {
+  transform:
+    none;
+}
+
+.reveal-js [data-reveal="instant"][data-revealed="true"] {
+  transform:
+    none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /*
+   * Reduced motion: elements appear with a minimal crossfade and no
+   * travel. Content is never held hostage by an animation.
+   */
+  .reveal-js [data-reveal] {
+    transform:
+      none;
+
+    transition-duration:
+      1ms;
+  }
+
+  .reveal-js [data-reveal][data-revealed="true"] {
+    transition-delay:
+      0ms;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Reading motion variants (v2.5)                                             */
+/*                                                                            */
+/* The blog pipeline annotates article-body blocks at BUILD time with         */
+/* `data-reveal` + a chunked `data-reveal-order` (restarts at every h2:       */
+/* heading first, supporting content settles after). Each content class       */
+/* gets its own motion character while sharing the one transition             */
+/* vocabulary above — opacity + transform only, one observer, self-draining.  */
+/* Without JavaScript (no reveal-js class) none of this hides content.        */
+/* -------------------------------------------------------------------------- */
+
+/*
+ * Headings sharpen into place with slightly shorter travel than body
+ * blocks — the section anchor lands first, its content follows.
+ */
+.reveal-js [data-reveal="heading"] {
+  transform:
+    translate3d(
+      0,
+      calc(var(--reveal-shift) * 0.7),
+      0
+    );
+}
+
+.reveal-js [data-reveal="heading"][data-revealed="true"] {
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+}
+
+/*
+ * Blockquotes settle laterally — a quiet aside joining the text from
+ * the margin, never travelling the full column height.
+ */
+.reveal-js [data-reveal="quote"] {
+  transform:
+    translate3d(
+      calc(var(--reveal-shift) * -0.8),
+      0,
+      0
+    );
+}
+
+.reveal-js [data-reveal="quote"][data-revealed="true"] {
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+}
+
+/*
+ * Code blocks fade with a slower opacity ramp (opacity MEDIUM,
+ * transform LONG) — revealing code gradually reads as compiling,
+ * not popping.
+ */
+.reveal-js [data-reveal="code"] {
+  transform:
+    translate3d(
+      0,
+      calc(var(--reveal-shift) * 0.5),
+      0
+    );
+}
+
+.reveal-js [data-reveal="code"][data-revealed="true"] {
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+  transition-duration:
+    var(--motion-medium),
+    var(--motion-long);
+}
+
+/*
+ * Pure fade for horizontal rules — separators carry no travel at all.
+ */
+.reveal-js [data-reveal="fade"] {
+  transform:
+    none;
+}
+
+.reveal-js [data-reveal="fade"][data-revealed="true"] {
+  transform:
+    none;
+}
+
+/*
+ * Mobile: shorter travel everywhere. Small screens get the same
+ * choreography with less movement, never horizontal drift.
+ */
+@media (max-width: 560px) {
+  :root {
+    --reveal-shift: 9px;
+  }
+}
+
+/*
+ * Reduced motion must also strip the variant travel above: these
+ * selectors come after the variant definitions, so they win the
+ * cascade — no travel, instant appearance, content never held back.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-js [data-reveal="heading"],
+  .reveal-js [data-reveal="quote"],
+  .reveal-js [data-reveal="code"],
+  .reveal-js [data-reveal="fade"],
+  .reveal-js [data-reveal="flow"] {
+    transform:
+      none;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Screen-reader-only utility (v2.5.5 — bug fix)                               */
+/*                                                                            */
+/* The islands have been MARKING UP text as "sr-only" since v2.5.4            */
+/* (the shortcuts dialog's key names, the inbound-reference badges)           */
+/* but the utility itself was never defined — the text rendered               */
+/* visibly. This is the standard visually-hidden pattern: out of              */
+/* sight and out of layout flow for every reader, still read aloud            */
+/* by screen readers, still selectable, still printed if a print              */
+/* stylesheet ever wants it (print uses the same hiding here — the            */
+/* hidden text is auxiliary speech, not content).                            */
+/* -------------------------------------------------------------------------- */
+
+.sr-only {
+  position: absolute;
+
+  width: 1px;
+
+  height: 1px;
+
+  margin: -1px;
+
+  padding: 0;
+
+  border: 0;
+
+  clip-path: inset(50%);
+
+  overflow: hidden;
+
+  white-space: nowrap;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Print (v2.5.1)                                                              */
+/*                                                                            */
+/* The article IS the document; everything that is screen furniture            */
+/* (organism, fixed header, progress bar, navigation blocks) steps aside.      */
+/* Content is never hidden from print — only chrome.                          */
+/* -------------------------------------------------------------------------- */
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+
+    color: #111111 !important;
+  }
+
+  /*
+   * REVEAL SYSTEM ON PAPER (v2.7): print is a non-interactive
+   * medium — every reveal state must resolve to fully visible,
+   * including the reversible flow variant. Without this, an
+   * article cover the reader never scrolled to would print at
+   * opacity 0.001, and print is exactly the medium where a
+   * missing primary image is a content loss, not a motion state.
+   */
+  .reveal-js [data-reveal],
+  .reveal-js [data-reveal][data-revealed] {
+    opacity: 1 !important;
+
+    transform: none !important;
+  }
+
+  /*
+   * Keyboard hints are screen affordances — meaningless on paper.
+   * Category accents drop to neutral ink for contrast.
+   */
+  kbd {
+    display: none;
+  }
+
+  :root {
+    --cat-systems: #111111;
+    --cat-research: #111111;
+    --cat-engineering: #111111;
+  }
+}

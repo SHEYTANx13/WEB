@@ -1,0 +1,25 @@
+.redEye {
+  display: block;
+
+  flex: 0 0 auto;
+
+  overflow: visible;
+
+  max-width: 100%;
+
+  pointer-events: none;
+
+  contain: paint;
+}
+
+.glow {
+  pointer-events: none;
+}
+
+.irisWrap {
+  transform-origin: 50% 50%;
+}
+
+.crown {
+  pointer-events: none;
+}

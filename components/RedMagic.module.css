@@ -1,0 +1,262 @@
+.root {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  overflow: hidden;
+
+  pointer-events: auto;
+
+  touch-action: none;
+
+  /*
+   * Inherit the site-level native cursor so RedMagic does not
+   * replace the custom pointer with a crosshair.
+   */
+  cursor: inherit;
+
+  isolation: isolate;
+
+  contain: paint;
+
+  background-color: #020203;
+
+  background-image:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 24, 16, 0.045) 0,
+      rgba(180, 0, 0, 0.022) 18%,
+      rgba(8, 0, 0, 0) 48%
+    ),
+    radial-gradient(
+      circle at 50% 52%,
+      rgba(255, 80, 55, 0.022) 0,
+      rgba(255, 20, 15, 0) 34%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 255, 255, 0.012) 0,
+      rgba(255, 255, 255, 0) 68%
+    );
+}
+
+.root::before,
+.root::after {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: min(38vw, 38vh);
+
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  content: "";
+
+  transform-origin: 50% 50%;
+
+  will-change: transform;
+
+  contain: paint;
+}
+
+.root::before {
+  z-index: 1;
+
+  transform:
+    translate3d(-50%, -50%, 0)
+    rotate(0deg)
+    scale(1);
+
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0deg 18deg,
+      rgba(255, 48, 32, 0.1) 30deg 54deg,
+      transparent 68deg 112deg,
+      rgba(255, 70, 48, 0.15) 126deg 168deg,
+      transparent 182deg 236deg,
+      rgba(255, 42, 28, 0.11) 250deg 294deg,
+      transparent 308deg 338deg,
+      rgba(255, 86, 58, 0.13) 350deg 360deg
+    );
+
+  -webkit-mask:
+    radial-gradient(
+      farthest-side,
+      transparent calc(100% - 2px),
+      #000 calc(100% - 1px)
+    );
+
+  mask:
+    radial-gradient(
+      farthest-side,
+      transparent calc(100% - 2px),
+      #000 calc(100% - 1px)
+    );
+
+  opacity: 0.9;
+
+  box-shadow:
+    0 0 18px
+    rgba(255, 30, 20, 0.06),
+    0 0 44px
+    rgba(255, 15, 10, 0.028);
+
+  animation:
+    redMagicSolarRingA 16s linear infinite;
+}
+
+.root::after {
+  z-index: 3;
+
+  width: min(31vw, 31vh);
+
+  transform:
+    translate3d(-50%, -50%, 0)
+    rotate(0deg)
+    scale(1);
+
+  background:
+    conic-gradient(
+      from 18deg,
+      transparent 0deg 42deg,
+      rgba(255, 210, 190, 0.13) 54deg 74deg,
+      transparent 88deg 156deg,
+      rgba(255, 75, 52, 0.1) 170deg 207deg,
+      transparent 222deg 278deg,
+      rgba(255, 125, 92, 0.11) 294deg 324deg,
+      transparent 338deg 360deg
+    );
+
+  -webkit-mask:
+    radial-gradient(
+      farthest-side,
+      transparent calc(100% - 1.5px),
+      #000 calc(100% - 0.5px)
+    );
+
+  mask:
+    radial-gradient(
+      farthest-side,
+      transparent calc(100% - 1.5px),
+      #000 calc(100% - 0.5px)
+    );
+
+  opacity: 0.72;
+
+  box-shadow:
+    0 0 14px
+    rgba(255, 80, 55, 0.05),
+    0 0 32px
+    rgba(255, 40, 25, 0.022);
+
+  animation:
+    redMagicSolarRingB 12.5s linear infinite reverse;
+}
+
+.root canvas {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 100%;
+  min-height: 100%;
+
+  max-width: none;
+  max-height: none;
+
+  margin: 0;
+  padding: 0;
+
+  opacity: 1;
+
+  pointer-events: auto;
+
+  touch-action: none;
+
+  background: transparent;
+}
+
+@keyframes redMagicSolarRingA {
+  0% {
+    transform:
+      translate3d(-50%, -50%, 0)
+      rotate(0deg)
+      scale(0.985);
+  }
+
+  25% {
+    transform:
+      translate3d(-50%, -50%, 0)
+      rotate(90deg)
+      scale(1.012);
+  }
+
+  50% {
+    transform:
+      translate3d(-50%, -50%, 0)
+      rotate(180deg)
+      scale(0.995);
+  }
+
+  75% {
+    transform:
+      translate3d(-50%, -50%, 0)
+      rotate(270deg)
+      scale(1.008);
+  }
+
+  100% {
+    transform:
+      translate3d(-50%, -50%, 0)
+      rotate(360deg)
+      scale(0.985);
+  }
+}
+
+@keyframes redMagicSolarRingB {
+  0% {
+    transform:
+      translate3d(-50%, -50%, 0)
+      rotate(0deg)
+      scale(1.01);
+  }
+
+  50% {
+    transform:
+      translate3d(-50%, -50%, 0)
+      rotate(180deg)
+      scale(0.982);
+  }
+
+  100% {
+    transform:
+      translate3d(-50%, -50%, 0)
+      rotate(360deg)
+      scale(1.01);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root::before,
+  .root::after {
+    animation: none;
+  }
+}

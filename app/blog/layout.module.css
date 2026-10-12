@@ -1,0 +1,41 @@
+/*
+ * The full-screen min-height/flex contract and the data-page
+ * accent tokens are owned by FullScreenPageShell (v3.6); this
+ * layer keeps only the blog-specific positioning rules.
+ *
+ * v3.6.1: the blog header is STICKY (in-flow) like every other
+ * tab, so .blogMain no longer carries any padding-top
+ * compensation — the old `calc(var(--shell-header) + 46px)`
+ * (and its mobile `68px + 38px` literal twin) were Blog-only
+ * offsets for the old fixed header and existed on no other tab.
+ * The first screen is now simply header + hero on every tab.
+ */
+.blogShell {
+  position: relative;
+
+  overflow-x: clip;
+
+  /*
+   * Keyboard focus and anchor scrolling must clear the sticky blog
+   * header: without this, tab-focused / hash-targeted elements
+   * land underneath it and become unclickable at their scroll-in
+   * position.
+   */
+  scroll-padding-top:
+    calc(
+      var(--page-header-height) + 24px
+    );
+}
+
+.blogMain {
+  position: relative;
+
+  z-index: 1;
+
+  flex: 1;
+
+  width: 100%;
+
+  /* Footer spacing is contract-owned: identical on all six tabs. */
+  padding-bottom: var(--page-footer-spacing);
+}

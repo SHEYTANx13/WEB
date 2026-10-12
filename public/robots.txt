@@ -1,0 +1,24 @@
+# robots.txt — Parsa Tak (WEB)
+#
+# Production site: https://parsaetak.github.io/WEB/
+#
+# All public canonical routes are crawlable: the home world shell (/),
+# the content documents (/about/, /work/, /research/, /contact/), the
+# six topic hubs (/local-ai/, /ai-systems/, /ai-reasoning/,
+# /ai-evaluation/, /software-engineering/, /creative-technology/), the
+# Blog index (/blog/) and every article (/blog/<slug>/).
+#
+# Route facts derive from data/routes.json (the canonical route
+# registry); the sitemap is generated from the same registry, so the
+# crawlable set, the sitemap, and the exported routes cannot drift.
+#
+# Only standard, universally supported directives are used:
+# User-agent / Allow / Sitemap. CSS, JS, and images stay crawlable
+# so renderers can see the page as users do. Blog filter state
+# (query parameters) is view state, not a canonical document — it is
+# deliberately not listed and not disallowed.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://parsaetak.github.io/WEB/sitemap.xml

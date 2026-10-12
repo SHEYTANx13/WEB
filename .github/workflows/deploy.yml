@@ -1,0 +1,256 @@
+name: Deploy Next.js site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  pages-source:
+    name: Verify Pages source configuration
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Verify Pages source is GitHub Actions
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: bash .github/scripts/verify-pages-source.sh
+
+  build:
+    name: Prepare and build site
+    needs:
+      - pages-source
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          # npm's PACKAGE cache only (~/.npm) — never node_modules.
+          # Dependencies are ALWAYS installed fresh below: a restored
+          # node_modules tree could be stale or half-applied, so CI
+          # must run `npm ci` on every build (v4.0.1).
+          cache: npm
+
+      - name: Install dependencies (always fresh)
+        run: npm ci --legacy-peer-deps --no-audit --no-fund
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
+
+      - name: Sync Media manifest
+        run: |
+          set -euo pipefail
+
+          # Fetches the external Contents library.json (contract intact),
+          # merges the OPTIONAL Music source, extracts embedded audio
+          # metadata over HTTP range requests, and writes data/media.json.
+          node scripts/sync-media-manifest.mjs
+
+      - name: Validate Media manifest
+        run: node scripts/validate-media-manifest.mjs
+
+      - name: Typecheck application code and tests
+        run: npm run typecheck
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Restore Next.js build cache
+        uses: actions/cache@v5
+        with:
+          path: .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-
+
+      - name: Validate blog content and data pipeline
+        run: |
+          set -euo pipefail
+
+          # Fails loudly on malformed content BEFORE the expensive build.
+          node scripts/build-blog.mjs
+
+          test -f data/blog/posts.json
+          test -f public/sitemap.xml
+
+          if [ -f public/blog/feed.xml ]; then
+            echo "public/blog/feed.xml must not exist (RSS removed in v2.5)." >&2
+            exit 1
+          fi
+
+          echo "Blog data pipeline valid."
+
+      # The blog pipeline already generated and validated its output
+      # above, so this runs `next build` directly (one deterministic
+      # computation, not two passes over the same content).
+      - name: Build Next.js site
+        run: npm run build:next
+
+      - name: Verify static SEO output
+        run: node scripts/verify-seo.mjs
+
+      - name: Verify brand asset system
+        run: |
+          set -euo pipefail
+
+          # The committed asset system must already be coherent...
+          node scripts/verify-brand.mjs
+
+          # ...and the generators must be deterministic: regenerating
+          # from source changes nothing (no hidden local steps).
+          node scripts/generate-brand.mjs
+          node scripts/generate-project-art.mjs
+          node scripts/verify-brand.mjs
+
+          git diff --exit-code -- assets/brand assets/icons assets/illustrations assets/social public/brand public/images/projects public/icon.svg public/icon.png public/favicon.ico public/apple-icon.png public/og-default.png
+
+          echo "Brand asset system verified and deterministic."
+
+      # Route-source-aware static export verification. Derives the
+      # expected route set from app/**\/page.tsx + data/blog/posts.json
+      # and requires a three-way bijection: source routes == exported
+      # out/**\/index.html == sitemap <loc> set. Catches missing or
+      # unexpected exports, sitemap omissions/duplicates, wrong
+      # basePath, localhost/hash/_next/feed/deployment URLs, and
+      # missing article or content-hub routes — with no hardcoded
+      # route counts, so adding or removing any route keeps this
+      # correct. RSS absence is re-asserted here as a cheap pre-guard.
+      - name: Verify static export output
+        run: node scripts/verify-export-routes.mjs
+
+      - name: Write deployment manifests
+        env:
+          DEPLOYMENT_SHA: ${{ github.sha }}
+          DEPLOYMENT_RUN_ID: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+
+          cat > out/deployment.json <<EOF
+          {
+            "commit": "${DEPLOYMENT_SHA}",
+            "runId": "${DEPLOYMENT_RUN_ID}"
+          }
+          EOF
+
+          mkdir -p out/deployments
+
+          cat > "out/deployments/${DEPLOYMENT_SHA}.json" <<EOF
+          {
+            "commit": "${DEPLOYMENT_SHA}",
+            "runId": "${DEPLOYMENT_RUN_ID}",
+            "deployedAt": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./out
+
+  deploy:
+    name: Deploy site
+    needs:
+      - build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Re-verify Pages source before deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: bash .github/scripts/verify-pages-source.sh
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+        with:
+          timeout: 1200000
+
+      - name: Verify deployed revision
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+          EXPECTED_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          base_url="${PAGE_URL%/}"
+
+          if [ -z "${base_url}" ]; then
+            base_url="https://parsaetak.github.io/WEB"
+          fi
+
+          verify_url="${base_url}/deployments/${EXPECTED_SHA}.json"
+
+          echo "Verifying ${verify_url}"
+
+          for attempt in $(seq 1 40); do
+            body_file="$(mktemp)"
+
+            http_code="$(
+              curl \
+                --silent \
+                --show-error \
+                --location \
+                --max-time 15 \
+                --header 'Cache-Control: no-cache' \
+                --header 'Pragma: no-cache' \
+                --write-out '%{http_code}' \
+                --output "${body_file}" \
+                "${verify_url}" 2>/dev/null || echo '000'
+            )"
+
+            if \
+              [ "${http_code}" = "200" ] &&
+              grep -Fq "\"commit\": \"${EXPECTED_SHA}\"" "${body_file}"
+            then
+              echo "GitHub Pages is serving revision ${EXPECTED_SHA}."
+              cat "${body_file}"
+              rm -f "${body_file}"
+              exit 0
+            fi
+
+            rm -f "${body_file}"
+
+            echo \
+              "Revision not visible yet: HTTP ${http_code} " \
+              "attempt ${attempt}/40."
+
+            sleep 5
+          done
+
+          echo "::error::The deployment was accepted, but revision ${EXPECTED_SHA} was not observed publicly."
+
+          exit 1

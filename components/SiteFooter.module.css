@@ -1,0 +1,328 @@
+/*
+ * SITE FOOTER (v4.0.5) — the footer's OWN stylesheet, moved out of
+ * LivingShell.module.css in the previous revision. The living-world
+ * shell owns the world HUD; the footer is shared site chrome
+ * rendered by every route (world shell, blog, content documents,
+ * topic hubs), so coupling its styles to the world shell made every
+ * content route load world shell CSS it never renders. One
+ * responsibility per file.
+ *
+ * REGION STACK CONTRACT (v4.0.5) — the footer is a deliberate stack
+ * of four regions, each separated by one quiet rail:
+ *
+ *   footerNavRegion   SITE / COLLECTIONS / WORLD / TOPICS (SiteDocNav)
+ *   footerNetwork     PUBLIC NETWORK heading + the 7 + 7 link rows
+ *   footerLegal       notice + LICENSE / TRADEMARKS (secondary)
+ *   footerBottom      star + copyright + trademark — THE LAST row
+ *
+ * The copyright/trademark identity row is BOTTOM-MOST: it is no
+ * longer part of a meta row beside the public network. It sits in
+ * normal document flow — no negative margins, no absolute
+ * positioning, no baseline compensation.
+ *
+ * OWNERSHIP: link rows, icon size and interaction live in
+ * FooterLinks.module.css; the document groups live in
+ * SiteDocNav.module.css; this sheet owns the composition, the
+ * network heading, the legal region and the bottom identity row.
+ */
+
+.footer {
+  width: 100%;
+
+  border-top:
+    1px solid
+    rgba(255, 32, 32, 0.08);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 5, 6, 0.72),
+      rgba(4, 4, 5, 0.94)
+    );
+}
+
+/* Footer rail = the shared alignment rail (v3.6.1). */
+.footerInner {
+  width:
+    min(
+      calc(100% - 2 * var(--page-gutter)),
+      var(--page-content-width)
+    );
+
+  margin: 0 auto;
+}
+
+/* ------------------------------------------------------------------ */
+/* Region 1 — document navigation (SITE / COLLECTIONS / WORLD / TOPICS) */
+/* ------------------------------------------------------------------ */
+
+.footerNavRegion {
+  padding:
+    24px 0
+    18px;
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.06);
+}
+
+/* ------------------------------------------------------------------ */
+/* Region 2 — the public network                                       */
+/* ------------------------------------------------------------------ */
+
+.footerNetwork {
+  padding:
+    14px 0
+    16px;
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.06);
+}
+
+/*
+ * The network heading shares SiteDocNav's heading rhythm — one mono
+ * voice for every footer group label — with a quiet rule carrying
+ * the eye to the rail's end.
+ */
+.footerNetworkHeading {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  margin: 0 0 10px;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.22em;
+
+  text-transform: uppercase;
+}
+
+.footerNetworkLine {
+  flex: 1;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.02)
+    );
+}
+
+/* ------------------------------------------------------------------ */
+/* Region 3 — legal: notice + LICENSE / TRADEMARKS                     */
+/* ------------------------------------------------------------------ */
+
+/*
+ * LEGAL GRID CONTRACT (v4.0.5): the long legal paragraph owns the
+ * flexible first column (left-aligned on the footer rail), the
+ * LICENSE / TRADEMARKS anchors end-align to the rail's right edge,
+ * and both share the row's START edge — top-aligned, no baseline
+ * hacks, no negative-margin tricks, no compensating padding. The
+ * anchors keep their own comfortable touch target.
+ */
+.footerLegal {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  align-items: start;
+
+  column-gap: 32px;
+
+  padding:
+    14px 0
+    16px;
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.06);
+}
+
+.footerLegal > p {
+  max-width: 720px;
+
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+
+  line-height: 1.7;
+}
+
+.footerLegalLinks {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 5px 0;
+}
+
+.footerLegalLinks a {
+  display: inline-block;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+
+  transition:
+    color 160ms ease;
+}
+
+.footerLegalLinks a:hover {
+  color: var(--red);
+}
+
+.footerLegalLinks a:focus-visible {
+  outline: 2px solid var(--red-hot);
+
+  outline-offset: 3px;
+
+  border-radius: 2px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Region 4 — the bottom identity row (star + © + ™)                   */
+/* ------------------------------------------------------------------ */
+
+/*
+ * BOTTOM IDENTITY (v4.0.5): one compact, normal-flow row — the
+ * LAST element of the footer stack. Wraps gracefully on narrow
+ * screens; alignment adapts, wording never changes.
+ */
+.footerBottom {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 8px 12px;
+
+  padding:
+    14px 0
+    18px;
+}
+
+.footerMark {
+  display: inline-flex;
+
+  align-items: center;
+
+  flex: 0 0 auto;
+}
+
+.footerMark img {
+  width: 18px;
+
+  height: 18px;
+
+  display: block;
+}
+
+.footerCopyright {
+  color: var(--text-soft);
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  line-height: 1.45;
+}
+
+.footerTrademark {
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.08em;
+}
+
+/* ------------------------------------------------------------------ */
+/* Responsive behavior                                                  */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 980px) {
+  .footerLegal {
+    grid-template-columns: minmax(0, 1fr);
+
+    row-gap: 12px;
+  }
+
+  .footerLegalLinks {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .footerNavRegion {
+    padding:
+      22px 0
+      18px;
+  }
+
+  .footerNetwork {
+    padding:
+      12px 0
+      14px;
+  }
+
+  .footerCopyright {
+    font-size: 11px;
+  }
+
+  .footerLegal {
+    padding:
+      14px 0
+      16px;
+  }
+
+  .footerLegal > p {
+    font-size: 10px;
+
+    line-height: 1.65;
+  }
+
+  .footerLegalLinks {
+    gap: 14px;
+  }
+
+  .footerBottom {
+    padding:
+      12px 0
+      16px;
+  }
+}
+
+/* Print (v2.5.1): the footer is screen-only. */
+@media print {
+  .footer {
+    display: none !important;
+  }
+}

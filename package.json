@@ -1,0 +1,40 @@
+{
+  "name": "parsaetak-web",
+  "version": "4.0.5",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/build-blog.mjs && next dev",
+    "build": "node scripts/build-blog.mjs && npm run build:next",
+    "build:next": "next build",
+    "start": "node scripts/serve-static.mjs",
+    "lint": "eslint",
+    "blog": "node scripts/build-blog.mjs",
+    "brand": "node scripts/generate-brand.mjs && node scripts/generate-project-art.mjs",
+    "brand:raster": "python3 scripts/generate-brand-raster.py",
+    "media:sync": "node scripts/sync-media-manifest.mjs",
+    "media:validate": "node scripts/validate-media-manifest.mjs",
+    "test": "node --test --import ./tests/register.mjs \"tests/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit",
+    "typecheck:tests": "tsc --noEmit -p tsconfig.tests.json",
+    "verify:seo": "node scripts/verify-seo.mjs",
+    "verify:brand": "node scripts/verify-brand.mjs",
+    "verify:export": "node scripts/verify-export-routes.mjs",
+    "verify:loading": "node scripts/verify-loading.mjs",
+    "bench:loading": "node scripts/bench-loading.mjs",
+    "verify": "npm run verify:seo && npm run verify:brand && npm run verify:export && npm run verify:loading"
+  },
+  "dependencies": {
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "16.3.4",
+    "typescript": "^5.9.0"
+  }
+}

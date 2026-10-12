@@ -1,0 +1,95 @@
+/*
+ * SITE HEADER STATUS (v4.0.5) — the shared header identity's OWN
+ * stylesheet. One visual language for every surface: the world HUD,
+ * the blog header and the content-shell header all render the same
+ * red status light and the same mono uppercase label from this
+ * module. Host headers own placement only — they must not restyle
+ * the status.
+ *
+ * The visual baseline is the world HUD's v3.x status: a 6px red
+ * dot with a quiet glow, pulsing on a 2.4s ease-in-out cycle, and
+ * 9px mono uppercase type at #8a919d beside it.
+ *
+ * ANIMATION CONTRACT: transform + opacity only. Never animate
+ * layout properties (width/height/padding/margin/top/left). The
+ * keyframes live here and ONLY here — duplicate status keyframes
+ * elsewhere are a defect to remove, not a pattern to extend.
+ */
+
+.status {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  min-width: max-content;
+
+  margin: 0;
+
+  color: #8a919d;
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+
+  background: var(--red);
+
+  box-shadow:
+    0 0 8px
+    rgba(255, 32, 32, 0.72);
+
+  animation:
+    headerStatusPulse
+    2.4s
+    ease-in-out
+    infinite;
+}
+
+.label {
+  white-space: nowrap;
+}
+
+/*
+ * The shared pulse cycle: quiet → brighten → slightly expand →
+ * settle → repeat. Transform/opacity only, so it never triggers
+ * layout or paint storms.
+ */
+@keyframes headerStatusPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform: scale(1.12);
+  }
+}
+
+/*
+ * Reduced motion (v2.8 law): the pulse stops; the dot keeps its
+ * color and static glow, and the label keeps its full contrast —
+ * the identity signal survives without motion.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+  }
+}

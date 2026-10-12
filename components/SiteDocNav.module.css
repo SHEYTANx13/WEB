@@ -1,0 +1,159 @@
+/*
+ * Site document nav (v3.1, columns in v4.0.5) — the compact
+ * crawlable link groups inside the shared footer. Sits on the same
+ * dark surface, uses the site's mono/uppercase language at footer
+ * scale, and stays readable at 320px by flowing down to one column.
+ *
+ * FOOTER GRID CONTRACT (v4.0.5) — the four logical groups (SITE,
+ * COLLECTIONS, WORLD, TOPICS) render as COLUMNS of one compact
+ * grid. The grid is deliberately NOT four equal fractions: TOPICS
+ * is the wide column and flows its six links through two
+ * sub-columns, so the tallest group costs three rows — the same
+ * depth as SITE's four — instead of stretching the whole footer.
+ * Groups top-align at one shared edge, headings share one rhythm,
+ * and no group can horizontally overflow.
+ */
+
+.nav {
+  display: grid;
+
+  grid-template-columns:
+    0.85fr
+    0.95fr
+    0.75fr
+    1.45fr;
+
+  column-gap:
+    clamp(
+      20px,
+      3vw,
+      36px
+    );
+
+  align-items: start;
+}
+
+.group {
+  min-width: 0;
+}
+
+.heading {
+  display: block;
+
+  margin: 0 0 8px;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.22em;
+
+  text-transform: uppercase;
+}
+
+.list {
+  display: grid;
+
+  gap: 4px;
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+/*
+ * The TOPICS group flows its six links through two sub-columns —
+ * three rows deep, the same depth as SITE's four single-column
+ * links. Marked from the renderer with data-flow="paired".
+ */
+.list[data-flow="paired"] {
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  column-gap: 14px;
+
+  gap: 4px 14px;
+}
+
+.link {
+  display: inline-block;
+
+  color: var(--text-soft);
+
+  font-size: 12px;
+
+  line-height: 1.4;
+
+  text-decoration: none;
+
+  transition: color 140ms ease;
+}
+
+.link:hover {
+  color: var(--red-hot);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--red-hot);
+
+  outline-offset: 3px;
+
+  border-radius: 2px;
+}
+
+@media (max-width: 980px) {
+  /*
+   * Tablet + phone: the groups keep the column grid (2 → 1), but
+   * every list FLOWS HORIZONTALLY — wrapping links are denser than
+   * stacked ones on narrow viewports, so the footer stays compact
+   * where vertical space is the scarce resource. The paired topics
+   * flow collapses into the same wrap.
+   */
+  .nav {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    row-gap: 20px;
+  }
+
+  .list,
+  .list[data-flow="paired"] {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 5px 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  .nav {
+    grid-template-columns:
+      minmax(0, 1fr);
+
+    row-gap: 16px;
+  }
+
+  .list,
+  .list[data-flow="paired"] {
+    gap: 6px 16px;
+  }
+
+  .link {
+    font-size: 13px;
+
+    line-height: 1.5;
+  }
+}

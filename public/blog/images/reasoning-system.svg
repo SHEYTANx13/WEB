@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Three connected reasoning modules">
+  <rect width="1200" height="630" fill="#050505"/>
+  <g stroke="rgba(255,255,255,0.03)" stroke-width="1">
+    <path d="M0 105h1200M0 315h1200M0 525h1200"/>
+    <path d="M300 0v630M600 0v630M900 0v630"/>
+  </g>
+  <g>
+    <rect x="150" y="220" width="240" height="190" rx="8" fill="rgba(16,18,24,0.9)" stroke="rgba(255,32,32,0.4)"/>
+    <rect x="475" y="170" width="250" height="290" rx="8" fill="rgba(16,18,24,0.9)" stroke="rgba(255,70,56,0.55)"/>
+    <rect x="810" y="220" width="240" height="190" rx="8" fill="rgba(16,18,24,0.9)" stroke="rgba(255,32,32,0.4)"/>
+  </g>
+  <g font-family="monospace" font-weight="bold" text-anchor="middle">
+    <text x="270" y="285" font-size="16" fill="#7f8796">01</text>
+    <text x="270" y="315" font-size="19" fill="#f5f7fb">GOVERN</text>
+    <text x="270" y="345" font-size="13" fill="#c4c9d4">AI INSTRUCTIONS</text>
+    <text x="600" y="235" font-size="16" fill="#7f8796">02</text>
+    <text x="600" y="265" font-size="19" fill="#f5f7fb">REASON</text>
+    <text x="600" y="295" font-size="13" fill="#c4c9d4">REP</text>
+    <text x="930" y="285" font-size="16" fill="#7f8796">03</text>
+    <text x="930" y="315" font-size="19" fill="#f5f7fb">IMPROVE</text>
+    <text x="930" y="345" font-size="13" fill="#c4c9d4">USEF</text>
+  </g>
+  <g stroke="rgba(255,32,32,0.6)" stroke-width="2">
+    <path d="M390 315h76"/>
+    <path d="M725 315h76"/>
+  </g>
+  <g fill="#ff2020">
+    <path d="M466 305l18 10-18 10z"/>
+    <path d="M801 305l18 10-18 10z"/>
+  </g>
+  <path d="M600 315v180" stroke="rgba(255,32,32,0.35)" stroke-width="2" stroke-dasharray="6 6"/>
+  <path d="M470 495h260" stroke="rgba(255,32,32,0.35)" stroke-width="2"/>
+  <circle cx="600" cy="495" r="7" fill="#ff2020"/>
+</svg>

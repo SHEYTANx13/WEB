@@ -1,0 +1,67 @@
+/*
+ * FULL-SCREEN PAGE SHELL (v3.6.1) — one shared full-screen contract.
+ *
+ * The min-height stack is ordered so the BEST unit the engine
+ * supports wins: 100vh (static fallback) → 100svh (stable small
+ * viewport — mobile browser chrome never clips the first screen)
+ * → 100dvh (dynamic viewport where reflow is acceptable).
+ *
+ * v3.6.1 UNIFIED GEOMETRY: every geometry decision a page makes —
+ * header height (--page-header-height), rail width
+ * (--page-content-width), gutters (--page-gutter), hero height
+ * (--page-hero-min-height), footer spacing (--page-footer-spacing) —
+ * resolves to the ONE token contract in globals.css. All three
+ * headers (world HUD, content header, blog header) are sticky
+ * in-flow at z-index 1000, so no page carries scroll compensation.
+ *
+ * Per-tab identity is token-only: --page-accent feeds kickers,
+ * rules, and hero motifs everywhere, so every tab reads as the
+ * same website with its own temperature.
+ */
+
+.shell {
+  display: flex;
+
+  flex-direction: column;
+
+  width: 100%;
+
+  min-height: 100vh;
+
+  min-height: 100svh;
+
+  min-height: 100dvh;
+
+  background: var(--background);
+
+  color: var(--text);
+
+  overflow-x: clip;
+}
+
+/*
+ * Default identity (home + hub fallback): the house red.
+ */
+.shell {
+  --page-accent: var(--red-hot);
+}
+
+.shell[data-page="about"] {
+  --page-accent: #ff8a5c;
+}
+
+.shell[data-page="work"] {
+  --page-accent: #ff6a3d;
+}
+
+.shell[data-page="research"] {
+  --page-accent: #ff7847;
+}
+
+.shell[data-page="blog"] {
+  --page-accent: #ff5c5c;
+}
+
+.shell[data-page="contact"] {
+  --page-accent: var(--red-hot);
+}

@@ -1,0 +1,214 @@
+{
+  "version": "2.9.0",
+  "generatedBy": "scripts/generate-brand.mjs",
+  "geometry": {
+    "star": {
+      "type": "regular 13-point star polygon {13/5}",
+      "outerVertices": 13,
+      "innerVertices": 13,
+      "totalVertices": 26,
+      "angularStepDeg": 13.846153846153847,
+      "innerRadiusRatio": 0.6242332217991992,
+      "innerRadiusFormula": "R * cos(5*pi/13) / cos(4*pi/13)",
+      "startAngleDeg": -90,
+      "brandViewBox": "0 0 100 100",
+      "brandOuterRadius": 48,
+      "iconViewBox": "0 0 128 128",
+      "iconOuterRadius": 54,
+      "precision": "4 decimals, trailing zeros trimmed"
+    },
+    "law": "Geometry is identical across every colour variant. Only colour treatment may differ."
+  },
+  "brandVariants": [
+    {
+      "file": "assets/brand/star-red.svg",
+      "servedAt": "public/brand/star-red.svg",
+      "name": "Star — brand red",
+      "treatment": "solid fill #ff2020 (the site's live red)",
+      "intendedUse": "primary site logo on dark backgrounds (world HUD, blog header, loading surface); also safe on light backgrounds",
+      "suitableBackgrounds": [
+        "dark",
+        "light"
+      ]
+    },
+    {
+      "file": "assets/brand/star-red-hot.svg",
+      "servedAt": "public/brand/star-red-hot.svg",
+      "name": "Star — red-hot gradient",
+      "treatment": "radial gradient, white-hot core into deep red (the RED MAGIC iris ramp)",
+      "intendedUse": "identity surfaces that want heat: loading screen, favicon companion, social artwork",
+      "suitableBackgrounds": [
+        "dark",
+        "light"
+      ]
+    },
+    {
+      "file": "assets/brand/star-crimson.svg",
+      "servedAt": null,
+      "name": "Star — crimson",
+      "treatment": "solid fill #a90000 (deep crimson)",
+      "intendedUse": "quiet brand accents, pressed/hover logo states, print-adjacent uses",
+      "suitableBackgrounds": [
+        "dark",
+        "light"
+      ]
+    },
+    {
+      "file": "assets/brand/star-white.svg",
+      "servedAt": "public/brand/star-white.svg",
+      "name": "Star — white",
+      "treatment": "solid fill #ffffff (pure monochrome positive)",
+      "intendedUse": "brand mark on dark or red surfaces; monochrome lockups",
+      "suitableBackgrounds": [
+        "dark",
+        "red"
+      ]
+    },
+    {
+      "file": "assets/brand/star-black.svg",
+      "servedAt": null,
+      "name": "Star — black",
+      "treatment": "solid fill #0a0a0a (pure monochrome negative)",
+      "intendedUse": "brand mark on white/light surfaces, documents, monochrome lockups",
+      "suitableBackgrounds": [
+        "light"
+      ]
+    },
+    {
+      "file": "assets/brand/star-silver.svg",
+      "servedAt": "public/brand/star-silver.svg",
+      "name": "Star — silver",
+      "treatment": "solid fill #c9cdd4 (neutral silver)",
+      "intendedUse": "neutral brand accents on dark UI where pure white is too loud",
+      "suitableBackgrounds": [
+        "dark"
+      ]
+    },
+    {
+      "file": "assets/brand/star-dark.svg",
+      "servedAt": null,
+      "name": "Star — dark neutral",
+      "treatment": "solid fill #22262e (dark neutral)",
+      "intendedUse": "quiet brand watermark on light UI; dark-on-light lockups",
+      "suitableBackgrounds": [
+        "light"
+      ]
+    },
+    {
+      "file": "assets/brand/star-outline-red.svg",
+      "servedAt": "public/brand/star-outline-red.svg",
+      "name": "Star — red outline (transparent fill)",
+      "treatment": "no fill, 3-unit #ff2020 stroke",
+      "intendedUse": "transparent-stroke variant: layered identity compositions, watermarks, decorative echoes of the solid star",
+      "suitableBackgrounds": [
+        "dark",
+        "light"
+      ]
+    },
+    {
+      "file": "assets/brand/star-outline-white.svg",
+      "servedAt": null,
+      "name": "Star — white outline (transparent fill)",
+      "treatment": "no fill, 3-unit #ffffff stroke",
+      "intendedUse": "transparent-stroke variant for dark surfaces: layered compositions, watermarks, ghost echoes",
+      "suitableBackgrounds": [
+        "dark",
+        "red"
+      ]
+    }
+  ],
+  "glyphs": [
+    {
+      "file": "assets/icons/star.svg",
+      "servedAt": "public/brand/icons/star.svg",
+      "title": "Brand star glyph",
+      "purpose": "inline brand mark that inherits text colour (footer, small UI)"
+    },
+    {
+      "file": "assets/icons/star-outline.svg",
+      "servedAt": "public/brand/icons/star-outline.svg",
+      "title": "Brand star glyph, outlined",
+      "purpose": "quiet/secondary brand mark that inherits text colour"
+    },
+    {
+      "file": "assets/icons/concentric-star.svg",
+      "servedAt": "public/brand/icons/concentric-star.svg",
+      "title": "Concentric star",
+      "purpose": "identity motif for section markers and article-body system diagrams"
+    },
+    {
+      "file": "assets/icons/star-grid.svg",
+      "servedAt": "public/brand/icons/star-grid.svg",
+      "title": "Star grid",
+      "purpose": "pattern glyph: catalogue/library ornament representing the asset system"
+    },
+    {
+      "file": "assets/icons/orbit.svg",
+      "servedAt": "public/brand/icons/orbit.svg",
+      "title": "Orbit ring",
+      "purpose": "state/sync motif: scheduled systems, world signals, telemetry notes"
+    },
+    {
+      "file": "assets/icons/signal-node.svg",
+      "servedAt": "public/brand/icons/signal-node.svg",
+      "title": "Signal node",
+      "purpose": "communication/agent-signal motif for diagrams and UI markers"
+    },
+    {
+      "file": "assets/icons/system-glyph.svg",
+      "servedAt": "public/brand/icons/system-glyph.svg",
+      "title": "System glyph",
+      "purpose": "system-architecture marker (capabilities, project notes, diagrams)"
+    },
+    {
+      "file": "assets/icons/research-glyph.svg",
+      "servedAt": "public/brand/icons/research-glyph.svg",
+      "title": "Research glyph",
+      "purpose": "research/measurement marker (UHIT, benchmark and study notes)"
+    },
+    {
+      "file": "assets/icons/ai-glyph.svg",
+      "servedAt": "public/brand/icons/ai-glyph.svg",
+      "title": "AI glyph",
+      "purpose": "AI-systems marker (agent networks, model notes, capability context)"
+    },
+    {
+      "file": "assets/icons/engineering-glyph.svg",
+      "servedAt": "public/brand/icons/engineering-glyph.svg",
+      "title": "Engineering glyph",
+      "purpose": "software-engineering marker (code notes, build/verify sections)"
+    },
+    {
+      "file": "assets/icons/simulation-glyph.svg",
+      "servedAt": "public/brand/icons/simulation-glyph.svg",
+      "title": "Simulation glyph",
+      "purpose": "simulation/creative-technology marker (organisms, experiments)"
+    },
+    {
+      "file": "assets/icons/link-glyph.svg",
+      "servedAt": "public/brand/icons/link-glyph.svg",
+      "title": "Link glyph",
+      "purpose": "link/reference marker for article bodies and navigation UI"
+    },
+    {
+      "file": "assets/icons/arrow-right.svg",
+      "servedAt": "public/brand/icons/arrow-right.svg",
+      "title": "Arrow right",
+      "purpose": "inline direction glyph for diagrams and UI compositions"
+    },
+    {
+      "file": "assets/icons/arrow-up-right.svg",
+      "servedAt": "public/brand/icons/arrow-up-right.svg",
+      "title": "Arrow up-right",
+      "purpose": "external-destination glyph for diagrams and link lists"
+    }
+  ],
+  "favicon": {
+    "svg": "public/icon.svg",
+    "pngFallback": "public/icon.png",
+    "ico": "public/favicon.ico",
+    "appleTouch": "public/apple-icon.png",
+    "wiredBy": "app/layout.tsx metadata.icons (explicit, basePath-safe)",
+    "rasterGenerator": "scripts/generate-brand-raster.py"
+  }
+}

@@ -1,0 +1,230 @@
+.sceneViewport {
+  position: relative;
+
+  min-height:
+    calc(
+      100vh -
+      var(--shell-header)
+    );
+
+  min-height:
+    calc(
+      100svh -
+      var(--shell-header)
+    );
+
+  min-height:
+    calc(
+      100dvh -
+      var(--shell-header)
+    );
+
+  isolation: isolate;
+
+  transition:
+    background 220ms ease;
+}
+
+.sceneViewport[data-scene="magic"] {
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(
+        130,
+        0,
+        0,
+        0.065
+      ),
+      transparent 48%
+    );
+}
+
+.sceneViewport[data-scene="systems"] {
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(
+        255,
+        32,
+        32,
+        0.025
+      ),
+      transparent 52%
+    );
+}
+
+.sceneViewportContent {
+  position: relative;
+
+  min-height: inherit;
+
+  isolation: isolate;
+}
+
+.sceneViewportFrame {
+  position: absolute;
+
+  inset:
+    18px;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      32,
+      32,
+      0.055
+    );
+
+  opacity: 0.72;
+}
+
+.sceneViewportCorner {
+  position: absolute;
+
+  width: 22px;
+  height: 22px;
+
+  z-index: 21;
+
+  pointer-events: none;
+
+  opacity: 0.72;
+}
+
+.sceneViewportCorner::before,
+.sceneViewportCorner::after {
+  content: "";
+
+  position: absolute;
+
+  background:
+    rgba(
+      255,
+      32,
+      32,
+      0.18
+    );
+}
+
+.sceneViewportCorner::before {
+  width: 1px;
+  height: 100%;
+}
+
+.sceneViewportCorner::after {
+  width: 100%;
+  height: 1px;
+}
+
+.sceneViewportCornerTl {
+  top: 12px;
+  left: 12px;
+}
+
+.sceneViewportCornerTl::before,
+.sceneViewportCornerTl::after {
+  left: 0;
+  top: 0;
+}
+
+.sceneViewportCornerTr {
+  top: 12px;
+  right: 12px;
+}
+
+.sceneViewportCornerTr::before {
+  right: 0;
+  top: 0;
+}
+
+.sceneViewportCornerTr::after {
+  right: 0;
+  top: 0;
+}
+
+.sceneViewportCornerBl {
+  left: 12px;
+  bottom: 12px;
+}
+
+.sceneViewportCornerBl::before {
+  left: 0;
+  bottom: 0;
+}
+
+.sceneViewportCornerBl::after {
+  left: 0;
+  bottom: 0;
+}
+
+.sceneViewportCornerBr {
+  right: 12px;
+  bottom: 12px;
+}
+
+.sceneViewportCornerBr::before {
+  right: 0;
+  bottom: 0;
+}
+
+.sceneViewportCornerBr::after {
+  right: 0;
+  bottom: 0;
+}
+
+@media (max-width: 760px) {
+  .sceneViewport {
+    min-height:
+      calc(
+        100vh -
+        68px
+      );
+
+    min-height:
+      calc(
+        100svh -
+        68px
+      );
+
+    min-height:
+      calc(
+        100dvh -
+        68px
+      );
+  }
+
+  .sceneViewportFrame {
+    inset:
+      10px;
+  }
+
+  .sceneViewportCorner {
+    width: 16px;
+    height: 16px;
+  }
+
+  .sceneViewportCornerTl {
+    top: 8px;
+    left: 8px;
+  }
+
+  .sceneViewportCornerTr {
+    top: 8px;
+    right: 8px;
+  }
+
+  .sceneViewportCornerBl {
+    left: 8px;
+    bottom: 8px;
+  }
+
+  .sceneViewportCornerBr {
+    right: 8px;
+    bottom: 8px;
+  }
+}

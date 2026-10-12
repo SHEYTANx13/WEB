@@ -1,0 +1,11 @@
+/*
+ * MOTION REVEAL host.
+ *
+ * The controller renders no visible UI — it is a pure observer mount
+ * point so React has a stable client boundary. The element itself must
+ * never paint, never take space, and never intercept input.
+ */
+
+.motionRevealHost {
+  display: none;
+}

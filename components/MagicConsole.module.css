@@ -1,0 +1,437 @@
+/*
+ * MAGIC CONSOLE (v3.6) — one control surface.
+ *
+ * The DRIFT / LISTEN / SURGE selector styles are retired with the
+ * mode system: the bar is now the sound note + the single SOUND
+ * ON / SOUND OFF control, and the organism frame below is the
+ * experiment itself.
+ */
+
+.magicLab {
+  margin-top: 42px;
+}
+
+.magicLabBar {
+  display: grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1fr
+    )
+    auto;
+
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 10px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      32,
+      32,
+      0.1
+    );
+
+  background:
+    rgba(
+      8,
+      9,
+      12,
+      0.78
+    );
+}
+
+.magicSoundControl {
+  min-height: 40px;
+
+  padding:
+    0 16px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.07
+    );
+
+  color:
+    var(--text-muted);
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.014
+    );
+
+  cursor: pointer;
+
+  font-family:
+    var(--font-mono);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing:
+    0.13em;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.magicSoundControl:hover {
+  color:
+    var(--text);
+
+  border-color:
+    rgba(
+      255,
+      32,
+      32,
+      0.22
+    );
+
+  background:
+    rgba(
+      255,
+      32,
+      32,
+      0.035
+    );
+}
+
+.magicSoundControl:focus-visible {
+  outline:
+    2px solid
+    var(--red-hot);
+
+  outline-offset:
+    3px;
+}
+
+.magicSoundControl[aria-pressed="true"] {
+  color:
+    var(--text);
+
+  border-color:
+    rgba(
+      255,
+      32,
+      32,
+      0.35
+    );
+
+  background:
+    rgba(
+      255,
+      32,
+      32,
+      0.07
+    );
+
+  box-shadow:
+    inset 0 0 20px
+    rgba(
+      255,
+      32,
+      32,
+      0.025
+    );
+}
+
+.magicSoundControl:disabled {
+  opacity: 0.45;
+
+  cursor:
+    default;
+}
+
+.magicLabActions {
+  min-width: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    flex-end;
+
+  gap: 12px;
+}
+
+.magicLabNote {
+  min-width: 0;
+
+  margin: 0;
+
+  color:
+    var(--text-muted);
+
+  font-family:
+    var(--font-mono);
+
+  font-size: 9px;
+
+  line-height:
+    1.6;
+
+  overflow-wrap:
+    break-word;
+}
+
+.magicLabFrame {
+  position: relative;
+
+  width: 100%;
+
+  margin-top: 10px;
+
+  padding: 10px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      32,
+      32,
+      0.1
+    );
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(
+        255,
+        32,
+        32,
+        0.045
+      ),
+      transparent 48%
+    ),
+    rgba(
+      5,
+      6,
+      8,
+      0.92
+    );
+
+  overflow: hidden;
+
+  isolation: isolate;
+}
+
+.magicLabShell {
+  position: relative;
+
+  width: 100%;
+
+  height:
+    clamp(
+      460px,
+      58vw,
+      720px
+    );
+
+  min-height: 420px;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.045
+    );
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(
+        150,
+        0,
+        0,
+        0.06
+      ),
+      transparent 48%
+    ),
+    #060608;
+
+  isolation: isolate;
+}
+
+.magicLabShell > * {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+}
+
+.magicVitals {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap: 1px;
+
+  margin-top: 1px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.045
+    );
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.045
+    );
+}
+
+.magicVitals > div {
+  min-height: 74px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content:
+    space-between;
+
+  padding:
+    13px 16px;
+
+  background:
+    rgba(
+      7,
+      8,
+      10,
+      0.96
+    );
+}
+
+.magicVitals span {
+  color:
+    var(--text-muted);
+
+  font-family:
+    var(--font-mono);
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing:
+    0.15em;
+
+  text-transform:
+    uppercase;
+}
+
+.magicVitals strong {
+  color:
+    var(--text);
+
+  font-family:
+    var(--font-mono);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing:
+    0.08em;
+}
+
+@media (max-width: 760px) {
+  .magicLabBar {
+    grid-template-columns:
+      1fr;
+
+    gap: 12px;
+  }
+
+  .magicLabActions {
+    align-items:
+      flex-start;
+
+    justify-content:
+      flex-start;
+  }
+
+  /*
+   * Touch target (v3.6 mobile law): the sound toggle is the one
+   * audio control — it gets a full 44px target on touch layouts.
+   */
+  .magicSoundControl {
+    min-height: 44px;
+
+    padding:
+      0 20px;
+  }
+
+  .magicLabShell {
+    min-height:
+      390px;
+  }
+
+  .magicVitals {
+    grid-template-columns:
+      1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .magicLabShell {
+    min-height:
+      310px;
+  }
+
+  .magicLabFrame {
+    padding:
+      6px;
+  }
+
+  .magicLabNote {
+    font-size:
+      8px;
+  }
+
+  .magicVitals > div {
+    min-height:
+      64px;
+
+    padding:
+      11px 13px;
+  }
+}

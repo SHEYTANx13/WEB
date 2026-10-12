@@ -1,0 +1,30 @@
+/*
+ * Route-settle entry (v2.5) — see template.tsx.
+ *
+ * Deliberately global (not a CSS module): one tiny class the template
+ * applies, styled here so the keyframes stay out of every component
+ * bundle. Opacity-only, 240ms, one-shot. `both` fill keeps the first
+ * frame at opacity 0 so there is no flash before the animation starts.
+ */
+
+.blog-route-settle {
+  animation: blog-route-settle 240ms
+    var(--ease-out-soft, cubic-bezier(0.22, 1, 0.36, 1))
+    both;
+}
+
+@keyframes blog-route-settle {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-route-settle {
+    animation: none;
+  }
+}

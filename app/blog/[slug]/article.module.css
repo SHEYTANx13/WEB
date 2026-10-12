@@ -1,0 +1,1796 @@
+.article {
+  width: 100%;
+
+  /*
+   * v3.6.1: editorial breathing room below the (now sticky) blog
+   * header. This is design spacing, not viewport compensation —
+   * the header is in normal flow, so no offset math exists here.
+   */
+  padding-top: clamp(40px, 7vh, 72px);
+}
+
+/*
+ * EDITORIAL COLUMN (v2.7): the header joins the same centered
+ * 720px reading column as the body, TOC, cover, and footer
+ * sections. Before v2.7 the header hugged the container's left
+ * edge (780px) while the body floated centered — two competing
+ * axes the cover's old 980px width used to bridge. One column now.
+ */
+.header {
+  max-width: 720px;
+
+  margin:
+    0 auto;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+.headerKicker {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 16px;
+
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.2em;
+
+  text-transform: uppercase;
+}
+
+.backLink {
+  display: inline-flex;
+
+  align-items: center;
+
+  /* Touch-target sizing (WCAG 2.5.8): the bare 10px text link was an
+     ~11px target; padded inline-flex makes it ~29px while the
+     transparent padding keeps the kicker's visual density. */
+  padding: 9px 10px 9px 0;
+
+  color: var(--red-hot);
+
+  transition: color 160ms ease;
+}
+
+.backLink:hover {
+  color: #ffffff;
+}
+
+/*
+ * Inbound authority badge (v2.5.5) — "↩ N" in the header kicker,
+ * an in-page fragment link to the REFERENCED BY section. Same quiet
+ * mono grammar as the kicker; the hairline border is the one
+ * decorative note (it marks this as an instrument, not metadata).
+ */
+.headerRefs {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  /* Touch-target sizing (WCAG 2.5.8): 3px vertical padding made an
+     ~20px target; 7px makes it ~26px. */
+  padding: 7px 10px;
+
+  border: 1px solid rgba(255, 32, 32, 0.28);
+
+  border-radius: 999px;
+
+  color: var(--red-hot);
+
+  letter-spacing: 0.08em;
+
+  transition:
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.headerRefs:hover {
+  border-color: rgba(255, 32, 32, 0.6);
+
+  color: #ffffff;
+}
+
+.headerRefs:focus-visible {
+  outline: 2px solid var(--red-hot);
+
+  outline-offset: 2px;
+}
+
+/*
+ * Category accent (v2.5.3) — the header's category span carries a
+ * per-category color and a small ::before dot. The color comes from
+ * the ancestor [data-category] rules below; the dot inherits it via
+ * currentColor, so print (which re-points the vars at ink) stays
+ * neutral without extra rules. Decorative only — the category name
+ * is always spelled out beside it.
+ */
+.headerCategory {
+  transition: color 160ms ease;
+}
+
+.headerCategory::before,
+.relatedCardCategory::before,
+.relatedRowCategory::before {
+  content: "";
+
+  display: inline-block;
+
+  width: 6px;
+
+  height: 6px;
+
+  margin-right: 7px;
+
+  border-radius: 999px;
+
+  background: currentColor;
+
+  vertical-align: 1px;
+}
+
+[data-category="research"] :is(.headerCategory, .relatedCardCategory, .relatedRowCategory) {
+  color: var(--cat-research);
+}
+
+[data-category="systems"] :is(.headerCategory, .relatedCardCategory, .relatedRowCategory) {
+  color: var(--cat-systems);
+}
+
+[data-category="engineering"] :is(.headerCategory, .relatedCardCategory, .relatedRowCategory) {
+  color: var(--cat-engineering);
+}
+
+.title {
+  margin: 0;
+
+  max-width: 720px;
+
+  font-size:
+    clamp(
+      32px,
+      5vw,
+      52px
+    );
+
+  font-weight: 800;
+
+  letter-spacing: -0.04em;
+
+  line-height: 1.08;
+
+  text-wrap: balance;
+}
+
+.subtitle {
+  margin: 0;
+
+  max-width: 640px;
+
+  color: var(--text-soft);
+
+  font-size:
+    clamp(
+      17px,
+      2vw,
+      21px
+    );
+
+  line-height: 1.55;
+}
+
+.meta {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px 18px;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  /*
+   * READABILITY (v3.0): article header metadata raised 10px →
+   * 11px — still clearly secondary to title/body, but no longer
+   * at the floor of legibility on small screens.
+   */
+  font-size: 11px;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+
+  padding-bottom: 30px;
+
+  border-bottom:
+    1px solid
+    var(--line-soft);
+}
+
+/*
+ * CONTEXT CHIPS (v2.5.2) — the article's project + topics surfaced.
+ *
+ * Every chip is a REAL link into a pre-filtered blog index
+ * (/blog/?project=…, /blog/?topic=…), so each one answers the SEO
+ * link test: a reader understands exactly where it leads. The
+ * project chip carries the red accent (it identifies WHICH system
+ * the article belongs to); topic chips stay neutral.
+ */
+
+.contextChips {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 16px;
+}
+
+.contextChip {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 6px 13px;
+
+  border: 1px solid
+    var(--line);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.015);
+
+  color: var(--text-soft);
+
+  font-family: var(--font-mono);
+
+  font-size: 10.5px;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contextChip:hover {
+  border-color:
+    rgba(255, 32, 32, 0.4);
+
+  background:
+    rgba(255, 32, 32, 0.06);
+
+  color: var(--text);
+
+  transform: translateY(-1px);
+}
+
+.contextChip:focus-visible {
+  outline: 1px solid
+    var(--red-hot);
+
+  outline-offset: 2px;
+}
+
+.contextChipProject {
+  border-color:
+    rgba(255, 32, 32, 0.35);
+
+  color: var(--text);
+
+  background:
+    rgba(255, 32, 32, 0.05);
+}
+
+.contextChipProject:hover {
+  border-color:
+    rgba(255, 32, 32, 0.6);
+
+  background:
+    rgba(255, 32, 32, 0.1);
+}
+
+.contextChipLabel {
+  color: var(--red-hot);
+
+  font-size: 8.5px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.2em;
+}
+
+.contextChip:hover .contextChipLabel {
+  color: #ff6a5e;
+}
+
+/*
+ * COVER ALIGNMENT (v2.7): the article's primary image now shares
+ * the reading column's exact width (720px, centered) — title,
+ * subtitle, metadata, context chips, cover, TOC, and body form one
+ * coherent editorial composition instead of three drifting widths
+ * (780 / 980 / 720). The image keeps its intrinsic aspect ratio
+ * via width/height attributes, so the reveal motion (flow variant)
+ * can never cause layout shift.
+ */
+.cover {
+  margin: 36px auto 0;
+
+  max-width: 720px;
+}
+
+.cover img {
+  width: 100%;
+
+  height: auto;
+
+  display: block;
+
+  border: 1px solid
+    var(--line);
+
+  border-radius: 12px;
+}
+
+/* ------------------------------------------------------------------------ */
+/* Article body — readability first                                          */
+/* ------------------------------------------------------------------------ */
+
+.body {
+  /*
+   * READABILITY (v3.0): the reading column widens to keep the
+   * 65–78ch measure at the larger body size, and the body scale
+   * rises (17–18.7px, ≈1.06–1.17rem) to sit fully inside the
+   * comfortable article range. Everything still multiplies by the
+   * TextSize island's --reader-scale preference.
+   */
+  max-width: 745px;
+
+  margin: 38px auto 0;
+
+  color: var(--text-soft);
+
+  font-size:
+    calc(
+      clamp(
+        17px,
+        1.45vw,
+        18.7px
+      ) * var(--reader-scale, 1)
+    );
+
+  line-height: 1.85;
+}
+
+.body p {
+  margin: 0 0 1.5em;
+
+  overflow-wrap: break-word;
+}
+
+.body h2,
+.body h3,
+.body h4 {
+  color: var(--text);
+
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+
+  line-height: 1.25;
+
+  scroll-margin-top:
+    calc(
+      var(--shell-header) + 30px
+    );
+}
+
+.body h2 {
+  margin:
+    2.1em 0 0.7em;
+
+  /*
+   * READER SCALE (v2.5.7): headings ride the same preference as
+   * body copy — every step keeps the hierarchy's proportions.
+   */
+  font-size:
+    calc(
+      clamp(
+        24px,
+        3vw,
+        31px
+      ) * var(--reader-scale, 1)
+    );
+
+  position: relative;
+
+  padding-left: 18px;
+
+  /*
+   * Anchored navigation (TOC clicks, heading "#" links, off-site
+   * section links) must land BELOW the fixed shell header. This was
+   * previously set on h4 only — a v2.5.2 correctness fix now gives
+   * every heading level the same landing offset.
+   */
+  scroll-margin-top:
+    calc(
+      var(--shell-header) + 30px
+    );
+}
+
+.body h2::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  top: 0.28em;
+
+  bottom: 0.28em;
+
+  width: 3px;
+
+  border-radius: 2px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--red-hot),
+      var(--red-deep)
+    );
+}
+
+.body h3 {
+  margin:
+    1.8em 0 0.6em;
+
+  /*
+   * READER SCALE (v2.5.7): same preference, h3's own clamp.
+   */
+  font-size:
+    calc(
+      clamp(
+        19px,
+        2.2vw,
+        23px
+      ) * var(--reader-scale, 1)
+    );
+
+  scroll-margin-top:
+    calc(
+      var(--shell-header) + 30px
+    );
+}
+
+/*
+ * HEADING ANCHORS (v2.5.2) — the server-rendered "#" self-link in
+ * every section heading (class comes from the build-time HTML, so
+ * it is targeted through :global). Hidden until the heading is
+ * hovered or keyboard-focused; on touch devices (no hover) it sits
+ * quietly visible so section deep-links stay reachable.
+ */
+
+.body h2 :global(.h-anchor),
+.body h3 :global(.h-anchor),
+.body h4 :global(.h-anchor) {
+  margin-left: 12px;
+
+  border-bottom: none;
+
+  color: var(--text-muted);
+
+  font-weight: 400;
+
+  font-size: 0.72em;
+
+  opacity: 0;
+
+  transition: opacity 160ms ease, color 160ms ease;
+}
+
+.body h2:hover :global(.h-anchor),
+.body h3:hover :global(.h-anchor),
+.body h4:hover :global(.h-anchor),
+.body h2 :global(.h-anchor):focus-visible,
+.body h3 :global(.h-anchor):focus-visible,
+.body h4 :global(.h-anchor):focus-visible {
+  opacity: 0.85;
+}
+
+.body h2 :global(.h-anchor):hover,
+.body h3 :global(.h-anchor):hover,
+.body h4 :global(.h-anchor):hover {
+  color: var(--red-hot);
+
+  opacity: 1;
+}
+
+.body h2 :global(.h-anchor):focus-visible,
+.body h3 :global(.h-anchor):focus-visible,
+.body h4 :global(.h-anchor):focus-visible {
+  outline: 1px solid var(--red-hot);
+
+  outline-offset: 3px;
+}
+
+@media (hover: none) {
+  .body h2 :global(.h-anchor),
+  .body h3 :global(.h-anchor),
+  .body h4 :global(.h-anchor) {
+    opacity: 0.5;
+  }
+}
+
+.body h4 {
+  margin:
+    1.6em 0 0.5em;
+
+  /*
+   * READER SCALE (v2.5.7): same preference, h4's fixed size.
+   */
+  font-size:
+    calc(
+      17px * var(--reader-scale, 1)
+    );
+
+  color: var(--text-soft);
+}
+
+.body a {
+  color: var(--red-hot);
+
+  text-decoration: none;
+
+  border-bottom:
+    1px solid
+    rgba(255, 64, 54, 0.35);
+
+  transition:
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.body a:hover {
+  color: #ffffff;
+
+  border-color:
+    rgba(255, 80, 70, 0.8);
+}
+
+.body strong {
+  color: var(--text);
+
+  font-weight: 700;
+}
+
+.body blockquote {
+  margin:
+    1.8em 0;
+
+  padding:
+    6px 0 6px 22px;
+
+  border-left:
+    2px solid
+    rgba(255, 32, 32, 0.55);
+
+  color: var(--text);
+
+  font-size: 1.02em;
+
+  font-style: italic;
+}
+
+.body blockquote p {
+  margin: 0;
+}
+
+.body ul,
+.body ol {
+  margin:
+    0 0 1.4em;
+
+  padding-left: 26px;
+}
+
+.body li {
+  margin-bottom: 0.5em;
+}
+
+.body li::marker {
+  color: var(--red-hot);
+}
+
+.body code {
+  padding: 2px 7px;
+
+  border: 1px solid
+    var(--line-soft);
+
+  border-radius: 4px;
+
+  background:
+    rgba(255, 32, 32, 0.06);
+
+  color: #ffb5ae;
+
+  font-family: var(--font-mono);
+
+  font-size: 0.86em;
+}
+
+/*
+ * CODE BLOCKS (v2.5.2 wrapper model) — the generated HTML wraps every
+ * fenced block in .code-block. The WRAPPER is the visible box (frame,
+ * radius, background, relative anchor for the language chip and the
+ * runtime COPY button); the <pre> inside is the only scroll container,
+ * so wide code scrolls UNDER pinned chrome instead of carrying it
+ * away. Without the wrapper (old data) the pre keeps its own box via
+ * the fallback below.
+ */
+
+.body :global(.code-block) {
+  margin:
+    1.8em 0;
+
+  border: 1px solid
+    var(--line);
+
+  border-radius: 10px;
+
+  background:
+    #07080b;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.body pre {
+  margin: 0;
+
+  padding: 20px 24px;
+
+  padding-right: 92px;
+
+  overflow-x: auto;
+
+  background: transparent;
+}
+
+/*
+ * CODE BLOCK LANGUAGE LABEL (v2.5.2) — build-time `data-language`
+ * surfaced as a quiet corner label on the wrapper. Pure CSS: no JS,
+ * no new markup, nothing to hydrate. Empty languages (plain fences)
+ * render no label. It anchors to the wrapper — NOT the scrolling
+ * <pre> — so it stays pinned while code scrolls underneath, and sits
+ * left of the COPY button's reserved corner (no collision, ever).
+ */
+.body :global(.code-block[data-language]:not([data-language=""]))::after {
+  content: attr(data-language);
+
+  position: absolute;
+
+  top: 15px;
+
+  right: 82px;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 8.5px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+
+  pointer-events: none;
+}
+
+.body pre code {
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #d8dde6;
+
+  font-size: 13.5px;
+
+  line-height: 1.75;
+}
+
+.body hr {
+  margin: 2.6em auto;
+
+  width: 120px;
+
+  border: none;
+
+  border-top:
+    1px solid
+    rgba(255, 32, 32, 0.3);
+}
+
+.body figure {
+  margin:
+    1.9em 0;
+}
+
+.body figure img {
+  width: 100%;
+
+  height: auto;
+
+  display: block;
+
+  border: 1px solid
+    var(--line);
+
+  border-radius: 10px;
+}
+
+.body img {
+  height: auto;
+}
+
+/*
+ * IMAGE MOTION (v2.5) — low-amplitude scroll parallax for figures,
+ * implemented with CSS scroll-linked animation where the browser
+ * supports it (`animation-timeline: view()`). Zero JavaScript, zero
+ * scroll listeners, compositor-only:
+ *   - the independent `translate` property is used so it composes
+ *     with (and never fights) the reveal system's `transform`;
+ *   - amplitude is ±2.2% of the image height on desktop, ±0.8% on
+ *     small screens, and there is no horizontal movement;
+ *   - `translate` never affects layout, so no shift can occur;
+ *   - unsupported browsers and prefers-reduced-motion get a static
+ *     image — the animation simply does not exist there.
+ */
+@keyframes article-figure-drift {
+  from {
+    translate: 0 var(--figure-drift, 2.2%);
+  }
+
+  to {
+    translate: 0 calc(var(--figure-drift, 2.2%) * -1);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .body figure img {
+      animation:
+        article-figure-drift
+        linear
+        both;
+
+      animation-timeline:
+        view();
+
+      animation-range:
+        entry 20%
+        exit 80%;
+
+      will-change:
+        translate;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .body figure img {
+    --figure-drift: 0.8%;
+  }
+}
+
+/* ------------------------------------------------------------------------ */
+/* Post-body blocks                                                          */
+/* ------------------------------------------------------------------------ */
+
+/*
+ * Tags row (v2.5.3) — the tag pills moved into a .tagList group so
+ * the row can also carry a right-aligned actions slot (the copy-link
+ * button island). Without JS the slot is empty and the row is just
+ * the tags; after hydration the button docks to the right edge and
+ * the tag group does not move.
+ */
+.tags {
+  max-width: 720px;
+
+  margin: 44px auto 0;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 12px 16px;
+
+  padding-top: 26px;
+
+  border-top:
+    1px solid
+    var(--line-soft);
+}
+
+.tagList {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.tagsActions {
+  display: flex;
+
+  /*
+   * v2.5.7: the slot now docks TWO instruments (COPY LINK + the
+   * text-size group); wrap keeps the row honest on narrow screens
+   * instead of letting the second instrument force the pills to
+   * shrink.
+   */
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  flex-shrink: 0;
+}
+
+.tags span {
+  padding: 5px 11px;
+
+  border: 1px solid
+    var(--line);
+
+  border-radius: 999px;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+.adjacentNav {
+  max-width: 860px;
+
+  margin: 34px auto 0;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 14px;
+}
+
+/*
+ * A lone prev (oldest article) or next (newest article) link
+ * spans the full row instead of leaving half of it empty.
+ */
+.adjacentNav[data-count="1"] .adjacentLink {
+  grid-column: 1 / -1;
+}
+
+.adjacentLink {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 9px;
+
+  padding: 20px 22px;
+
+  border: 1px solid
+    var(--line);
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.014);
+
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.adjacentLink:hover {
+  border-color:
+    rgba(255, 32, 32, 0.35);
+
+  background:
+    rgba(255, 32, 32, 0.05);
+
+  transform:
+    translateY(-2px);
+}
+
+.adjacentLinkNext {
+  text-align: right;
+
+  align-items: flex-end;
+}
+
+.adjacentLabel {
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.2em;
+}
+
+/*
+ * J/K hint (v2.5.3) — a bare <kbd> after the PREVIOUS/NEXT label.
+ * Purely a discoverability affordance for the ArticleKeys island;
+ * aria-hidden in the markup so assistive tech reads only the words.
+ */
+.adjacentKey {
+  margin-left: 10px;
+
+  opacity: 0.8;
+}
+
+/*
+ * Touch devices have no keyboard — the J/K hint would be inert
+ * noise in the labels, so it leaves them and the words read clean.
+ */
+@media (hover: none) {
+  .adjacentKey {
+    display: none;
+  }
+}
+
+.adjacentTitle {
+  color: var(--text);
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.01em;
+
+  line-height: 1.4;
+}
+
+/*
+ * RELATED CONTENT (v2.5) — two readable tiers, not a wall.
+ *
+ * Primary: rich cards with title + excerpt + category + date +
+ * reading time, for the strongest relationships (author-explicit or
+ * high scoring). Secondary: compact rows for the remaining matches.
+ * Both tiers use the site's card language: quiet surfaces, red
+ * borders on hover, no new visual vocabulary.
+ */
+
+.related {
+  max-width: 860px;
+
+  margin: 54px auto 0;
+}
+
+.relatedKicker {
+  margin: 0 0 18px;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.24em;
+
+  text-transform: uppercase;
+}
+
+.relatedPrimaryGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(250px, 1fr)
+    );
+
+  gap: 14px;
+}
+
+.relatedCard {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 9px;
+
+  padding: 20px;
+
+  border: 1px solid
+    var(--line);
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18, 20, 27, 0.6),
+      rgba(9, 10, 14, 0.5)
+    );
+
+  transition:
+    border-color 180ms ease,
+    transform 180ms
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.relatedCard:hover {
+  border-color:
+    rgba(255, 32, 32, 0.32);
+
+  transform:
+    translateY(-2px);
+}
+
+/*
+ * Hover arrow (v2.5.3) — a quiet mono glyph that fades/slides in at
+ * the card's top-right corner on hover/focus. Opacity + transform
+ * only; decorative content, so no assistive-tech announcement.
+ */
+.relatedCard::after {
+  content: "→";
+
+  position: absolute;
+
+  top: 18px;
+
+  right: 18px;
+
+  color: var(--red-hot);
+
+  font-family: var(--font-mono);
+
+  font-size: 13px;
+
+  opacity: 0;
+
+  transform: translateX(-6px);
+
+  transition:
+    opacity 180ms ease,
+    transform 180ms
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.relatedCard:hover::after,
+.relatedCard:focus-visible::after {
+  opacity: 1;
+
+  transform: translateX(0);
+}
+
+.relatedCardCategory {
+  color: var(--red-hot);
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.2em;
+
+  text-transform: uppercase;
+}
+
+.relatedCardTitle {
+  color: var(--text);
+
+  font-size: 16px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.01em;
+
+  line-height: 1.35;
+}
+
+.relatedCardExcerpt {
+  color: var(--text-soft);
+
+  font-size: 13.5px;
+
+  line-height: 1.6;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 3;
+
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+.relatedCardMeta {
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  margin-top: auto;
+}
+
+/*
+ * WHY-RELATED hint (v2.5.5) — the shared signals behind a primary
+ * card's match ("verification · systems-thinking") or the
+ * author-curated provenance mark. One quiet mono line pinned under
+ * the meta; never a link, never interactive — it explains, it does
+ * not navigate. Lowercase on purpose: the terms ARE identities
+ * (frontmatter topics/tags), uppercasing would shout them.
+ */
+.relatedShared {
+  display: block;
+
+  margin-top: 8px;
+
+  color: var(--text-muted);
+
+  opacity: 0.85;
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.05em;
+}
+
+.relatedShared::before {
+  content: "↔ ";
+
+  color: var(--red-hot);
+
+  opacity: 0.7;
+}
+
+.relatedSecondaryList {
+  list-style: none;
+
+  margin: 12px 0 0;
+
+  padding: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+/*
+ * LATERAL DESTINATIONS (v3.9) — the article→collection edge rows
+ * ("IN THE LABORATORY"). Visually a quiet continuation of the
+ * related section: the same row language as the secondary list, one
+ * hairline-separated group with its own small mono kicker, and a
+ * provenance note on each row. The note takes its own full-width
+ * flex line (same pattern as .relatedRowShared) so the row grid
+ * stays intact above it.
+ */
+.relatedLateral {
+  margin-top: 18px;
+
+  padding-top: 14px;
+
+  border-top: 1px solid var(--line-soft);
+}
+
+.relatedLateralKicker {
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.22em;
+
+  text-transform: uppercase;
+}
+
+.relatedLateralNote {
+  flex-basis: 100%;
+
+  margin-top: 2px;
+
+  color: var(--text-muted);
+
+  opacity: 0.85;
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.05em;
+}
+
+.relatedLateralNote::before {
+  content: "→ ";
+
+  color: var(--red-hot);
+
+  opacity: 0.7;
+}
+
+.relatedRow {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: baseline;
+
+  gap: 6px 14px;
+
+  padding: 13px 16px;
+
+  border: 1px solid
+    var(--line-soft);
+
+  border-radius: 8px;
+
+  background:
+    rgba(255, 255, 255, 0.012);
+
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.relatedRow:hover {
+  border-color:
+    rgba(255, 32, 32, 0.28);
+
+  background:
+    rgba(255, 32, 32, 0.04);
+}
+
+.relatedRowCategory {
+  color: var(--red-hot);
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+}
+
+.relatedRowTitle {
+  color: var(--text);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.01em;
+
+  line-height: 1.4;
+}
+
+.relatedRowMeta {
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  margin-left: auto;
+}
+
+/*
+ * WHY-RELATED hint on the compact rows (v2.5.5): same content and
+ * reasoning as the card hint, but it must take its own full-width
+ * flex line so the row's grid (category · title · meta pushed
+ * right) stays intact above it.
+ */
+.relatedRowShared {
+  flex-basis: 100%;
+
+  margin-top: 2px;
+
+  color: var(--text-muted);
+
+  opacity: 0.85;
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.05em;
+}
+
+.relatedRowShared::before {
+  content: "↔ ";
+
+  color: var(--red-hot);
+
+  opacity: 0.7;
+}
+
+/*
+ * REFERENCED BY (v2.5.4) — the reverse link graph, rendered.
+ *
+ * Visual grammar: same row language as the secondary related rows
+ * (mono category label with its accent dot, bold title, mono meta
+ * pushed right) plus one inbound-only signal — the red ↩ glyph and
+ * a red left hairline that brightens on hover. Reading order:
+ * glyph, category, title, meta. The category span reuses
+ * .relatedRowCategory so the v2.5.3 [data-category] dot rules
+ * apply unchanged; the row's <li> carries data-category.
+ */
+.linksHere {
+  max-width: 860px;
+
+  margin: 22px auto 0;
+
+  /*
+   * Fragment landing (v2.5.5): the header "↩ N" badge links here
+   * via #referenced-by — land BELOW the fixed shell header like
+   * every other anchored jump on this page.
+   */
+  scroll-margin-top:
+    calc(
+      var(--shell-header) + 30px
+    );
+}
+
+.linksHereList {
+  list-style: none;
+
+  margin: 0;
+
+  padding: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.linksHereRow {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: baseline;
+
+  gap: 6px 12px;
+
+  padding: 12px 16px 12px 14px;
+
+  border: 1px solid var(--line-soft);
+
+  border-left: 2px solid rgba(255, 32, 32, 0.22);
+
+  border-radius: 8px;
+
+  background:
+    rgba(255, 255, 255, 0.012);
+
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.linksHereRow:hover {
+  border-color:
+    rgba(255, 32, 32, 0.28);
+
+  border-left-color:
+    rgba(255, 32, 32, 0.75);
+
+  background:
+    rgba(255, 32, 32, 0.04);
+}
+
+.linksHereGlyph {
+  color: var(--red-hot);
+
+  font-family: var(--font-mono);
+
+  font-size: 12px;
+
+  line-height: 1;
+
+  flex-shrink: 0;
+
+  transform: translateY(-1px);
+}
+
+.linksHereTitle {
+  color: var(--text);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.01em;
+
+  line-height: 1.4;
+}
+
+.footerNav {
+  max-width: 860px;
+
+  margin: 46px auto 0;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+}
+
+.backToIndex,
+.backToWorld {
+  min-height: 44px;
+}
+
+@media (max-width: 760px) {
+  .adjacentNav {
+    grid-template-columns: 1fr;
+  }
+
+  .adjacentLinkNext {
+    text-align: left;
+
+    align-items: flex-start;
+  }
+
+  .body {
+    /*
+     * READER SCALE: the static 16px here used to cancel the
+     * --reader-scale preference on phones and small tablets — the
+     * TextSize control stayed visible, stored the preference, and
+     * had no visible effect below 760px. Multiply the same fixed
+     * base the desktop clamp bottoms out at, so every step of the
+     * control scales the reading column on narrow screens too.
+     */
+    font-size: calc(16px * var(--reader-scale, 1));
+  }
+
+  .body h2 {
+    padding-left: 14px;
+  }
+
+  /*
+   * Tags row on narrow screens: the actions slot drops below the
+   * tag group (full-width row feel) instead of squeezing the pills.
+   * The slot must stretch to the full row width — as a plain column
+   * child it would shrink-wrap to the button's content width, and
+   * the button's own width:100% would resolve against that collapsed
+   * box instead of the row.
+   */
+  .tags {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .tagsActions {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .adjacentLink,
+  .relatedCard {
+    transition: none;
+  }
+
+  .adjacentLink:hover,
+  .relatedCard:hover {
+    transform: none;
+  }
+
+  /*
+   * The hover arrow (v2.5.3) is itself a transform animation —
+   * under reduced motion it appears in place with no slide, and
+   * only on devices that still have hover (touch never sees it).
+   */
+  .relatedCard::after {
+    transform: none;
+
+    transition: none;
+  }
+}
+
+/* ------------------------------------------------------------------------ */
+/* Print (v2.5.1) — the article as a document                                */
+/*                                                                            */
+/* Screen chrome (TOC, adjacent nav, related grid, footer buttons) steps     */
+/* aside; the title, metadata, cover and body print as clean black-on-white  */
+/* with the red accent kept only where it carries meaning (h2 markers,       */
+/* list markers). Link URLs are surfaced after the anchor text so the        */
+/* link graph survives on paper.                                            */
+/* ------------------------------------------------------------------------ */
+
+@media print {
+  .headerKicker .backLink,
+  .adjacentNav,
+  .related,
+  .linksHere,
+  .footerNav,
+  .tagsActions {
+    display: none !important;
+  }
+
+  /*
+   * The header badge is not inside .related/.linksHere (it sits in
+   * the kicker and links TO the section), so it needs its own
+   * print rule — on paper the section itself is gone, a link to
+   * it would be a lie.
+   */
+  .headerRefs {
+    display: none !important;
+  }
+
+  .title,
+  .subtitle,
+  .meta,
+  .headerKicker {
+    color: #111111;
+  }
+
+  .body {
+    color: #1a1a1a;
+
+    max-width: none;
+
+    font-size: 12pt;
+
+    line-height: 1.6;
+  }
+
+  .body h2,
+  .body h3,
+  .body h4 {
+    color: #000000;
+  }
+
+  .body a {
+    color: #111111;
+
+    border-bottom: none;
+
+    text-decoration: underline;
+  }
+
+  .body a[href^="http"]::after {
+    content: " (" attr(href) ")";
+
+    font-size: 0.78em;
+
+    color: #555555;
+
+    word-break: break-all;
+  }
+
+  .body :global(.code-block),
+  .body pre {
+    border: 1px solid #cccccc;
+
+    background: #f7f7f7;
+  }
+
+  .body pre code {
+    color: #111111;
+  }
+
+  .body code {
+    border-color: #cccccc;
+
+    background: #f2f2f2;
+
+    color: #8a1a12;
+  }
+
+  .body blockquote {
+    color: #333333;
+  }
+
+  .tags {
+    color: #444444;
+  }
+
+  .tags span {
+    border-color: #cccccc;
+
+    color: #444444;
+  }
+}
+
+/*
+ * AUTHOR AUTHORITY BLOCK (v3.1) — visible authorship at the end of
+ * every article. Same panel language as the context chips and the
+ * footer: dark panel, red kicker, one clear link to /about/.
+ */
+.authorBox {
+  margin-top: 56px;
+
+  padding: 22px 24px;
+
+  border: 1px solid var(--line-soft);
+
+  border-left: 2px solid var(--red-deep);
+
+  border-radius: 12px;
+
+  background: var(--panel);
+}
+
+.authorKicker {
+  margin: 0 0 10px;
+
+  color: var(--red-hot);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.26em;
+
+  text-transform: uppercase;
+}
+
+.authorName {
+  margin: 0 0 6px;
+
+  color: var(--text);
+
+  font-size: 17px;
+
+  font-weight: 700;
+}
+
+.authorName a {
+  color: var(--text);
+
+  text-decoration: underline;
+
+  text-decoration-color: rgba(255, 32, 32, 0.5);
+
+  text-underline-offset: 3px;
+}
+
+.authorName a:hover {
+  color: #ffffff;
+
+  text-decoration-color: var(--red-hot);
+}
+
+.authorName a:focus-visible {
+  outline: 2px solid var(--red-hot);
+
+  outline-offset: 3px;
+
+  border-radius: 2px;
+}
+
+.authorTagline {
+  margin: 0 0 4px;
+
+  color: var(--text-soft);
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+.authorResearch {
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+
+  letter-spacing: 0.04em;
+
+  line-height: 1.7;
+}
+
+@media (max-width: 560px) {
+  .authorBox {
+    padding: 16px;
+  }
+}
+
+/*
+ * TYPE CHIP (v3.7) — the at-a-glance strip's leading chip. Tinted
+ * by content type with the same quiet vocabulary the Blog cards
+ * use (red = article, amber = work, blue = research), always paired
+ * with a text label so color is never the only signal.
+ */
+.contextChipType {
+  border-color: rgba(255, 64, 54, 0.4);
+
+  color: var(--red-hot);
+}
+
+.contextChipType[data-type="work"] {
+  border-color: rgba(255, 150, 60, 0.42);
+
+  color: #ffa259;
+}
+
+.contextChipType[data-type="research"] {
+  border-color: rgba(120, 160, 255, 0.4);
+
+  color: #93adff;
+}

@@ -1,0 +1,1600 @@
+.workScene {
+  position: relative;
+
+  isolation: isolate;
+
+  overflow: clip;
+}
+
+.workLaboratory {
+  position: relative;
+
+  min-height:
+    calc(
+      100vh -
+      var(--shell-header)
+    );
+
+  min-height:
+    calc(
+      100svh -
+      var(--shell-header)
+    );
+
+  min-height:
+    calc(
+      100dvh -
+      var(--shell-header)
+    );
+
+  overflow: clip;
+
+  border-bottom:
+    1px solid
+    rgba(
+      77,
+      182,
+      255,
+      0.07
+    );
+
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      circle at 74% 18%,
+      rgba(
+        77,
+        182,
+        255,
+        0.042
+      ),
+      transparent 31%
+    ),
+    radial-gradient(
+      circle at 12% 82%,
+      rgba(
+        255,
+        32,
+        32,
+        0.018
+      ),
+      transparent 28%
+    );
+}
+
+.workLaboratoryField {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  overflow: hidden;
+}
+
+.workLaboratory > .page-container {
+  position: relative;
+
+  z-index: 2;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Laboratory field                                                           */
+/* -------------------------------------------------------------------------- */
+
+.workGridPlane {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.32;
+
+  background-image:
+    linear-gradient(
+      rgba(
+        77,
+        182,
+        255,
+        0.028
+      ) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(
+        77,
+        182,
+        255,
+        0.028
+      ) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    42px 42px;
+
+  mask-image:
+    radial-gradient(
+      ellipse 62% 74% at 73% 40%,
+      black 0%,
+      rgba(
+        0,
+        0,
+        0,
+        0.72
+      ) 36%,
+      transparent 82%
+    );
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+}
+
+.workGridAxis {
+  position: absolute;
+
+  pointer-events: none;
+
+  opacity: 0.34;
+}
+
+.workGridAxisX {
+  left:
+    29%;
+
+  top:
+    44%;
+
+  width:
+    63%;
+
+  height:
+    1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(
+        77,
+        182,
+        255,
+        0.12
+      ),
+      transparent
+    );
+}
+
+.workGridAxisY {
+  left:
+    73%;
+
+  top:
+    8%;
+
+  width:
+    1px;
+
+  height:
+    70%;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(
+        77,
+        182,
+        255,
+        0.1
+      ),
+      transparent
+    );
+}
+
+.workMarker {
+  position:
+    absolute;
+
+  width:
+    22px;
+
+  height:
+    22px;
+
+  opacity:
+    0.3;
+}
+
+.workMarker::before,
+.workMarker::after {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  background:
+    rgba(
+      77,
+      182,
+      255,
+      0.38
+    );
+}
+
+.workMarker::before {
+  left:
+    50%;
+
+  top:
+    0;
+
+  bottom:
+    0;
+
+  width:
+    1px;
+
+  transform:
+    translateX(
+      -50%
+    );
+}
+
+.workMarker::after {
+  left:
+    0;
+
+  right:
+    0;
+
+  top:
+    50%;
+
+  height:
+    1px;
+
+  transform:
+    translateY(
+      -50%
+    );
+}
+
+.workMarkerOne {
+  left:
+    62%;
+
+  top:
+    17%;
+}
+
+.workMarkerTwo {
+  right:
+    10%;
+
+  top:
+    32%;
+
+  opacity:
+    0.18;
+}
+
+.workMarkerThree {
+  left:
+    73%;
+
+  bottom:
+    18%;
+
+  opacity:
+    0.2;
+}
+
+.workMarkerFour {
+  left:
+    44%;
+
+  bottom:
+    9%;
+
+  opacity:
+    0.14;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Header                                                                     */
+/* -------------------------------------------------------------------------- */
+
+.workHeader {
+  display:
+    flex;
+
+  align-items:
+    flex-end;
+
+  justify-content:
+    space-between;
+
+  gap:
+    44px;
+}
+
+.workHeaderCopy {
+  min-width:
+    0;
+}
+
+.workTitle {
+  margin-top:
+    10px;
+}
+
+.workLead {
+  margin-top:
+    18px;
+
+  color:
+    var(--text-muted);
+}
+
+.workStatus {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    9px;
+
+  flex:
+    0 0 auto;
+
+  padding-bottom:
+    5px;
+
+  color:
+    var(--text-muted);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    9px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.15em;
+
+  text-transform:
+    uppercase;
+}
+
+.workStatusDot {
+  width:
+    7px;
+
+  height:
+    7px;
+
+  border-radius:
+    50%;
+
+  background:
+    #4db6ff;
+
+  box-shadow:
+    0 0 10px
+    rgba(
+      77,
+      182,
+      255,
+      0.55
+    );
+
+  animation:
+    workStatusPulse
+    2.6s
+    ease-in-out
+    infinite;
+}
+
+@keyframes workStatusPulse {
+  0%,
+  100% {
+    opacity:
+      0.3;
+
+    transform:
+      scale(
+        0.8
+      );
+  }
+
+  50% {
+    opacity:
+      1;
+
+    transform:
+      scale(
+        1.12
+      );
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Intro                                                                      */
+/* -------------------------------------------------------------------------- */
+
+.workIntro {
+  margin-top:
+    106px;
+
+  padding:
+    70px 0;
+
+  border-top:
+    1px solid
+    var(--line);
+
+  border-bottom:
+    1px solid
+    var(--line-soft);
+}
+
+.workIntroStatement {
+  max-width:
+    920px;
+
+  margin:
+    0;
+
+  color:
+    var(--text);
+
+  font-size:
+    clamp(
+      2rem,
+      4vw,
+      4.1rem
+    );
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    -0.045em;
+
+  line-height:
+    1.1;
+
+  text-wrap:
+    pretty;
+
+  overflow-wrap:
+    break-word;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Project instrument                                                         */
+/* -------------------------------------------------------------------------- */
+
+.workInstrument {
+  margin-top:
+    84px;
+}
+
+.workInstrumentHeader {
+  display:
+    flex;
+
+  align-items:
+    flex-end;
+
+  justify-content:
+    space-between;
+
+  gap:
+    24px;
+
+  padding-bottom:
+    18px;
+
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+.workInstrumentHeader > div {
+  display:
+    grid;
+
+  gap:
+    8px;
+}
+
+.workInstrumentHeader strong {
+  color:
+    var(--text);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.13em;
+}
+
+.workInstrumentHeader > span {
+  color:
+    rgba(
+      77,
+      182,
+      255,
+      0.62
+    );
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.12em;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Project list                                                               */
+/* -------------------------------------------------------------------------- */
+
+.workProjectList {
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+.workProject {
+  position:
+    relative;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    72px
+    minmax(
+      0,
+      1fr
+    )
+    120px;
+
+  gap:
+    28px;
+
+  padding:
+    34px 0;
+
+  border-bottom:
+    1px solid
+    var(--line-soft);
+
+  transition:
+    background-color
+      180ms ease,
+    transform
+      220ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+}
+
+.workProject:last-child {
+  border-bottom:
+    0;
+}
+
+.workProject::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  left:
+    -16px;
+
+  right:
+    -16px;
+
+  top:
+    8px;
+
+  bottom:
+    8px;
+
+  z-index:
+    -1;
+
+  border:
+    1px solid
+    transparent;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(
+        255,
+        255,
+        255,
+        0.018
+      ),
+      transparent
+    );
+
+  opacity:
+    0;
+
+  transform:
+    translateY(
+      5px
+    );
+
+  transition:
+    opacity
+      180ms ease,
+    transform
+      220ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+    border-color
+      180ms ease;
+}
+
+/*
+ * Hover affordance exists ONLY on cards that actually navigate
+ * (data-linked="true": the RED MAGIC project opens the Magic
+ * scene). Informational cards never promise clickability.
+ */
+.workProject[data-linked="true"]:hover {
+  transform:
+    translateY(
+      -2px
+    );
+}
+
+.workProject[data-linked="true"]:hover::before {
+  opacity:
+    1;
+
+  transform:
+    translateY(
+      0
+    );
+
+  border-color:
+    rgba(
+      77,
+      182,
+      255,
+      0.08
+    );
+}
+
+.workProject[data-linked="true"]:focus-visible {
+  outline:
+    2px solid
+    rgba(
+      77,
+      182,
+      255,
+      0.55
+    );
+
+  outline-offset:
+    4px;
+}
+
+.workProjectNumber {
+  color:
+    rgba(
+      77,
+      182,
+      255,
+      0.58
+    );
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.12em;
+}
+
+.workProjectMain {
+  min-width:
+    0;
+}
+
+.workProjectMeta {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    10px;
+
+  margin-bottom:
+    14px;
+}
+
+.workProjectCode {
+  color:
+    var(--text);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.12em;
+}
+
+.workProjectType {
+  padding:
+    4px 7px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.07
+    );
+
+  color:
+    var(--text-muted);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    7px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.12em;
+
+  text-transform:
+    uppercase;
+}
+
+.workProjectMain h2 {
+  max-width:
+    760px;
+
+  margin:
+    0;
+
+  color:
+    var(--text);
+
+  font-size:
+    clamp(
+      1.5rem,
+      2.7vw,
+      2.65rem
+    );
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    -0.035em;
+
+  line-height:
+    1.08;
+
+  text-wrap:
+    pretty;
+}
+
+.workProjectCopy {
+  max-width:
+    720px;
+
+  margin:
+    16px 0 0;
+
+  color:
+    var(--text-muted);
+
+  font-size:
+    13px;
+
+  line-height:
+    1.75;
+
+  white-space:
+    normal;
+
+  overflow-wrap:
+    break-word;
+}
+
+.workProjectTags {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    8px;
+
+  margin-top:
+    22px;
+}
+
+.workProjectTags span {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  padding:
+    5px 8px;
+
+  border:
+    1px solid
+    rgba(
+      77,
+      182,
+      255,
+      0.085
+    );
+
+  color:
+    rgba(
+      77,
+      182,
+      255,
+      0.58
+    );
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    7px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.12em;
+
+  line-height:
+    1.2;
+
+  text-transform:
+    uppercase;
+}
+
+/*
+ * NOTES line (v2.6.1) — the quiet destination label on linked
+ * project cards. It names the article/scene the card opens, so the
+ * affordance stays truthful at rest, not only on hover. It brightens
+ * with the card's existing data-linked hover state; informational
+ * cards never render it.
+ */
+/* -------------------------------------------------------------------------- */
+/* Featured project links (v2.7) — multi-destination cards                    */
+/* -------------------------------------------------------------------------- */
+
+.workProjectLinks {
+  display:
+    flex;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    14px;
+
+  margin:
+    18px 0 0;
+
+  padding-top:
+    16px;
+
+  border-top:
+    1px solid
+    var(--line-soft);
+}
+
+.workProjectLink {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  min-height:
+    24px;
+
+  padding:
+    6px 0;
+
+  color:
+    var(--text);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    8.5px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.14em;
+
+  text-decoration:
+    none;
+
+  white-space:
+    nowrap;
+
+  transition:
+    color
+    var(--motion-micro)
+    var(--ease-out-soft);
+}
+
+.workProjectLink:hover,
+.workProjectLink:focus-visible {
+  color:
+    var(--red-hot);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Project groups (v2.7)                                                      */
+/* -------------------------------------------------------------------------- */
+
+.workGroup {
+  margin-top:
+    64px;
+}
+
+.workGroupHeader {
+  position:
+    relative;
+
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1fr
+    )
+    auto;
+
+  align-items:
+    start;
+
+  column-gap:
+    32px;
+
+  padding:
+    0 0 20px;
+
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+.workGroupHeader .kicker {
+  margin:
+    0;
+
+  color:
+    var(--red-soft);
+}
+
+.workGroupHeader strong {
+  display:
+    block;
+
+  margin:
+    12px 0 0;
+
+  color:
+    var(--text);
+
+  font-size:
+    clamp(
+      18px,
+      2.2vw,
+      24px
+    );
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    -0.03em;
+
+  line-height:
+    1.2;
+}
+
+.workGroupDescription {
+  max-width:
+    560px;
+
+  margin:
+    10px 0 0;
+
+  color:
+    var(--text-muted);
+
+  font-size:
+    13px;
+
+  line-height:
+    1.7;
+}
+
+.workGroupCount {
+  grid-row:
+    1 / span 3;
+
+  align-self:
+    start;
+
+  padding:
+    4px 10px;
+
+  border:
+    1px solid
+    var(--line);
+
+  color:
+    var(--text-muted);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    9px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.14em;
+}
+
+.workProjectNotes {
+  display:
+    flex;
+
+  align-items:
+    baseline;
+
+  gap:
+    2px;
+
+  margin:
+    14px 0 0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.34
+    );
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    7px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.14em;
+
+  line-height:
+    1.4;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    color
+    180ms
+    ease;
+}
+
+.workProject[data-linked="true"]:hover
+  .workProjectNotes {
+  color:
+    var(--red-hot);
+}
+
+.workProjectState {
+  display:
+    flex;
+
+  align-items:
+    flex-end;
+
+  justify-content:
+    flex-end;
+
+  gap:
+    10px;
+
+  padding-top:
+    1px;
+
+  color:
+    var(--text-muted);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    7px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+}
+
+.workProjectState i {
+  width:
+    7px;
+
+  height:
+    7px;
+
+  flex:
+    0 0 auto;
+
+  border-radius:
+    50%;
+
+  background:
+    #4db6ff;
+
+  box-shadow:
+    0 0 9px
+    rgba(
+      77,
+      182,
+      255,
+      0.45
+    );
+}
+
+.workProject[data-status="evolving"]
+.workProjectState i {
+  background:
+    #ff9d32;
+
+  box-shadow:
+    0 0 9px
+    rgba(
+      255,
+      157,
+      50,
+      0.45
+    );
+}
+
+.workProject[data-status="research"]
+.workProjectState i {
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.42
+    );
+
+  box-shadow:
+    none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Footer                                                                     */
+/* -------------------------------------------------------------------------- */
+
+.workLaboratoryFooter {
+  display:
+    flex;
+
+  justify-content:
+    flex-end;
+
+  margin-top:
+    26px;
+}
+
+.workArchiveLink {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    16px;
+
+  min-height:
+    44px;
+
+  color:
+    var(--text-muted);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    8px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    color
+      180ms ease,
+    transform
+      200ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+}
+
+.workArchiveLink strong {
+  color:
+    var(--text);
+
+  font-size:
+    9px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.08em;
+}
+
+.workArchiveLink:hover {
+  color:
+    #4db6ff;
+
+  transform:
+    translateX(
+      3px
+    );
+}
+
+.workArchiveLink:hover strong {
+  color:
+    #ffffff;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Responsive                                                                 */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 960px) {
+  .workIntro {
+    margin-top:
+      84px;
+
+    padding:
+      58px 0;
+  }
+
+  .workGroup {
+    margin-top:
+      48px;
+  }
+
+  .workGroupHeader {
+    grid-template-columns:
+      minmax(
+        0,
+        1fr
+      );
+  }
+
+  .workGroupCount {
+    grid-row:
+      auto;
+
+    justify-self:
+      start;
+
+    margin-top:
+      16px;
+  }
+
+  .workProjectLinks {
+    gap:
+      12px;
+  }
+
+  .workProject {
+    grid-template-columns:
+      54px
+      minmax(
+        0,
+        1fr
+      )
+      auto;
+
+    gap:
+      20px;
+  }
+
+  .workProjectState {
+    min-width:
+      86px;
+  }
+}
+
+@media (max-width: 760px) {
+  .workHeader {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap:
+      20px;
+  }
+
+  .workStatus {
+    padding-bottom:
+      0;
+  }
+
+  .workIntro {
+    margin-top:
+      72px;
+
+    padding:
+      48px 0;
+  }
+
+  .workIntroStatement {
+    font-size:
+      clamp(
+        1.65rem,
+        6vw,
+        2.6rem
+      );
+  }
+
+  .workInstrument {
+    margin-top:
+      64px;
+  }
+
+  .workProject {
+    grid-template-columns:
+      42px
+      minmax(
+        0,
+        1fr
+      );
+
+    gap:
+      16px;
+
+    padding:
+      26px 0;
+  }
+
+  .workProjectState {
+    grid-column:
+      2;
+
+    justify-content:
+      flex-start;
+
+    padding-top:
+      0;
+
+    margin-top:
+      4px;
+  }
+
+  .workGridPlane {
+    background-size:
+      34px 34px;
+  }
+
+  .workGridAxisX {
+    left:
+      20%;
+
+    width:
+      80%;
+  }
+
+  .workGridAxisY {
+    left:
+      78%;
+  }
+}
+
+@media (max-width: 520px) {
+  .workMarker {
+    width:
+      18px;
+
+    height:
+      18px;
+  }
+
+  .workInstrumentHeader {
+    align-items:
+      flex-start;
+
+    padding-bottom:
+      14px;
+  }
+
+  .workInstrumentHeader strong {
+    font-size:
+      8px;
+  }
+
+  .workProjectCode {
+    font-size:
+      9px;
+  }
+
+  .workProjectType {
+    font-size:
+      6px;
+  }
+
+  .workProjectMain h2 {
+    font-size:
+      1.45rem;
+  }
+
+  .workProjectCopy {
+    font-size:
+      11px;
+
+    line-height:
+      1.7;
+  }
+
+  .workProjectTags span {
+    font-size:
+      6px;
+  }
+
+  .workProjectLinks {
+    gap:
+      10px;
+
+    margin-top:
+      14px;
+
+    padding-top:
+      12px;
+  }
+
+  .workProjectLink {
+    font-size:
+      7.5px;
+  }
+
+  .workGroupDescription {
+    font-size:
+      11.5px;
+  }
+
+  .workProjectState {
+    font-size:
+      6px;
+  }
+
+  .workArchiveLink {
+    font-size:
+      7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workStatusDot {
+    animation:
+      none;
+  }
+
+  .workProject,
+  .workProject::before,
+  .workArchiveLink {
+    transition:
+      none;
+  }
+}

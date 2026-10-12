@@ -1,0 +1,167 @@
+{
+  "$comment": "CANONICAL ROUTE/CONTENT REGISTRY (Runtime v2 / SEO v2). One authoritative description of every public route on WEB: identity, SEO metadata expectations, sitemap policy, structured-data expectations, navigation surfaces, and topic-hub relationships. CONSUMERS: scripts/build-blog.mjs (sitemap emission), scripts/verify-seo.mjs (route verification + graph depth), lib/routes.ts (typed app-side loader — lib/hubs.ts and lib/navigation.ts derive their route facts from here). LAWS: (1) This file is the only manually maintained route list — build-blog.mjs's sitemap and verify-seo.mjs's route table both derive from it, so the sitemap can never disagree with the verified route set. (2) lastmod values are content-revision dates bumped ONLY when a route's substantive content changes — never the build date, never 'today'; fake freshness is banned. (3) Articles are NOT listed here: they derive from content/blog/*.md through the blog pipeline (data/blog/posts.json is their registry); the registry declares the dynamic route family once under dynamicFamilies. (4) World-shell hash scenes are interaction states, not documents — they are listed under scenes for link validation and are never sitemap entries. (5) No query/filter URLs: Blog filter state (/?type=…) is view state, not a canonical document.",
+  "site": {
+    "name": "Parsa Tak",
+    "origin": "https://parsaetak.github.io/WEB",
+    "basePath": "/WEB",
+    "basePathEnv": "GITHUB_ACTIONS",
+    "titleSuffix": "— Parsa Tak"
+  },
+  "routes": [
+    {
+      "path": "",
+      "kind": "home",
+      "contentType": "world",
+      "title": "Parsa Tak — Software Engineer, Product Builder & AI Systems Researcher",
+      "description": "Independent software engineer, product builder, and AI systems researcher — an evolving laboratory for AI systems, local AI agents, reasoning, evaluation, software engineering, and creative technology. Home of SHEYTAN, UHIT, FreeIran, and RED MAGIC.",
+      "sitemap": { "include": true, "lastmod": null },
+      "structuredData": ["WebSite", "Person", "WebPage"],
+      "nav": ["primary"],
+      "inboundMinimum": 0
+    },
+    {
+      "path": "about",
+      "kind": "identity",
+      "contentType": "profile",
+      "title": "About — Parsa Tak",
+      "description": "Parsa Tak is an independent software engineer, product builder, and AI systems researcher working across local AI agents, reasoning architectures, machine-intelligence evaluation, and shipped software. Profile, working method, research, engineering, product building, selected systems, and collaboration.",
+      "sitemap": { "include": true, "lastmod": "2026-09-15" },
+      "structuredData": ["WebSite", "Person", "ProfilePage", "BreadcrumbList"],
+      "nav": ["primary", "footer-documents", "lab-map"],
+      "inboundMinimum": 3
+    },
+    {
+      "path": "work",
+      "kind": "collection",
+      "contentType": "portfolio",
+      "title": "Selected Work — Parsa Tak",
+      "description": "Selected systems and projects by Parsa Tak: SHEYTAN local-first AI agent laboratory, the UHIT measurement programme (AIST-2026.09, ASI-100-Elite), FreeIran, this statically engineered website, and the RED MAGIC creative line.",
+      "sitemap": { "include": true, "lastmod": "2026-09-19" },
+      "structuredData": ["WebSite", "Person", "WebPage", "ItemList", "BreadcrumbList"],
+      "nav": ["content-collections", "footer-documents", "lab-map"],
+      "inboundMinimum": 3
+    },
+    {
+      "path": "research",
+      "kind": "collection",
+      "contentType": "research",
+      "title": "Research — Parsa Tak",
+      "description": "The research programme of Parsa Tak: reasoning as a system property, honest machine-intelligence measurement (UHIT, AIST-2026.09, ASI-100-Elite), local-first AI, and governable AI systems — with the six topic hubs that map the work.",
+      "sitemap": { "include": true, "lastmod": "2026-09-19" },
+      "structuredData": ["WebSite", "Person", "WebPage", "BreadcrumbList"],
+      "nav": ["content-collections", "footer-documents", "lab-map"],
+      "inboundMinimum": 3
+    },
+    {
+      "path": "contact",
+      "kind": "identity",
+      "contentType": "contact",
+      "title": "Contact — Parsa Tak",
+      "description": "Contact Parsa Tak: research collaboration, business and engineering engagements, project collaboration, and open technical collaboration. Primary channel: email. Secondary: GitHub and LinkedIn.",
+      "sitemap": { "include": true, "lastmod": "2026-09-15" },
+      "structuredData": ["WebSite", "Person", "WebPage", "BreadcrumbList"],
+      "nav": ["primary", "footer-documents"],
+      "inboundMinimum": 3
+    },
+    {
+      "path": "local-ai",
+      "kind": "topic-hub",
+      "contentType": "topic-hub",
+      "topicName": "Local AI",
+      "title": "Local AI Systems & Agents — Parsa Tak",
+      "description": "Local-first AI: agents, inference, memory and verification that run entirely on your own machine. How Parsa Tak builds local AI systems with SHEYTAN — managed llama.cpp, supervised agent loops, and objective verification gates.",
+      "sitemap": { "include": true, "lastmod": "2026-09-14" },
+      "structuredData": ["WebSite", "Person", "WebPage", "BreadcrumbList"],
+      "nav": ["topic-hubs", "footer-documents", "lab-map"],
+      "inboundMinimum": 3
+    },
+    {
+      "path": "ai-systems",
+      "kind": "topic-hub",
+      "contentType": "topic-hub",
+      "topicName": "AI systems engineering",
+      "title": "AI Systems Engineering & Frameworks — Parsa Tak",
+      "description": "Treating AI as an engineered system: instruction hierarchies, tool governance, evidence handling, and self-improvement discipline. The AI Instructions constitutional framework, REP, USEF, and the SHEYTAN agent laboratory.",
+      "sitemap": { "include": true, "lastmod": "2026-09-14" },
+      "structuredData": ["WebSite", "Person", "WebPage", "BreadcrumbList"],
+      "nav": ["topic-hubs", "footer-documents", "lab-map"],
+      "inboundMinimum": 3
+    },
+    {
+      "path": "ai-reasoning",
+      "kind": "topic-hub",
+      "contentType": "topic-hub",
+      "topicName": "AI reasoning",
+      "title": "AI Reasoning Architectures — Parsa Tak",
+      "description": "Reasoning as a system property: the Reasoning Enhancement Protocol (REP), verification-first design, adversarial checking, and uncertainty handling. Why systems — not models — convert capability into execution.",
+      "sitemap": { "include": true, "lastmod": "2026-09-14" },
+      "structuredData": ["WebSite", "Person", "WebPage", "BreadcrumbList"],
+      "nav": ["topic-hubs", "footer-documents", "lab-map"],
+      "inboundMinimum": 3
+    },
+    {
+      "path": "ai-evaluation",
+      "kind": "topic-hub",
+      "contentType": "topic-hub",
+      "topicName": "AI evaluation",
+      "title": "AI Evaluation, Benchmarks & Measurement — Parsa Tak",
+      "description": "Measuring machine intelligence honestly: the UHIT measurement programme, the AIST-2026.09 standard, the ASI-100-Elite benchmark, multiplicative scoring, and the verification doctrine that keeps a benchmark from lying.",
+      "sitemap": { "include": true, "lastmod": "2026-09-14" },
+      "structuredData": ["WebSite", "Person", "WebPage", "BreadcrumbList"],
+      "nav": ["topic-hubs", "footer-documents", "lab-map"],
+      "inboundMinimum": 3
+    },
+    {
+      "path": "software-engineering",
+      "kind": "topic-hub",
+      "contentType": "topic-hub",
+      "topicName": "Software engineering",
+      "title": "Software Engineering Notes & Systems — Parsa Tak",
+      "description": "Software engineering from an independent systems builder: deterministic pipelines, honest testing, chunked storage, static-site architecture, and building with AI under real constraints — from FreeIran, WEB, and the engineering notes.",
+      "sitemap": { "include": true, "lastmod": "2026-09-14" },
+      "structuredData": ["WebSite", "Person", "WebPage", "BreadcrumbList"],
+      "nav": ["topic-hubs", "footer-documents", "lab-map"],
+      "inboundMinimum": 3
+    },
+    {
+      "path": "creative-technology",
+      "kind": "topic-hub",
+      "contentType": "topic-hub",
+      "topicName": "Creative technology",
+      "title": "Creative Technology & the Living Web — Parsa Tak",
+      "description": "Technology as an expressive medium: the RED MAGIC computational organism, RED THEORY's living-system dynamics, computational interfaces, and the engineering that makes a website behave like an organism instead of a brochure.",
+      "sitemap": { "include": true, "lastmod": "2026-09-14" },
+      "structuredData": ["WebSite", "Person", "WebPage", "BreadcrumbList"],
+      "nav": ["topic-hubs", "footer-documents", "lab-map"],
+      "inboundMinimum": 3
+    },
+    {
+      "path": "blog",
+      "kind": "blog-index",
+      "contentType": "blog-index",
+      "title": "Blog — Parsa Tak",
+      "description": "The Blog is the content hub of the laboratory: writing, work documentation, and research writing in three content modes (Articles, Work, Research), filterable, cross-linked to the projects and topic hubs behind them.",
+      "sitemap": { "include": true, "lastmod": "latest-article" },
+      "structuredData": ["WebSite", "Person", "Blog"],
+      "nav": ["primary", "footer-documents"],
+      "inboundMinimum": 0
+    }
+  ],
+  "dynamicFamilies": [
+    {
+      "pathPattern": "blog/<slug>/",
+      "source": "content/blog/*.md",
+      "registry": "data/blog/posts.json",
+      "kind": "article",
+      "contentType": ["article", "work", "research"],
+      "titleSuffixFrom": "post.title",
+      "sitemap": { "include": true, "lastmod": "post.updated ?? post.date" },
+      "structuredData": ["WebSite", "Person", "BlogPosting", "BreadcrumbList"],
+      "inboundMinimum": 1
+    }
+  ],
+  "scenes": {
+    "$comment": "World-shell interaction states (LivingShell.tsx). Legal /#scene and #scene href targets; never sitemap entries; never canonical documents. v4.0.1: the about scene is removed — /about/ is the canonical About document and no navigation surface links to an #about hash (a stale #about resolves through the shell's safe fallback). v4.0.0: the former library scene is now media (#library resolves as a normalised backward-compatible alias).",
+    "names": ["home", "systems", "magic", "work", "media"]
+  }
+}

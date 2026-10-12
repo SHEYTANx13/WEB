@@ -1,0 +1,118 @@
+/*
+ * TEXT SIZE control (v2.5.7) — styling for the three-step reader
+ * instrument the TextSize island docks into the article tags row's
+ * actions slot.
+ *
+ * Visual language deliberately matches the ShareLink / CodeCopy
+ * instruments: quiet mono glyphs, hairline border that turns red on
+ * hover/focus, no animation beyond color transitions. The three
+ * buttons read as ONE instrument — a single pill with hairline
+ * dividers — rather than three loose chips.
+ *
+ * The A (reset) button carries [data-active="true"] while the
+ * article is at the default scale; the red state there marks
+ * "this is the calibrated step", not a pressed state.
+ *
+ * Print: the whole actions slot is hidden by article.module.css;
+ * this module carries no print rules of its own.
+ */
+
+.group {
+  display: inline-flex;
+
+  align-items: center;
+
+  border: 1px solid
+    var(--line, rgba(255, 255, 255, 0.12));
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.02);
+
+  overflow: hidden;
+}
+
+.btn {
+  appearance: none;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--text-muted, #8b93a3);
+
+  font-family: var(--font-mono, monospace);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.06em;
+
+  line-height: 1;
+
+  padding: 8px 11px;
+
+  min-height: 29px;
+
+  min-width: 30px;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
+}
+
+.btn + .btn {
+  border-left: 1px solid
+    var(--line, rgba(255, 255, 255, 0.12));
+}
+
+.btn:hover:not(:disabled),
+.btn:focus-visible {
+  color: var(--text, #f2f4f8);
+
+  background:
+    rgba(255, 32, 32, 0.08);
+}
+
+.btn:focus-visible {
+  outline: 1px solid
+    var(--red-hot, #ff2014);
+
+  outline-offset: -3px;
+}
+
+.btn:disabled {
+  opacity: 0.35;
+
+  cursor: default;
+}
+
+.btn[data-active="true"] {
+  color: var(--red-hot, #ff2014);
+}
+
+/*
+ * Touch: no hover to lean on, so the hit targets grow well past
+ * the desktop footprint while the instrument keeps its shape.
+ */
+@media (pointer: coarse) {
+  .btn {
+    min-height: 38px;
+
+    min-width: 40px;
+
+    padding: 10px 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}

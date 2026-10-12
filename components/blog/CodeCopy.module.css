@@ -1,0 +1,99 @@
+/*
+ * CODE COPY button (v2.5.2) — styling for the runtime-injected
+ * buttons inside article code blocks.
+ *
+ * The button lives INSIDE the <pre>, as a sibling of <code>, pinned
+ * to the block's top-right corner next to the language label. It is
+ * deliberately quiet: hairline border, muted mono label, and one
+ * clear affordance (red border) on hover/focus. Feedback states are
+ * driven by the [data-copied] attribute the controller swaps — no
+ * extra DOM, no animation beyond opacity/color.
+ *
+ * Print (v2.5.1 law): screen chrome only is hidden — the code itself
+ * prints, the button does not.
+ */
+
+.codeCopy {
+  position: absolute;
+
+  top: 10px;
+
+  right: 10px;
+
+  padding: 4px 10px;
+
+  border: 1px solid
+    var(--line, rgba(255, 255, 255, 0.12));
+
+  border-radius: 6px;
+
+  background:
+    rgba(10, 11, 15, 0.85);
+
+  color: var(--text-muted, #8b93a3);
+
+  font-family: var(--font-mono, monospace);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  cursor: pointer;
+
+  opacity: 0.55;
+
+  transition:
+    opacity 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.codeCopy:hover,
+.codeCopy:focus-visible {
+  opacity: 1;
+
+  color: var(--text, #f2f4f8);
+
+  border-color:
+    rgba(255, 32, 32, 0.45);
+}
+
+.codeCopy:focus-visible {
+  outline: 1px solid
+    var(--red-hot, #ff4036);
+
+  outline-offset: 2px;
+}
+
+.codeCopy[data-copied="true"] {
+  opacity: 1;
+
+  color: #7fe0a8;
+
+  border-color:
+    rgba(127, 224, 168, 0.4);
+}
+
+.codeCopy[data-copied="error"] {
+  opacity: 1;
+
+  color: var(--red-hot, #ff4036);
+}
+
+@media (hover: none) {
+  /*
+   * Touch devices have no hover to reveal the button; keep it
+   * visible (still quiet) so copying is reachable at all.
+   */
+  .codeCopy {
+    opacity: 0.75;
+  }
+}
+
+@media print {
+  .codeCopy {
+    display: none !important;
+  }
+}

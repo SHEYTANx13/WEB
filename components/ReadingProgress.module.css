@@ -1,0 +1,171 @@
+/*
+ * READING PROGRESS bar (v2.5).
+ *
+ * 2px, fixed to the very top of the viewport, above the blog header's
+ * blur layer. scaleX() with origin left is the only animated property
+ * — pure compositor work at any refresh rate. pointer-events: none
+ * keeps it invisible to interaction; aria-hidden keeps it invisible
+ * to assistive tech: the article content itself is the accessible
+ * truth of where you are.
+ */
+
+.readingProgress {
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  top: 0;
+
+  height: 2px;
+
+  z-index: 1200;
+
+  pointer-events: none;
+
+  transform-origin: 0 50%;
+
+  transform: scaleX(0);
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--red-deep, #b3120c),
+      var(--red-hot, #ff4036)
+    );
+
+  opacity: 0.9;
+
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /*
+   * The bar mirrors the reader's own scrolling — it is not
+   * self-playing motion — so it stays. The transition below only
+   * smooths tiny sub-pixel steps and is dropped in reduced motion.
+   */
+  .readingProgress {
+    opacity: 1;
+  }
+}
+
+/* Print (v2.5.1): the progress instrument is screen-only. */
+@media print {
+  .readingProgress,
+  .toTop {
+    display: none !important;
+  }
+}
+
+/*
+ * BACK TO TOP (v2.5.2) — a reading-mode exit, not a floating ad.
+ *
+ * Fixed at the bottom-right corner, circular, hairline border, one
+ * glyph. Visibility is driven by the [data-visible] attribute that
+ * the shared rAF tick writes in the same frame as the progress bar —
+ * no second scroll loop. Only opacity/transform/visibility change,
+ * so the show/hide is compositor work; visibility flips AFTER the
+ * exit transition (transition-delay) so the fade reads and the
+ * button still leaves the tab order promptly when hidden.
+ */
+
+.toTop {
+  position: fixed;
+
+  right: 22px;
+
+  bottom: 22px;
+
+  width: 46px;
+
+  height: 46px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid
+    var(--line, rgba(255, 255, 255, 0.12));
+
+  border-radius: 50%;
+
+  background:
+    rgba(10, 11, 15, 0.82);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  color: var(--text-muted, #8b93a3);
+
+  font-size: 17px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  z-index: 1100;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform: translateY(10px);
+
+  transition:
+    opacity 220ms ease,
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 160ms ease,
+    border-color 160ms ease,
+    visibility 0s linear 220ms;
+}
+
+.toTop[data-visible="true"] {
+  opacity: 1;
+
+  visibility: visible;
+
+  transform: translateY(0);
+
+  transition-delay: 0s;
+}
+
+.toTop:hover,
+.toTop:focus-visible {
+  color: var(--text, #f2f4f8);
+
+  border-color:
+    rgba(255, 32, 32, 0.45);
+}
+
+.toTop:focus-visible {
+  outline: 1px solid
+    var(--red-hot, #ff4036);
+
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  /* Respect the safe area and keep clear of device edges. */
+  .toTop {
+    right: 16px;
+
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+
+    width: 44px;
+
+    height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toTop {
+    transition:
+      color 160ms ease,
+      border-color 160ms ease,
+      visibility 0s;
+  }
+}

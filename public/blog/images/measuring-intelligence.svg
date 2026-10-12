@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Measurement instrument: a weighted battery scale with one zeroed factor">
+  <rect width="1200" height="630" fill="#050505"/>
+  <g stroke="rgba(255,255,255,0.035)" stroke-width="1">
+    <path d="M60 90h1080M60 180h1080M60 270h1080M60 360h1080M60 450h1080M60 540h1080"/>
+    <path d="M150 60v510M270 60v510M390 60v510M510 60v510M630 60v510M750 60v510M870 60v510M990 60v510M1110 60v510"/>
+  </g>
+
+  <!-- Instrument dial: the measurement surface -->
+  <g transform="translate(430 315)">
+    <circle r="170" fill="none" stroke="rgba(255,32,32,0.16)" stroke-width="1"/>
+    <circle r="128" fill="none" stroke="rgba(255,32,32,0.34)" stroke-width="2"/>
+    <!-- calibrated arc ticks -->
+    <g stroke="rgba(255,70,56,0.6)" stroke-width="2">
+      <path d="M-128 0h-18"/>
+      <path d="M90.5 -90.5l12.7 -12.7"/>
+      <path d="M128 0h18"/>
+      <path d="M90.5 90.5l12.7 12.7"/>
+      <path d="M0 128v18"/>
+    </g>
+    <g stroke="rgba(255,70,56,0.28)" stroke-width="1.5">
+      <path d="M-64 -110.8l-9 -15.6"/>
+      <path d="M64 -110.8l9 -15.6"/>
+      <path d="M110.8 -64l15.6 -9"/>
+      <path d="M110.8 64l15.6 9"/>
+      <path d="M64 110.8l9 15.6"/>
+      <path d="M-64 110.8l-9 15.6"/>
+      <path d="M-110.8 64l-15.6 9"/>
+      <path d="M-110.8 -64l-15.6 -9"/>
+    </g>
+    <!-- needle resting honestly at verified, not at maximum -->
+    <path d="M0 0L-86 -74" stroke="#ff2020" stroke-width="3" stroke-linecap="round"/>
+    <circle r="14" fill="#d20f0f"/>
+    <circle r="5" fill="#ff5848"/>
+  </g>
+
+  <!-- Weighted battery bars: factors multiplied -->
+  <g>
+    <rect x="760" y="196" width="52" height="238" fill="rgba(255,32,32,0.06)" stroke="rgba(255,32,32,0.32)" stroke-width="1"/>
+    <rect x="766" y="256" width="40" height="172" fill="rgba(255,32,32,0.62)"/>
+
+    <rect x="832" y="196" width="52" height="238" fill="rgba(255,32,32,0.06)" stroke="rgba(255,32,32,0.32)" stroke-width="1"/>
+    <rect x="838" y="222" width="40" height="206" fill="rgba(255,32,32,0.62)"/>
+
+    <rect x="904" y="196" width="52" height="238" fill="rgba(255,32,32,0.06)" stroke="rgba(255,32,32,0.32)" stroke-width="1"/>
+    <rect x="910" y="238" width="40" height="190" fill="rgba(255,32,32,0.62)"/>
+
+    <!-- the zeroed defense factor: empty well, red outline -->
+    <rect x="976" y="196" width="52" height="238" fill="rgba(255,32,32,0.03)" stroke="#ff2020" stroke-width="2"/>
+    <path d="M976 434h52" stroke="#ff2020" stroke-width="2"/>
+  </g>
+
+  <!-- the multiplication line: product collapses to zero -->
+  <path d="M812 315h20M884 315h20M956 315h20" stroke="rgba(255,70,56,0.75)" stroke-width="2"/>
+  <circle cx="1064" cy="315" r="6" fill="none" stroke="#ff2020" stroke-width="2"/>
+  <path d="M1052 303l24 24M1076 303l-24 24" stroke="#ff2020" stroke-width="2"/>
+
+  <!-- connection: dial feeds the scale -->
+  <path d="M600 315h140" stroke="rgba(255,32,32,0.4)" stroke-width="1.5" stroke-dasharray="3 6"/>
+</svg>

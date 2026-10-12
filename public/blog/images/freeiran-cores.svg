@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Three protocol cores converging into one abstraction above a checksummed chunk grid">
+  <rect width="1200" height="630" fill="#050505"/>
+  <g stroke="rgba(255,255,255,0.035)" stroke-width="1">
+    <path d="M60 90h1080M60 180h1080M60 270h1080M60 360h1080M60 450h1080M60 540h1080"/>
+    <path d="M150 60v510M270 60v510M390 60v510M510 60v510M630 60v510M750 60v510M870 60v510M990 60v510M1110 60v510"/>
+  </g>
+
+  <!-- three protocol cores -->
+  <g fill="none" stroke="rgba(255,32,32,0.45)" stroke-width="2">
+    <rect x="300" y="120" width="150" height="96"/>
+    <rect x="525" y="120" width="150" height="96"/>
+    <rect x="750" y="120" width="150" height="96"/>
+  </g>
+  <g fill="rgba(255,70,56,0.5)">
+    <rect x="330" y="146" width="80" height="6"/>
+    <rect x="330" y="164" width="90" height="4"/>
+    <rect x="555" y="146" width="80" height="6"/>
+    <rect x="555" y="164" width="90" height="4"/>
+    <rect x="780" y="146" width="80" height="6"/>
+    <rect x="780" y="164" width="90" height="4"/>
+  </g>
+  <g fill="#ff2020">
+    <circle cx="315" cy="135" r="4"/>
+    <circle cx="540" cy="135" r="4"/>
+    <circle cx="765" cy="135" r="4"/>
+  </g>
+
+  <!-- convergence into one Core abstraction -->
+  <path d="M375 216v40h225v34" stroke="rgba(255,70,56,0.6)" stroke-width="2" fill="none"/>
+  <path d="M600 216v74" stroke="rgba(255,70,56,0.6)" stroke-width="2" fill="none"/>
+  <path d="M825 216v40h-225v34" stroke="rgba(255,70,56,0.6)" stroke-width="2" fill="none"/>
+
+  <rect x="440" y="290" width="320" height="76" fill="rgba(255,32,32,0.07)" stroke="#ff2020" stroke-width="2"/>
+  <g fill="rgba(255,70,56,0.6)">
+    <rect x="470" y="314" width="110" height="7"/>
+    <rect x="470" y="336" width="180" height="5"/>
+  </g>
+  <g fill="none" stroke="rgba(255,70,56,0.4)" stroke-width="1.5">
+    <rect x="680" y="310" width="52" height="36"/>
+  </g>
+
+  <!-- deterministic selection into the listener -->
+  <path d="M600 366v40" stroke="rgba(255,70,56,0.7)" stroke-width="2"/>
+  <circle cx="600" cy="428" r="20" fill="none" stroke="rgba(255,70,56,0.65)" stroke-width="2"/>
+  <circle cx="600" cy="428" r="7" fill="#d20f0f"/>
+
+  <!-- chunked storage floor: checksummed immutable chunks -->
+  <g>
+    <g fill="rgba(255,32,32,0.08)" stroke="rgba(255,32,32,0.3)" stroke-width="1">
+      <rect x="252" y="486" width="88" height="56"/>
+      <rect x="348" y="486" width="88" height="56"/>
+      <rect x="444" y="486" width="88" height="56"/>
+      <rect x="540" y="486" width="88" height="56"/>
+      <rect x="636" y="486" width="88" height="56"/>
+      <rect x="732" y="486" width="88" height="56"/>
+      <rect x="828" y="486" width="88" height="56"/>
+    </g>
+    <g fill="rgba(255,70,56,0.55)">
+      <rect x="262" y="522" width="34" height="4"/>
+      <rect x="358" y="522" width="52" height="4"/>
+      <rect x="454" y="522" width="40" height="4"/>
+      <rect x="550" y="522" width="58" height="4"/>
+      <rect x="646" y="522" width="30" height="4"/>
+      <rect x="742" y="522" width="48" height="4"/>
+      <rect x="838" y="522" width="38" height="4"/>
+    </g>
+    <!-- checksum tick per chunk -->
+    <g stroke="#ff2020" stroke-width="2" fill="none">
+      <path d="M262 502l6 6l12 -12"/>
+      <path d="M358 502l6 6l12 -12"/>
+      <path d="M454 502l6 6l12 -12"/>
+      <path d="M550 502l6 6l12 -12"/>
+      <path d="M646 502l6 6l12 -12"/>
+      <path d="M742 502l6 6l12 -12"/>
+      <path d="M838 502l6 6l12 -12"/>
+    </g>
+  </g>
+
+  <path d="M600 448v38" stroke="rgba(255,70,56,0.5)" stroke-width="1.5" stroke-dasharray="3 6"/>
+</svg>

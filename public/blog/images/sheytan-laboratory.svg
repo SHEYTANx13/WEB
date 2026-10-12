@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Layered laboratory stack: shell, Go core, verification gate, and two engines">
+  <rect width="1200" height="630" fill="#050505"/>
+  <g stroke="rgba(255,255,255,0.035)" stroke-width="1">
+    <path d="M60 90h1080M60 180h1080M60 270h1080M60 360h1080M60 450h1080M60 540h1080"/>
+    <path d="M150 60v510M270 60v510M390 60v510M510 60v510M630 60v510M750 60v510M870 60v510M990 60v510M1110 60v510"/>
+  </g>
+
+  <!-- desktop shell -->
+  <rect x="360" y="96" width="480" height="64" fill="none" stroke="rgba(255,32,32,0.4)" stroke-width="2"/>
+  <g fill="rgba(255,70,56,0.55)">
+    <rect x="392" y="118" width="86" height="6"/>
+    <rect x="392" y="132" width="140" height="4"/>
+  </g>
+  <rect x="760" y="116" width="48" height="24" fill="none" stroke="rgba(255,70,56,0.45)" stroke-width="1.5"/>
+
+  <!-- Go laboratory core -->
+  <rect x="300" y="206" width="600" height="118" fill="rgba(255,32,32,0.05)" stroke="rgba(255,32,32,0.55)" stroke-width="2"/>
+  <g fill="rgba(255,70,56,0.6)">
+    <rect x="330" y="232" width="96" height="7"/>
+    <rect x="330" y="252" width="150" height="5"/>
+    <rect x="330" y="272" width="120" height="5"/>
+  </g>
+  <g fill="none" stroke="rgba(255,70,56,0.4)" stroke-width="1.5">
+    <rect x="540" y="228" width="86" height="46"/>
+    <rect x="646" y="228" width="86" height="46"/>
+    <rect x="752" y="228" width="86" height="46"/>
+    <rect x="540" y="290" width="192" height="18"/>
+    <rect x="752" y="290" width="86" height="18"/>
+  </g>
+
+  <!-- the verification gate -->
+  <g>
+    <rect x="500" y="356" width="200" height="58" fill="rgba(255,32,32,0.1)" stroke="#ff2020" stroke-width="2"/>
+    <path d="M536 385l14 14l30 -30" stroke="#ff4638" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M716 385h24M744 385l-8 -6v12z" fill="#ff2020" stroke="none"/>
+  </g>
+
+  <!-- engine bay: llama.cpp + native engine behind the gate -->
+  <rect x="360" y="448" width="220" height="86" fill="none" stroke="rgba(255,32,32,0.38)" stroke-width="2"/>
+  <g fill="rgba(255,70,56,0.5)">
+    <rect x="390" y="472" width="90" height="6"/>
+    <rect x="390" y="490" width="130" height="4"/>
+    <rect x="390" y="506" width="70" height="4"/>
+  </g>
+
+  <rect x="620" y="448" width="220" height="86" fill="none" stroke="rgba(255,32,32,0.38)" stroke-width="2"/>
+  <g fill="rgba(255,70,56,0.5)">
+    <rect x="650" y="472" width="110" height="6"/>
+    <rect x="650" y="490" width="90" height="4"/>
+    <rect x="650" y="506" width="130" height="4"/>
+  </g>
+
+  <!-- flow: shell to core, core through the gate, gate to engines -->
+  <path d="M600 160v46" stroke="rgba(255,70,56,0.7)" stroke-width="2"/>
+  <path d="M600 324v32" stroke="rgba(255,70,56,0.7)" stroke-width="2"/>
+  <path d="M600 414v34" stroke="rgba(255,70,56,0.7)" stroke-width="2"/>
+  <path d="M560 448l-88 0" stroke="rgba(255,70,56,0.45)" stroke-width="1.5"/>
+  <path d="M640 448l88 0" stroke="rgba(255,70,56,0.45)" stroke-width="1.5"/>
+</svg>

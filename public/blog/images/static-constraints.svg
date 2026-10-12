@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Bounded blueprint frame with solid core">
+  <rect width="1200" height="630" fill="#050505"/>
+  <g stroke="rgba(255,255,255,0.035)" stroke-width="1">
+    <path d="M60 90h1080M60 180h1080M60 270h1080M60 360h1080M60 450h1080M60 540h1080"/>
+    <path d="M150 60v510M270 60v510M390 60v510M510 60v510M630 60v510M750 60v510M870 60v510M990 60v510M1110 60v510"/>
+  </g>
+  <rect x="240" y="160" width="720" height="310" fill="none" stroke="rgba(255,32,32,0.5)" stroke-width="2"/>
+  <rect x="258" y="178" width="684" height="274" fill="none" stroke="rgba(255,32,32,0.18)" stroke-width="1"/>
+  <g fill="#ff2020">
+    <rect x="240" y="160" width="14" height="14"/>
+    <rect x="946" y="160" width="14" height="14"/>
+    <rect x="240" y="456" width="14" height="14"/>
+    <rect x="946" y="456" width="14" height="14"/>
+  </g>
+  <circle cx="600" cy="315" r="84" fill="rgba(255,32,32,0.12)"/>
+  <circle cx="600" cy="315" r="56" fill="none" stroke="rgba(255,70,56,0.7)" stroke-width="2"/>
+  <circle cx="600" cy="315" r="34" fill="#d20f0f"/>
+  <circle cx="600" cy="315" r="10" fill="#ff5848"/>
+  <g stroke="rgba(255,32,32,0.45)" stroke-width="1.5">
+    <path d="M600 315h-210"/>
+    <path d="M600 315l180 -120"/>
+    <path d="M600 315l150 130"/>
+  </g>
+  <g fill="#ff2020" opacity="0.85">
+    <circle cx="380" cy="315" r="4"/>
+    <circle cx="790" cy="190" r="4"/>
+    <circle cx="765" cy="452" r="4"/>
+  </g>
+</svg>

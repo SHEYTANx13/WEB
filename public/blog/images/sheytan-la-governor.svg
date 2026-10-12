@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Runtime Governor policy loop: telemetry entering a governor core, an execution envelope band, and subsystem boxes below carrying the actions">
+  <rect width="1200" height="630" fill="#050505"/>
+  <g stroke="rgba(255,255,255,0.035)" stroke-width="1">
+    <path d="M60 90h1080M60 180h1080M60 270h1080M60 360h1080M60 450h1080M60 540h1080"/>
+    <path d="M150 60v510M270 60v510M390 60v510M510 60v510M630 60v510M750 60v510M870 60v510M990 60v510M1110 60v510"/>
+  </g>
+
+  <!-- telemetry inlets: the one sampler feeding the governor -->
+  <g fill="rgba(255,70,56,0.5)">
+    <rect x="120" y="128" width="150" height="7"/>
+    <rect x="120" y="150" width="104" height="5"/>
+    <rect x="120" y="172" width="128" height="5"/>
+  </g>
+  <g fill="none" stroke="rgba(255,32,32,0.4)" stroke-width="1.5">
+    <rect x="96" y="108" width="210" height="88"/>
+  </g>
+
+  <!-- resource state: measured facts + explicit unknowns -->
+  <g fill="none" stroke="rgba(255,32,32,0.4)" stroke-width="1.5">
+    <rect x="96" y="434" width="210" height="88"/>
+  </g>
+  <g fill="rgba(255,70,56,0.5)">
+    <rect x="120" y="456" width="130" height="6"/>
+    <rect x="120" y="476" width="96" height="5"/>
+  </g>
+  <path d="M132 498h40" stroke="rgba(255,70,56,0.35)" stroke-width="4" stroke-dasharray="6 7"/>
+
+  <!-- the governor core -->
+  <rect x="480" y="196" width="240" height="238" fill="rgba(255,32,32,0.07)" stroke="#ff2020" stroke-width="2"/>
+  <g fill="none" stroke="rgba(255,70,56,0.55)" stroke-width="1.5">
+    <rect x="512" y="230" width="176" height="40"/>
+    <rect x="512" y="286" width="176" height="40"/>
+    <rect x="512" y="342" width="176" height="40"/>
+  </g>
+  <g fill="rgba(255,70,56,0.6)">
+    <rect x="528" y="246" width="86" height="6"/>
+    <rect x="528" y="302" width="110" height="6"/>
+    <rect x="528" y="358" width="70" height="6"/>
+  </g>
+
+  <!-- execution envelope band -->
+  <rect x="820" y="196" width="284" height="238" fill="none" stroke="rgba(255,32,32,0.5)" stroke-width="2" stroke-dasharray="10 6"/>
+  <g fill="rgba(255,70,56,0.55)">
+    <rect x="850" y="226" width="150" height="7"/>
+    <rect x="850" y="252" width="118" height="5"/>
+    <rect x="850" y="278" width="134" height="5"/>
+    <rect x="850" y="304" width="96" height="5"/>
+  </g>
+  <g fill="none" stroke="rgba(255,70,56,0.4)" stroke-width="1.5">
+    <rect x="850" y="336" width="66" height="22"/>
+    <rect x="928" y="336" width="66" height="22"/>
+    <rect x="1006" y="336" width="66" height="22"/>
+  </g>
+
+  <!-- subsystem owners below: execution stays with the owners -->
+  <rect x="480" y="494" width="150" height="66" fill="none" stroke="rgba(255,32,32,0.38)" stroke-width="2"/>
+  <rect x="650" y="494" width="150" height="66" fill="none" stroke="rgba(255,32,32,0.38)" stroke-width="2"/>
+  <rect x="820" y="494" width="150" height="66" fill="none" stroke="rgba(255,32,32,0.38)" stroke-width="2"/>
+  <g fill="rgba(255,70,56,0.5)">
+    <rect x="502" y="518" width="76" height="5"/>
+    <rect x="672" y="518" width="76" height="5"/>
+    <rect x="842" y="518" width="76" height="5"/>
+  </g>
+
+  <!-- flow: telemetry into the core, state up from below, envelope out, policy down to owners -->
+  <path d="M306 152l140 0l0 78" stroke="rgba(255,70,56,0.7)" stroke-width="2" fill="none"/>
+  <path d="M306 478l86 0l0 -78" stroke="rgba(255,70,56,0.7)" stroke-width="2" fill="none"/>
+  <path d="M720 315l100 0" stroke="rgba(255,70,56,0.7)" stroke-width="2"/>
+  <path d="M836 315l-16 0m16 0l-8 -6v12z" fill="#ff2020" stroke="none"/>
+  <path d="M600 434v60" stroke="rgba(255,70,56,0.7)" stroke-width="2"/>
+  <path d="M600 494l-14 0m14 0l-8 -6v12z" fill="#ff2020" stroke="none"/>
+  <path d="M895 434l0 40l-640 0" stroke="rgba(255,70,56,0.45)" stroke-width="1.5" fill="none" stroke-dasharray="4 6"/>
+</svg>

@@ -1,0 +1,83 @@
+{
+  "version": 4,
+  "updated": "2026-08-26",
+  "items": [
+    {
+      "sourceType": "contents",
+      "branch": "Books",
+      "source": "RED MAGIC.pdf",
+      "title": "RED MAGIC",
+      "type": "book",
+      "subtitle": "A living system of intelligence, adaptation, and synthetic life.",
+      "description": "RED MAGIC begins as a question: what happens when software becomes responsive, adaptive, and capable of exhibiting its own evolving behaviour?",
+      "year": "2026",
+      "language": "English",
+      "author": "Parsa Tak",
+      "series": "RED MAGIC",
+      "status": "published",
+      "readingTime": "Long read",
+      "volume": 1,
+      "featured": true,
+      "tags": [
+        "RED MAGIC",
+        "AI",
+        "intelligence",
+        "systems",
+        "consciousness",
+        "simulation",
+        "adaptation",
+        "synthetic life"
+      ]
+    },
+    {
+      "sourceType": "contents",
+      "branch": "Books",
+      "source": "RED MAGIC 0_ MAGIC FOR KIDS.pdf",
+      "title": "RED MAGIC 0: MAGIC FOR KIDS",
+      "type": "book",
+      "subtitle": "An accessible introduction to the ideas behind RED MAGIC.",
+      "description": "An introduction to RED MAGIC for younger readers, using simple language to explore intelligence, systems, change, and the strange idea of software behaving like something alive.",
+      "year": "2026",
+      "language": "English",
+      "author": "Parsa Tak",
+      "series": "RED MAGIC",
+      "status": "published",
+      "readingTime": "Short read",
+      "volume": 0,
+      "featured": false,
+      "tags": [
+        "RED MAGIC",
+        "intelligence",
+        "systems",
+        "introduction",
+        "education"
+      ]
+    },
+    {
+      "sourceType": "contents",
+      "branch": "Books",
+      "source": "RED MAGIC II_ THE BOOK OF THE DEMIURGE.pdf",
+      "title": "RED MAGIC II: THE BOOK OF THE DEMIURGE",
+      "type": "book",
+      "subtitle": "Creation, intelligence, systems, and the forces that shape artificial worlds.",
+      "description": "The second RED MAGIC volume goes deeper into creation, intelligence, systems, and the forces that shape what an artificial world can become.",
+      "year": "2026",
+      "language": "English",
+      "author": "Parsa Tak",
+      "series": "RED MAGIC",
+      "status": "published",
+      "readingTime": "Long read",
+      "volume": 2,
+      "featured": false,
+      "tags": [
+        "RED MAGIC",
+        "systems",
+        "creation",
+        "intelligence",
+        "synthetic life",
+        "demiurge",
+        "philosophy"
+      ]
+    }
+  ]
+}

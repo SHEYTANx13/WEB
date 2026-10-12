@@ -1,0 +1,343 @@
+.livingShell {
+  position: relative;
+
+  /*
+   * PAGE-FRAME CONTRACT (v3.6.1): the world shell is the same flex
+   * column page-frame as every other tab — sticky header, growing
+   * main, footer — so footer behavior is identical site-wide.
+   */
+  display: flex;
+
+  flex-direction: column;
+
+  min-height: 100vh;
+
+  min-height: 100svh;
+
+  min-height: 100dvh;
+
+  isolation: isolate;
+
+  /*
+   * Keyboard focus and anchor scrolling must clear the sticky HUD:
+   * without this, tab-focused elements land underneath it when
+   * scrolled into view.
+   */
+  scroll-padding-top:
+    calc(
+      var(--page-header-height) + 20px
+    );
+}
+
+.livingShellHud {
+  /*
+   * HEADER CONTRACT (v3.6.1): sticky in-flow, exactly like the
+   * content-tab and blog headers — same height contract, same rail,
+   * same z-index. The world canvas stays fixed behind it, so the
+   * living-world look is unchanged while scrolling composition now
+   * matches every other tab.
+   */
+  position: sticky;
+
+  top: 0;
+
+  z-index: 1000;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(4, 4, 5, 0.94),
+      rgba(4, 4, 5, 0.76) 68%,
+      rgba(4, 4, 5, 0)
+    );
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.livingShellHudInner {
+  /*
+   * HEADER CONTRACT (v3.6.1): the shared alignment rail + shared
+   * header height. The HUD's 1px red bottom edge lives INSIDE the
+   * border-box height, so the HUD is exactly --page-header-height
+   * tall — identical to the content and blog headers.
+   */
+  width:
+    min(
+      calc(100% - 2 * var(--page-gutter)),
+      var(--page-content-width)
+    );
+
+  min-height: var(--page-header-height);
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    auto
+    auto
+    minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+
+  gap: 22px;
+
+  border-bottom:
+    1px solid
+    rgba(255, 32, 32, 0.07);
+
+  pointer-events: auto;
+}
+
+.livingShellBrand {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  min-width: max-content;
+}
+
+.livingShellBrandEye {
+  /* Header brand contract (v3.6.1): 32px star on every tab. */
+  width: 32px;
+  height: 32px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: visible;
+}
+
+.livingShellBrandEye img {
+  display: block;
+
+  width: 32px;
+  height: 32px;
+}
+
+.livingShellBrandName {
+  position: relative;
+
+  color: #f5f7fb;
+
+  font-size: 15px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+
+  transition:
+    color 180ms ease,
+    text-shadow 180ms ease;
+}
+
+.livingShellBrandName::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: -5px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 32, 32, 0.72),
+      transparent
+    );
+
+  opacity: 0.3;
+
+  transform: scaleX(0.45);
+
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.livingShellBrand:hover .livingShellBrandName {
+  color: #ffffff;
+
+  text-shadow:
+    0 0 16px
+    rgba(255, 32, 32, 0.18);
+}
+
+.livingShellBrand:hover .livingShellBrandName::after {
+  opacity: 0.9;
+
+  transform: scaleX(1);
+}
+
+/*
+ * HEADER STATUS (v4.0.5) — removed from this sheet. The status is
+ * the shared SiteHeaderStatus component now (markup, dot, pulse,
+ * typography, reduced-motion all live in SiteHeaderStatus.module.css);
+ * this HUD owns PLACEMENT only — the component sits in the grid
+ * column right after the brand, at every viewport width.
+ */
+
+.livingShellViewport {
+  position: relative;
+
+  /*
+   * v3.6.1: the HUD is sticky (in-flow), so the viewport no longer
+   * needs padding-top compensation — the first screen is simply
+   * header + scene, exactly like every other tab. Scenes size
+   * themselves with calc(100svh − var(--page-header-height)) via
+   * the shared token alias.
+   */
+  flex: 1;
+
+  width: 100%;
+
+  /* Footer spacing is contract-owned: identical on all six tabs. */
+  padding-bottom: var(--page-footer-spacing);
+}
+
+.livingShellGithub {
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  /*
+   * Touch-target sizing (WCAG 2.5.8): a bare 10px text link is an
+   * ~11px target. Centering inside padded inline-flex grows the
+   * tappable box to ~27px without changing the HUD's rhythm.
+   */
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 8px 4px;
+
+  transition:
+    color 160ms ease,
+    opacity 160ms ease;
+}
+
+.livingShellGithub:hover {
+  color: var(--text);
+
+  opacity: 1;
+}
+
+.livingShellGithub:focus-visible {
+  color: var(--text);
+}
+
+/*
+ * Blog entry — a real route rather than a scene, so it carries a
+ * subtle red accent to distinguish it from the muted external link.
+ */
+.livingShellHudActions {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  min-width: max-content;
+}
+
+@media (max-width: 1180px) {
+  .livingShellGithub {
+    font-size: 9px;
+  }
+}
+
+/*
+ * COMPACT NAVIGATION MODE (v3.4) — ≤860px (phones and narrow
+ * portrait tablets). The full unified track stands down (the
+ * component hides it itself); the HUD carries brand + status + the
+ * unified disclosure trigger (end-aligned by the component) + the
+ * actions group. The v4.0.5 status stays VISIBLE at every width —
+ * the compact relationship is brand → status → menu trigger, so the
+ * actions group keeps its own fourth column instead of reusing the
+ * status column (the pre-v4.0.5 grid-column reassignment is gone
+ * with the hiding rule that required it).
+ */
+@media (max-width: 860px) {
+  .livingShellHudActions {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 1100px) {
+  /*
+   * The status stays (v4.0.5 unification); the grid keeps all four
+   * columns and the HUD tightens its rhythm so the unified track
+   * keeps usable width between status and actions (the track's own
+   * overflow contract absorbs any remaining tightness).
+   */
+  .livingShellHudInner {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 760px) {
+  /*
+   * v3.6.1: header height (68px) and gutters are token-owned
+   * (--page-header-height / --page-gutter at ≤860px) — no literal
+   * overrides here anymore. Safe-area insets still apply on the
+   * notched-edge devices the tokens cannot know about.
+   */
+  .livingShellHudInner {
+    width:
+      min(
+        calc(
+          100% - 2 * var(--page-gutter) -
+          env(safe-area-inset-left, 0px) -
+          env(safe-area-inset-right, 0px)
+        ),
+        var(--page-content-width)
+      );
+  }
+
+  .livingShellBrandName {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 560px) {
+  .livingShellBrandName {
+    display: none;
+  }
+
+  /*
+   * At phone widths the GitHub link lives inside the compact menu
+   * panel (one discoverable place, zero header crowding); the Blog
+   * chip and the menu trigger keep the HUD sparse and honest.
+   */
+  .livingShellGithub {
+    display: none;
+  }
+}
+
+/*
+ * Reduced-motion behavior for the status dot moved WITH the status
+ * itself into SiteHeaderStatus.module.css (v4.0.5) — one owner, no
+ * duplicate pulse/keyframe architectures.
+ */

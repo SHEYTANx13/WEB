@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Five dynamics cycling as one loop around a dense organism core">
+  <rect width="1200" height="630" fill="#050505"/>
+  <g stroke="rgba(255,255,255,0.035)" stroke-width="1">
+    <path d="M60 90h1080M60 180h1080M60 270h1080M60 360h1080M60 450h1080M60 540h1080"/>
+    <path d="M150 60v510M270 60v510M390 60v510M510 60v510M630 60v510M750 60v510M870 60v510M990 60v510M1110 60v510"/>
+  </g>
+
+  <!-- organism field at the centre -->
+  <circle cx="600" cy="315" r="86" fill="rgba(255,32,32,0.1)"/>
+  <circle cx="600" cy="315" r="58" fill="none" stroke="rgba(255,70,56,0.7)" stroke-width="2"/>
+  <circle cx="600" cy="315" r="34" fill="#d20f0f"/>
+  <circle cx="600" cy="315" r="10" fill="#ff5848"/>
+
+  <!-- the five-dynamics cycle -->
+  <circle cx="600" cy="315" r="205" fill="none" stroke="rgba(255,32,32,0.22)" stroke-width="1.5" stroke-dasharray="4 8"/>
+
+  <g fill="#ff2020">
+    <circle cx="600" cy="110" r="11"/>
+    <circle cx="795" cy="222" r="11"/>
+    <circle cx="720" cy="452" r="11"/>
+    <circle cx="480" cy="452" r="11"/>
+    <circle cx="405" cy="222" r="11"/>
+  </g>
+  <g fill="none" stroke="rgba(255,70,56,0.5)" stroke-width="1.5">
+    <circle cx="600" cy="110" r="19"/>
+    <circle cx="795" cy="222" r="19"/>
+    <circle cx="720" cy="452" r="19"/>
+    <circle cx="480" cy="452" r="19"/>
+    <circle cx="405" cy="222" r="19"/>
+  </g>
+
+  <!-- cycle direction arrows -->
+  <g stroke="rgba(255,70,56,0.75)" stroke-width="2" fill="none">
+    <path d="M617 128 L760 208"/>
+    <path d="M788 246 L742 412"/>
+    <path d="M695 466 L505 466"/>
+    <path d="M458 412 L412 246"/>
+    <path d="M440 208 L583 128"/>
+  </g>
+  <g fill="#ff4638">
+    <path d="M768 214l-14 -9l4 16z"/>
+    <path d="M745 420l6 -16l-16 5z"/>
+    <path d="M497 470l-16 -4l5 16z"/>
+    <path d="M409 238l9 -14l-16 -4z"/>
+    <path d="M575 124l-14 9l16 4z"/>
+  </g>
+
+  <!-- membrane reach: the organism responds to the loop -->
+  <g stroke="rgba(255,32,32,0.4)" stroke-width="1.5">
+    <path d="M600 315L600 129"/>
+    <path d="M600 315L776 230"/>
+    <path d="M600 315L703 434"/>
+    <path d="M600 315L497 434"/>
+    <path d="M600 315L424 230"/>
+  </g>
+  <g fill="rgba(255,70,56,0.8)">
+    <circle cx="600" cy="181" r="4"/>
+    <circle cx="688" cy="272" r="4"/>
+    <circle cx="651" cy="375" r="4"/>
+    <circle cx="549" cy="375" r="4"/>
+    <circle cx="512" cy="272" r="4"/>
+  </g>
+</svg>

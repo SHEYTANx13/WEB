@@ -1,0 +1,1135 @@
+.blogIndex {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 26px;
+}
+
+.controls {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 16px 22px;
+
+  padding-bottom: 22px;
+
+  border-bottom:
+    1px solid
+    var(--line-soft);
+}
+
+.searchWrap {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  flex: 0 1 340px;
+}
+
+.searchLabel {
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.2em;
+}
+
+.searchInput {
+  width: 100%;
+
+  min-height: 42px;
+
+  padding: 0 14px;
+
+  border: 1px solid
+    var(--line);
+
+  border-radius: 3px;
+
+  background:
+    rgba(255, 255, 255, 0.02);
+
+  color: var(--text);
+
+  font-family: var(--font-sans);
+
+  font-size: 14px;
+
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted);
+}
+
+.searchInput:focus-visible {
+  outline: none;
+
+  border-color:
+    rgba(255, 64, 54, 0.55);
+
+  background:
+    rgba(255, 32, 32, 0.04);
+}
+
+.searchInput::-webkit-search-cancel-button {
+  filter: invert(0.6);
+}
+
+/*
+ * Hotkey hint (v2.5.3) — the "/" chip inside the search wrap. The
+ * bare <kbd> is styled globally (globals.css); this wrapper adds
+ * only placement and a pointer (the whole hint is aria-hidden, the
+ * input carries aria-keyshortcuts).
+ */
+.searchKey {
+  flex-shrink: 0;
+
+  margin-left: -4px;
+
+  cursor: pointer;
+
+  user-select: none;
+}
+
+/*
+ * Touch devices have no keyboard to hint at — the chip would be
+ * inert noise, so it leaves the row entirely and the input reclaims
+ * the space.
+ */
+@media (hover: none) {
+  .searchKey {
+    display: none;
+  }
+}
+
+.tagFilter {
+  display: flex;
+
+  flex: 1;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.tagChip {
+  min-height: 30px;
+
+  padding: 0 12px;
+
+  border: 1px solid
+    var(--line);
+
+  border-radius: 999px;
+
+  background: transparent;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.tagChip:hover {
+  color: var(--text);
+
+  border-color:
+    rgba(255, 255, 255, 0.2);
+}
+
+.tagChip[data-active="true"] {
+  color: #ffffff;
+
+  border-color:
+    rgba(255, 64, 54, 0.65);
+
+  background:
+    rgba(255, 32, 32, 0.16);
+}
+
+.tagMore {
+  min-height: 30px;
+
+  padding: 0 10px;
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  transition: color 160ms ease;
+}
+
+.tagMore:hover {
+  color: var(--red-hot);
+}
+
+.clearButton {
+  min-height: 30px;
+
+  padding: 0 12px;
+
+  border: 1px solid
+    rgba(255, 32, 32, 0.3);
+
+  border-radius: 3px;
+
+  background: transparent;
+
+  color: var(--red-hot);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.clearButton:hover {
+  color: #ffffff;
+
+  border-color:
+    rgba(255, 64, 54, 0.65);
+
+  background:
+    rgba(255, 32, 32, 0.14);
+}
+
+/*
+ * DEEP-LINK CHIPS (v2.5.2) — the removable PROJECT/TOPIC filter
+ * indicators in the result row. Rendered as real buttons so both
+ * the removal affordance and the sr-only label are one element.
+ * Flex-wrap on the row keeps long topic names from overflowing on
+ * narrow screens.
+ */
+.deepLinkChip {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  min-height: 30px;
+
+  padding: 0 12px;
+
+  border: 1px solid
+    var(--line);
+
+  border-radius: 3px;
+
+  background:
+    rgba(255, 255, 255, 0.015);
+
+  color: var(--text-soft);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.deepLinkChip:hover {
+  color: #ffffff;
+
+  border-color:
+    rgba(255, 32, 32, 0.5);
+
+  background:
+    rgba(255, 32, 32, 0.08);
+}
+
+.deepLinkChip:focus-visible {
+  outline: 1px solid
+    var(--red-hot);
+
+  outline-offset: 2px;
+}
+
+.deepLinkChipX {
+  color: var(--red-hot);
+
+  font-size: 12px;
+
+  line-height: 1;
+}
+
+.resultMeta {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap: 18px;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+.grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(300px, 1fr)
+    );
+
+  gap: 18px;
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+.card {
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border: 1px solid
+    var(--line);
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18, 20, 27, 0.6),
+      rgba(9, 10, 14, 0.55)
+    );
+
+  transition:
+    border-color 200ms ease,
+    transform 200ms
+      cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 200ms ease;
+}
+
+.card:hover,
+.card:focus-within {
+  border-color:
+    rgba(255, 32, 32, 0.3);
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    var(--shadow);
+}
+
+.card[data-featured="true"] {
+  border-color:
+    rgba(255, 32, 32, 0.34);
+}
+
+.cardVisual {
+  display: block;
+
+  aspect-ratio:
+    1200 / 630;
+
+  overflow: hidden;
+
+  border-bottom:
+    1px solid
+    var(--line-soft);
+
+  background:
+    #070707;
+}
+
+.cardVisual img {
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition:
+    transform 400ms
+      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .cardVisual img {
+  transform: scale(1.03);
+}
+
+.cardContent {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  flex: 1;
+
+  padding: 20px;
+}
+
+.cardKicker {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+}
+
+/*
+ * Left kicker group (v2.7): category + project chip together, so
+ * the space-between layout keeps the left/right split while the
+ * project label sits beside its category.
+ */
+.cardKickerLeft {
+  display: inline-flex;
+
+  align-items: baseline;
+
+  flex-wrap: wrap;
+
+  gap: 0 12px;
+
+  min-width: 0;
+}
+
+.cardKicker .cardCategory {
+  color: var(--red-hot);
+}
+
+/*
+ * PROJECT CONNECTION LABEL (v2.7) — visible chip in the card kicker.
+ * Mono, red-tinted on interaction, underline-on-hover so it reads as
+ * a control without stealing the category's colour coding. Rides the
+ * deep-link project filter when pressed.
+ */
+.cardProject {
+  display: inline-flex;
+
+  align-items: center;
+
+  /*
+   * TOUCH TARGET (v2.8.1): the 8px mono chip kept its visual size,
+   * but as a pressed/not-pressed control it needs a real pointer
+   * target. Padding enlarges the hit area to >=24px; the negative
+   * margin pays the padding back so the kicker row's layout is
+   * pixel-identical to the old zero-padding chip.
+   */
+  padding: 8px 10px;
+
+  margin: -8px -4px -8px -10px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  text-decoration: underline;
+
+  text-decoration-color: transparent;
+
+  text-underline-offset: 3px;
+
+  transition:
+    color 160ms ease,
+    text-decoration-color 160ms ease;
+}
+
+.cardProject:hover,
+.cardProject:focus-visible {
+  color: var(--red-hot);
+
+  text-decoration-color: currentColor;
+}
+
+.cardProject[data-active="true"] {
+  color: var(--red-hot);
+
+  text-decoration-color: currentColor;
+}
+
+.cardProject:focus-visible {
+  outline:
+    1px solid
+    var(--red-hot);
+
+  outline-offset: 3px;
+}
+
+/*
+ * Right-hand kicker group (v2.5.5): inbound-reference badge beside
+ * the reading time. A wrapper keeps the cardKicker's two-sided
+ * layout (category left, group right) while letting the badge and
+ * the time sit together with their own small gap.
+ */
+.cardKickerRight {
+  display: inline-flex;
+
+  align-items: baseline;
+
+  gap: 10px;
+}
+
+/*
+ * Inbound-reference badge (v2.5.5): "↩ N" — how many other articles
+ * link INTO this one (the reverse graph the article pages render as
+ * REFERENCED BY). Quieter than the category red: the glyph carries
+ * the accent, the number stays muted — authority is metadata, not a
+ * call to action.
+ */
+.cardRefs {
+  color: var(--red-hot);
+
+  opacity: 0.8;
+
+  letter-spacing: 0.08em;
+}
+
+/*
+ * Category accent (v2.5.3) — index cards join the article page's
+ * per-category color code: same three-color system, same ::before
+ * dot, same data-category contract. The red default remains as the
+ * fallback for any future category without an accent.
+ */
+.cardCategory::before {
+  content: "";
+
+  display: inline-block;
+
+  width: 6px;
+
+  height: 6px;
+
+  margin-right: 7px;
+
+  border-radius: 999px;
+
+  background: currentColor;
+
+  vertical-align: 1px;
+}
+
+.card[data-category="research"] .cardCategory {
+  color: var(--cat-research);
+}
+
+.card[data-category="systems"] .cardCategory {
+  color: var(--cat-systems);
+}
+
+.card[data-category="engineering"] .cardCategory {
+  color: var(--cat-engineering);
+}
+
+.cardTitle {
+  margin: 0;
+
+  font-size: 20px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+
+  line-height: 1.25;
+
+  text-wrap: balance;
+}
+
+.cardTitle a {
+  color: var(--text);
+
+  /*
+   * TOUCH TARGET (v2.8.1): the title anchor is the card's primary
+   * destination on touch screens; vertical padding lifts its hit
+   * height above the 24px minimum without moving the text (negative
+   * margin compensates). display:inline-block so the padding forms
+   * one solid target across wrapped two-line titles.
+   */
+  display: inline-block;
+
+  padding: 4px 0;
+
+  margin: -4px 0;
+}
+
+.cardTitle a:hover {
+  color: #ffffff;
+
+  text-shadow:
+    0 0 18px
+      rgba(255, 32, 32, 0.22);
+}
+
+.cardExcerpt {
+  margin: 0;
+
+  flex: 1;
+
+  color: var(--text-soft);
+
+  font-size: 14px;
+
+  line-height: 1.65;
+}
+
+.cardMeta {
+  display: flex;
+
+  gap: 14px;
+
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+.cardTags {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+}
+
+.cardTags span {
+  padding: 3px 8px;
+
+  border: 1px solid
+    var(--line-soft);
+
+  border-radius: 999px;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+}
+
+/*
+ * UPDATED CHIP (v2.5.6) — quiet revision marker beside a card's
+ * date, for posts whose frontmatter `updated` is past `date`. The
+ * ↻ glyph carries the red accent at reduced opacity (same voice as
+ * the inbound badge); the text stays muted so a row of cards still
+ * reads date-first. The full date is available via the title
+ * tooltip the component sets.
+ */
+.cardUpdated {
+  color: var(--text-muted);
+
+  white-space: nowrap;
+}
+
+.cardUpdated span[aria-hidden] {
+  color: var(--red-hot);
+
+  opacity: 0.75;
+}
+
+/*
+ * CLICK-TO-FILTER CARD TAGS (v2.5.6) — the card's tag pills become
+ * real toggle buttons in the same system as the chip bar above the
+ * list. Visually they keep the quiet pill look the dead spans had,
+ * but gain an honest hit target (26px min-height — small, but in
+ * line with the dense meta row they live in and larger than the
+ * dead pills were) and the chip bar's contract: hover lifts the
+ * border and text, data-active applies the same red wash, and
+ * keyboard focus gets the shared focus-visible ring.
+ */
+.cardTags .cardTag {
+  display: inline-flex;
+
+  align-items: center;
+
+  min-height: 26px;
+
+  padding: 0 11px;
+
+  border: 1px solid
+    var(--line-soft);
+
+  border-radius: 999px;
+
+  background: transparent;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.cardTags .cardTag:hover {
+  color: var(--text);
+
+  border-color:
+    rgba(255, 255, 255, 0.2);
+}
+
+.cardTags .cardTag[data-active="true"] {
+  color: #ffffff;
+
+  border-color:
+    rgba(255, 64, 54, 0.65);
+
+  background:
+    rgba(255, 32, 32, 0.16);
+}
+
+.cardTags .cardTag:focus-visible {
+  outline: 1px solid
+    var(--red-hot);
+
+  outline-offset: 2px;
+}
+
+.empty {
+  display: grid;
+
+  justify-items: center;
+
+  gap: 10px;
+
+  padding: 56px 24px;
+
+  border: 1px dashed
+    var(--line);
+
+  border-radius: 10px;
+
+  text-align: center;
+}
+
+.emptyGlyph {
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.26em;
+
+  text-transform: uppercase;
+}
+
+.empty strong {
+  font-size: 18px;
+
+  letter-spacing: -0.01em;
+}
+
+.empty p {
+  max-width: 420px;
+
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-size: 14px;
+
+  line-height: 1.65;
+}
+
+.emptyAction {
+  margin-top: 8px;
+
+  min-height: 38px;
+
+  padding: 0 16px;
+
+  border: 1px solid
+    rgba(255, 32, 32, 0.35);
+
+  border-radius: 3px;
+
+  background: transparent;
+
+  color: var(--red-hot);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
+}
+
+.emptyAction:hover {
+  color: #ffffff;
+
+  background:
+    rgba(255, 32, 32, 0.14);
+}
+
+@media (max-width: 760px) {
+  .searchWrap {
+    flex-basis: 100%;
+  }
+
+  .controls {
+    gap: 12px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .card:hover,
+  .card:focus-within {
+    transform: none;
+  }
+
+  .cardVisual img {
+    transition: none;
+  }
+
+  .card:hover .cardVisual img {
+    transform: none;
+  }
+}
+
+/*
+ * ------------------------------------------------------------------
+ * CONTENT MODES (v3.7)
+ * ------------------------------------------------------------------
+ */
+
+/*
+ * The content-type selector: the Blog's primary discovery control.
+ * ALL · ARTICLES · WORK · RESEARCH — four modes over one catalogue.
+ * Touch-friendly (min-height 44px), keyboard-complete (buttons with
+ * aria-pressed), and visually unambiguous about the active mode.
+ */
+.typeSelector {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+.typeMode {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  min-height: 44px;
+
+  padding: 0 18px;
+
+  border: 1px solid var(--line);
+
+  border-radius: 4px;
+
+  background:
+    linear-gradient(
+      160deg,
+      rgba(20, 22, 30, 0.55),
+      rgba(10, 11, 15, 0.5)
+    );
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+
+  cursor: pointer;
+
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.typeMode:hover {
+  color: var(--text);
+
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.typeMode:focus-visible {
+  outline: 2px solid var(--red);
+
+  outline-offset: 2px;
+}
+
+.typeMode:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+}
+
+/*
+ * The active mode: red identity — the same accent vocabulary the
+ * tag chips use, so "active" reads identically everywhere on the
+ * page. The count keeps its quieter tint; the label carries the
+ * state.
+ */
+.typeMode[data-active="true"] {
+  color: #ffffff;
+
+  border-color: rgba(255, 64, 54, 0.65);
+
+  background:
+    linear-gradient(
+      160deg,
+      rgba(255, 32, 32, 0.18),
+      rgba(120, 10, 10, 0.16)
+    );
+
+  box-shadow:
+    0 0 0 1px
+      rgba(255, 32, 32, 0.18),
+    0 8px 24px
+      rgba(255, 32, 32, 0.08);
+}
+
+.typeModeCount {
+  padding: 2px 7px;
+
+  border: 1px solid var(--line);
+
+  border-radius: 3px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+
+  letter-spacing: 0.06em;
+}
+
+.typeMode[data-active="true"] .typeModeCount {
+  color: #ffffff;
+
+  border-color:
+    rgba(255, 64, 54, 0.45);
+}
+
+/*
+ * Compact result summary: the catalogue's real per-type composition
+ * as one quiet mono line beside the visible count.
+ */
+.typeSummary {
+  display: inline-flex;
+
+  flex-wrap: wrap;
+
+  gap: 2px;
+}
+
+.typeSummaryActive {
+  color: var(--red-hot);
+}
+
+/*
+ * Card type badge: the primary hierarchy slot. Same geometry as the
+ * category label, tinted by content type so the grid is scannable
+ * by color AND text (never color alone).
+ */
+.cardType {
+  margin-right: 8px;
+
+  padding: 2px 6px;
+
+  border: 1px solid
+    rgba(255, 64, 54, 0.28);
+
+  border-radius: 3px;
+
+  color: var(--red-hot);
+
+  font-size: 9px;
+
+  letter-spacing: 0.16em;
+}
+
+.cardType[data-type="work"] {
+  border-color:
+    rgba(255, 150, 60, 0.32);
+
+  color: #ffa259;
+}
+
+.cardType[data-type="research"] {
+  border-color:
+    rgba(120, 160, 255, 0.3);
+
+  color: #93adff;
+}
+
+/*
+ * Card type variants: one shared card architecture with a quiet
+ * accent difference per content type — the top edge carries a 2px
+ * type-colored signal line, reinforcing the badge without turning
+ * the grid into confetti.
+ */
+.card[data-type="work"] {
+  border-top-color:
+    rgba(255, 150, 60, 0.35);
+}
+
+.card[data-type="research"] {
+  border-top-color:
+    rgba(120, 160, 255, 0.32);
+}
+
+.card[data-type="article"] {
+  border-top-color:
+    rgba(255, 32, 32, 0.35);
+}
+
+@media (max-width: 760px) {
+  .typeMode {
+    flex: 1 1 auto;
+
+    justify-content: center;
+
+    min-height: 46px;
+
+    padding: 0 12px;
+  }
+
+  .typeSelector {
+    gap: 8px;
+  }
+}

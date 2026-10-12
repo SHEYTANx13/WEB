@@ -1,0 +1,2084 @@
+.worldBackground {
+  position: fixed;
+  inset: 0;
+
+  z-index: -4;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 50% 18%,
+      rgba(255, 18, 18, 0.035),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      #050505 0%,
+      #060608 48%,
+      #040405 100%
+    );
+
+  contain: strict;
+
+  isolation: isolate;
+}
+
+.worldBackgroundVignette {
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at center,
+      transparent 30%,
+      rgba(0, 0, 0, 0.22) 72%,
+      rgba(0, 0, 0, 0.52) 100%
+    );
+}
+
+.redMagicCloud {
+  position: absolute;
+  inset: -18vh -12vw;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  contain: paint;
+
+  isolation: isolate;
+}
+
+.redMagicCloudAura {
+  position: absolute;
+
+  left: 50%;
+  top: 48%;
+
+  width: 115vw;
+  height: 105vh;
+
+  transform:
+    translate3d(
+      -50%,
+      -50%,
+      0
+    );
+
+  background:
+    radial-gradient(
+      ellipse at 48% 46%,
+      rgba(255, 30, 20, 0.09) 0%,
+      rgba(210, 0, 0, 0.065) 24%,
+      rgba(110, 0, 0, 0.035) 46%,
+      transparent 74%
+    );
+
+  animation:
+    red-magic-cloud-breathe
+    28s
+    ease-in-out
+    infinite
+    alternate;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.redMagicCloudMass {
+  position: absolute;
+
+  border-radius: 50%;
+
+  transform-origin: center;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.redMagicCloudMassOne {
+  left: 18%;
+  top: 9%;
+
+  width: 62vw;
+  height: 63vh;
+
+  background:
+    radial-gradient(
+      ellipse at 44% 52%,
+      rgba(255, 55, 38, 0.12) 0%,
+      rgba(232, 25, 20, 0.075) 24%,
+      rgba(150, 0, 0, 0.035) 50%,
+      transparent 72%
+    );
+
+  transform:
+    rotate(-11deg)
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+  animation:
+    red-magic-cloud-drift-one
+    42s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+.redMagicCloudMassTwo {
+  right: 5%;
+  top: 24%;
+
+  width: 58vw;
+  height: 58vh;
+
+  background:
+    radial-gradient(
+      ellipse at 48% 48%,
+      rgba(255, 42, 30, 0.105) 0%,
+      rgba(190, 0, 0, 0.068) 28%,
+      rgba(92, 0, 0, 0.025) 52%,
+      transparent 74%
+    );
+
+  transform:
+    rotate(19deg)
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+  animation:
+    red-magic-cloud-drift-two
+    51s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+.redMagicCloudMassThree {
+  left: 31%;
+  bottom: -4%;
+
+  width: 64vw;
+  height: 52vh;
+
+  background:
+    radial-gradient(
+      ellipse at 48% 42%,
+      rgba(175, 0, 0, 0.08) 0%,
+      rgba(115, 0, 0, 0.048) 31%,
+      transparent 72%
+    );
+
+  transform:
+    rotate(-8deg)
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+  animation:
+    red-magic-cloud-drift-three
+    57s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+.redMagicCloudCore {
+  position: absolute;
+
+  left: 50%;
+  top: 47%;
+
+  width: min(
+    53vw,
+    900px
+  );
+
+  height: min(
+    53vw,
+    900px
+  );
+
+  transform:
+    translate3d(
+      -50%,
+      -50%,
+      0
+    );
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 72, 50, 0.08) 0%,
+      rgba(238, 25, 18, 0.065) 18%,
+      rgba(167, 0, 0, 0.035) 43%,
+      transparent 69%
+    );
+
+  animation:
+    red-magic-cloud-core
+    19s
+    ease-in-out
+    infinite;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.redMagicCloudNucleus {
+  position: absolute;
+
+  left: 50%;
+  top: 47%;
+
+  width: min(
+    13vw,
+    220px
+  );
+
+  height: min(
+    13vw,
+    220px
+  );
+
+  transform:
+    translate3d(
+      -50%,
+      -50%,
+      0
+    );
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 120, 95, 0.14) 0%,
+      rgba(255, 40, 25, 0.085) 22%,
+      rgba(185, 0, 0, 0.03) 56%,
+      transparent 76%
+    );
+
+  animation:
+    red-magic-cloud-nucleus
+    8.5s
+    ease-in-out
+    infinite;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.redMagicCloudRings {
+  position: absolute;
+
+  left: 50%;
+  top: 47%;
+
+  width: min(
+    72vw,
+    1200px
+  );
+
+  height: min(
+    72vw,
+    1200px
+  );
+
+  transform:
+    translate3d(
+      -50%,
+      -50%,
+      0
+    );
+
+  pointer-events: none;
+}
+
+.redMagicCloudRing {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      48,
+      38,
+      0.08
+    );
+
+  border-radius: 50%;
+
+  transform:
+    translate3d(
+      -50%,
+      -50%,
+      0
+    )
+    rotate(0deg);
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.redMagicCloudRing1 {
+  width: 34%;
+  height: 21%;
+
+  /*
+   * Negative delays de-synchronise the MEDIUM loops from t=0: on
+   * first paint every layer is already mid-flight at its own phase
+   * instead of starting in lockstep (spec: phases must never be
+   * synchronised).
+   */
+  animation:
+    red-magic-cloud-ring-one
+    34s
+    linear
+    -7s
+    infinite;
+}
+
+.redMagicCloudRing2 {
+  width: 49%;
+  height: 30%;
+
+  animation:
+    red-magic-cloud-ring-two
+    41s
+    linear
+    -13s
+    infinite
+    reverse;
+}
+
+.redMagicCloudRing3 {
+  width: 66%;
+  height: 40%;
+
+  animation:
+    red-magic-cloud-ring-three
+    53s
+    linear
+    -21s
+    infinite;
+}
+
+.redMagicCloudRing4 {
+  width: 83%;
+  height: 51%;
+
+  border-color:
+    rgba(
+      255,
+      38,
+      28,
+      0.045
+    );
+
+  animation:
+    red-magic-cloud-ring-four
+    67s
+    linear
+    -29s
+    infinite
+    reverse;
+}
+
+.redMagicCloudRing5 {
+  width: 100%;
+  height: 62%;
+
+  border-color:
+    rgba(
+      255,
+      38,
+      28,
+      0.03
+    );
+
+  animation:
+    red-magic-cloud-ring-five
+    82s
+    linear
+    -37s
+    infinite;
+}
+
+.redMagicCloudWisps {
+  position: absolute;
+  inset: 0;
+}
+
+.redMagicCloudWisp {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 46vw;
+  height: 12vh;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      54,
+      42,
+      0.065
+    );
+
+  border-radius: 50%;
+
+  transform-origin: center;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.redMagicCloudWisp1 {
+  transform:
+    translate3d(
+      -50%,
+      -50%,
+      0
+    )
+    rotate(-12deg)
+    scaleY(0.58);
+
+  animation:
+    red-magic-cloud-wisp-one
+    31s
+    -9s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+.redMagicCloudWisp2 {
+  width: 53vw;
+
+  transform:
+    translate3d(
+      -50%,
+      -50%,
+      0
+    )
+    rotate(21deg)
+    scaleY(0.62);
+
+  animation:
+    red-magic-cloud-wisp-two
+    37s
+    -16s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+.redMagicCloudWisp3 {
+  width: 37vw;
+
+  transform:
+    translate3d(
+      -50%,
+      -50%,
+      0
+    )
+    rotate(54deg)
+    scaleY(0.48);
+
+  animation:
+    red-magic-cloud-wisp-three
+    43s
+    -24s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+.redMagicCloudWisp4 {
+  width: 60vw;
+
+  transform:
+    translate3d(
+      -50%,
+      -50%,
+      0
+    )
+    rotate(-41deg)
+    scaleY(0.38);
+
+  animation:
+    red-magic-cloud-wisp-four
+    49s
+    -31s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+.redMagicCloudWisp5 {
+  width: 41vw;
+
+  transform:
+    translate3d(
+      -50%,
+      -50%,
+      0
+    )
+    rotate(73deg)
+    scaleY(0.34);
+
+  animation:
+    red-magic-cloud-wisp-five
+    56s
+    -40s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+.redMagicCloudWisp6 {
+  width: 68vw;
+
+  transform:
+    translate3d(
+      -50%,
+      -50%,
+      0
+    )
+    rotate(7deg)
+    scaleY(0.22);
+
+  animation:
+    red-magic-cloud-wisp-six
+    61s
+    -47s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+.redMagicCloudWisp7 {
+  width: 31vw;
+  height: 8vh;
+
+  transform:
+    translate3d(
+      -50%,
+      -50%,
+      0
+    )
+    rotate(-68deg)
+    scaleY(0.28);
+
+  animation:
+    red-magic-cloud-wisp-seven
+    47s
+    -19s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+.redMagicCloudParticles {
+  position: absolute;
+  inset: 0;
+}
+
+.redMagicCloudParticle {
+  position: absolute;
+
+  width: 2px;
+  height: 2px;
+
+  margin:
+    -1px
+    0
+    0
+    -1px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      255,
+      94,
+      72,
+      0.78
+    );
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+  animation:
+    red-magic-cloud-particle
+    var(--duration)
+    ease-in-out
+    infinite
+    var(--delay);
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.redMagicCloudParticle3 {
+  width: 3px;
+  height: 3px;
+
+  margin:
+    -1.5px
+    0
+    0
+    -1.5px;
+
+  background:
+    rgba(
+      255,
+      55,
+      42,
+      0.56
+    );
+}
+
+.redMagicCloudParticle4 {
+  width: 1px;
+  height: 1px;
+
+  margin:
+    -0.5px
+    0
+    0
+    -0.5px;
+
+  opacity: 0.64;
+}
+
+.redMagicCloudSparks {
+  position: absolute;
+  inset: 0;
+}
+
+.redMagicCloudSpark {
+  position: absolute;
+
+  width: 2px;
+  height: 22px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(
+        255,
+        80,
+        58,
+        0.72
+      ),
+      transparent
+    );
+
+  transform-origin: center;
+
+  animation:
+    red-magic-cloud-spark
+    6.8s
+    ease-in-out
+    infinite;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.redMagicCloudSparkOne {
+  left: 22%;
+  top: 31%;
+
+  transform:
+    rotate(41deg);
+
+  animation-delay:
+    -1.4s;
+}
+
+.redMagicCloudSparkTwo {
+  left: 31%;
+  top: 69%;
+
+  transform:
+    rotate(-28deg);
+
+  animation-delay:
+    -4.1s;
+}
+
+.redMagicCloudSparkThree {
+  left: 47%;
+  top: 16%;
+
+  transform:
+    rotate(17deg);
+
+  animation-delay:
+    -2.2s;
+}
+
+.redMagicCloudSparkFour {
+  left: 64%;
+  top: 76%;
+
+  transform:
+    rotate(63deg);
+
+  animation-delay:
+    -5.3s;
+}
+
+.redMagicCloudSparkFive {
+  left: 77%;
+  top: 35%;
+
+  transform:
+    rotate(-54deg);
+
+  animation-delay:
+    -3.4s;
+}
+
+.redMagicCloudSparkSix {
+  left: 84%;
+  top: 63%;
+
+  transform:
+    rotate(24deg);
+
+  animation-delay:
+    -6s;
+}
+
+@keyframes red-magic-cloud-breathe {
+  0% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      scale(0.985);
+
+    opacity: 0.72;
+  }
+
+  50% {
+    transform:
+      translate3d(
+        -49.5%,
+        -50.8%,
+        0
+      )
+      scale(1.015);
+
+    opacity: 0.92;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        -50.8%,
+        -49.4%,
+        0
+      )
+      scale(0.998);
+
+    opacity: 0.78;
+  }
+}
+
+@keyframes red-magic-cloud-drift-one {
+  0% {
+    transform:
+      rotate(-11deg)
+      translate3d(
+        -2.5vw,
+        1vh,
+        0
+      )
+      scale(0.98);
+
+    opacity: 0.72;
+  }
+
+  100% {
+    transform:
+      rotate(-6deg)
+      translate3d(
+        3vw,
+        -2vh,
+        0
+      )
+      scale(1.04);
+
+    opacity: 0.98;
+  }
+}
+
+@keyframes red-magic-cloud-drift-two {
+  0% {
+    transform:
+      rotate(19deg)
+      translate3d(
+        2vw,
+        -1vh,
+        0
+      )
+      scale(0.98);
+
+    opacity: 0.62;
+  }
+
+  100% {
+    transform:
+      rotate(12deg)
+      translate3d(
+        -3vw,
+        3vh,
+        0
+      )
+      scale(1.05);
+
+    opacity: 0.9;
+  }
+}
+
+@keyframes red-magic-cloud-drift-three {
+  0% {
+    transform:
+      rotate(-8deg)
+      translate3d(
+        2vw,
+        2vh,
+        0
+      )
+      scale(1);
+
+    opacity: 0.45;
+  }
+
+  100% {
+    transform:
+      rotate(-3deg)
+      translate3d(
+        -2vw,
+        -2vh,
+        0
+      )
+      scale(1.06);
+
+    opacity: 0.78;
+  }
+}
+
+@keyframes red-magic-cloud-core {
+  0% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      scale(0.97);
+
+    opacity: 0.6;
+  }
+
+  50% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      scale(1.04);
+
+    opacity: 0.94;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      scale(0.98);
+
+    opacity: 0.7;
+  }
+}
+
+@keyframes red-magic-cloud-nucleus {
+  0% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      scale(0.9);
+
+    opacity: 0.46;
+  }
+
+  50% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      scale(1.12);
+
+    opacity: 0.92;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      scale(0.95);
+
+    opacity: 0.58;
+  }
+}
+
+@keyframes red-magic-cloud-ring-one {
+  from {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(0deg)
+      scaleX(1);
+  }
+
+  to {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(360deg)
+      scaleX(1.08);
+  }
+}
+
+@keyframes red-magic-cloud-ring-two {
+  from {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(360deg)
+      scaleY(1);
+  }
+
+  to {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(0deg)
+      scaleY(1.06);
+  }
+}
+
+@keyframes red-magic-cloud-ring-three {
+  from {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(0deg)
+      scale(1);
+  }
+
+  to {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(360deg)
+      scale(0.95);
+  }
+}
+
+@keyframes red-magic-cloud-ring-four {
+  from {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(360deg)
+      scaleX(1);
+  }
+
+  to {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(0deg)
+      scaleX(1.05);
+  }
+}
+
+@keyframes red-magic-cloud-ring-five {
+  from {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(0deg)
+      scaleY(1);
+  }
+
+  to {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(360deg)
+      scaleY(0.96);
+  }
+}
+
+@keyframes red-magic-cloud-wisp-one {
+  0% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(-12deg)
+      scaleY(0.58)
+      translateX(-3vw);
+
+    opacity: 0.25;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(-7deg)
+      scaleY(0.72)
+      translateX(3vw);
+
+    opacity: 0.72;
+  }
+}
+
+@keyframes red-magic-cloud-wisp-two {
+  0% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(21deg)
+      scaleY(0.62)
+      translateY(2vh);
+
+    opacity: 0.16;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(27deg)
+      scaleY(0.74)
+      translateY(-2vh);
+
+    opacity: 0.55;
+  }
+}
+
+@keyframes red-magic-cloud-wisp-three {
+  0% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(54deg)
+      scaleY(0.48)
+      translateX(2vw);
+
+    opacity: 0.18;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(47deg)
+      scaleY(0.66)
+      translateX(-2vw);
+
+    opacity: 0.48;
+  }
+}
+
+@keyframes red-magic-cloud-wisp-four {
+  0% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(-41deg)
+      scaleY(0.38)
+      translateX(-2vw);
+
+    opacity: 0.14;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(-35deg)
+      scaleY(0.52)
+      translateX(2vw);
+
+    opacity: 0.4;
+  }
+}
+
+@keyframes red-magic-cloud-wisp-five {
+  0% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(73deg)
+      scaleY(0.34)
+      translateY(-2vh);
+
+    opacity: 0.12;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(67deg)
+      scaleY(0.46)
+      translateY(2vh);
+
+    opacity: 0.34;
+  }
+}
+
+@keyframes red-magic-cloud-wisp-six {
+  0% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(7deg)
+      scaleY(0.22)
+      translateX(2vw);
+
+    opacity: 0.12;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(12deg)
+      scaleY(0.36)
+      translateX(-2vw);
+
+    opacity: 0.3;
+  }
+}
+
+@keyframes red-magic-cloud-wisp-seven {
+  0% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(-68deg)
+      scaleY(0.28)
+      translateY(1vh);
+
+    opacity: 0.1;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      rotate(-61deg)
+      scaleY(0.4)
+      translateY(-1vh);
+
+    opacity: 0.28;
+  }
+}
+
+@keyframes red-magic-cloud-particle {
+  0% {
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      )
+      scale(0.65);
+
+    opacity: 0.12;
+  }
+
+  35% {
+    transform:
+      translate3d(
+        calc(
+          var(--dx) * 0.35
+        ),
+        calc(
+          var(--dy) * 0.35
+        ),
+        0
+      )
+      scale(1);
+
+    opacity: 0.72;
+  }
+
+  70% {
+    transform:
+      translate3d(
+        calc(
+          var(--dx) * 0.75
+        ),
+        calc(
+          var(--dy) * 0.75
+        ),
+        0
+      )
+      scale(0.82);
+
+    opacity: 0.38;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        var(--dx),
+        var(--dy),
+        0
+      )
+      scale(0.56);
+
+    opacity: 0.08;
+  }
+}
+
+@keyframes red-magic-cloud-spark {
+  0%,
+  100% {
+    opacity: 0;
+
+    transform:
+      translate3d(
+        0,
+        10px,
+        0
+      )
+      scaleY(0.3);
+  }
+
+  45% {
+    opacity: 0.66;
+
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      )
+      scaleY(1);
+  }
+
+  70% {
+    opacity: 0.12;
+
+    transform:
+      translate3d(
+        0,
+        -8px,
+        0
+      )
+      scaleY(0.55);
+  }
+}
+
+@media (max-width: 800px) {
+  .redMagicCloud {
+    inset:
+      -10vh
+      -30vw;
+  }
+
+  .redMagicCloudRing4,
+  .redMagicCloudRing5,
+  .redMagicCloudWisp5,
+  .redMagicCloudWisp6,
+  .redMagicCloudWisp7 {
+    display: none;
+  }
+
+  .redMagicCloudParticle:nth-child(n + 13) {
+    display: none;
+  }
+
+  .redMagicCloudCore {
+    width: 82vw;
+    height: 82vw;
+  }
+
+  .redMagicCloudNucleus {
+    width: 24vw;
+    height: 24vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /*
+   * Reduced motion = calmer organism, not dead organism.
+   *
+   * High-frequency loops (particles, sparks, ring rotation, wisp flow)
+   * freeze into still atmospheric structure; the slowest breathing
+   * layers survive at greatly extended durations and reduced
+   * amplitude. Interaction layers (pointer field, ripples, pulse) are
+   * disabled by the controller as well.
+   */
+
+  .redMagicCloudParticle,
+  .redMagicCloudSpark,
+  .redMagicCloudRing,
+  .redMagicCloudWisp {
+    animation: none !important;
+  }
+
+  .redMagicCloudAura {
+    animation:
+      red-magic-cloud-reduced-breathe
+      58s
+      ease-in-out
+      infinite
+      alternate;
+  }
+
+  .redMagicCloudCore {
+    animation:
+      red-magic-cloud-reduced-core
+      38s
+      ease-in-out
+      infinite;
+  }
+
+  .redMagicCloudNucleus {
+    animation:
+      red-magic-cloud-reduced-nucleus
+      29s
+      ease-in-out
+      infinite;
+  }
+
+  .organismPointerField,
+  .organismRipples,
+  .organismResonance,
+  .organismPulse {
+    display: none;
+  }
+}
+
+/*
+ * ------------------------------------------------------------------
+ * LIVING ORGANISM — shared state, interaction, and event layers
+ * (v2.1). The controller writes ONLY these custom properties and the
+ * data attributes consumed below; every animation on this page
+ * remains transform/opacity-only and compositor-friendly.
+ * ------------------------------------------------------------------
+ */
+
+/* Group wrappers: mood and quality modulation targets. They are
+ * never animated themselves, so their opacity/transform can be
+ * modulated without fighting child keyframes. */
+
+.organismAtmosphere {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  transition: opacity 1.6s ease;
+}
+
+.organismHeart {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  transition: opacity 1.6s ease;
+}
+
+/* Pointer field: the nearby-field distortion. Follows the smoothed
+ * pointer through transform (compositor-only), scaled and brightened
+ * by the shared energy level. Hidden off-screen until first move. */
+
+.organismPointerField {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 52vw;
+  height: 52vw;
+
+  margin:
+    -26vw
+    0
+    0
+    -26vw;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 62, 42, 0.075) 0%,
+      rgba(255, 30, 20, 0.04) 36%,
+      transparent 68%
+    );
+
+  transform:
+    translate3d(
+      var(--organism-pointer-x, -120vw),
+      var(--organism-pointer-y, -120vh),
+      0
+    )
+    scale(
+      calc(
+        1 +
+        var(--organism-energy, 0) * 0.4
+      )
+    );
+
+  opacity: calc(
+    0.3 +
+    var(--organism-energy, 0) * 0.7
+  );
+
+  will-change:
+    transform,
+    opacity;
+
+  pointer-events: none;
+}
+
+/* Click ripples: six pooled elements, restarted by class toggle. */
+
+.organismRipples {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+}
+
+.organismRipple {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: var(--ripple-size, 90px);
+  height: var(--ripple-size, 90px);
+
+  margin:
+    calc(var(--ripple-size, 90px) / -2)
+    0
+    0
+    calc(var(--ripple-size, 90px) / -2);
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(255, 82, 58, 0.42);
+
+  box-shadow:
+    inset 0 0 18px rgba(255, 40, 24, 0.14);
+
+  opacity: 0;
+
+  transform:
+    translate3d(
+      var(--ripple-x, -120vw),
+      var(--ripple-y, -120vh),
+      0
+    )
+    scale(0.35);
+
+  pointer-events: none;
+}
+
+.organismRipple.isRippling {
+  animation:
+    organism-ripple
+    680ms
+    ease-out;
+}
+
+/* Scene-transition pulse: one coordinated flash for the whole
+ * organism, played on the [data-pulse] attribute. */
+
+.organismPulse {
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 47%,
+      rgba(255, 88, 60, 0.14) 0%,
+      rgba(255, 32, 18, 0.06) 30%,
+      transparent 62%
+    );
+
+  opacity: 0;
+
+  transform:
+    scale(0.965);
+
+  pointer-events: none;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.worldBackground[data-pulse="true"] .organismPulse {
+  animation:
+    organism-pulse
+    1.05s
+    ease-out;
+}
+
+/*
+ * ENERGY COUPLING (v2.2) — the shared organism energy modulates the
+ * whole layered field around each scene's resting level. Moving
+ * through the world slightly brightens rings, wisps, particles and
+ * sparks together; the organism visibly wakes as ONE system instead
+ * of only the pointer field reacting. Zero JavaScript beyond the
+ * existing --organism-energy writer; opacity is compositor-only.
+ *
+ * Scene moods above set the base (`--mood-opacity`); this rule scales
+ * it by 0.92 at rest up to 1.0 at full energy.
+ */
+.redMagicCloudRings,
+.redMagicCloudWisps,
+.redMagicCloudParticles,
+.redMagicCloudSparks {
+  opacity: calc(
+    var(--mood-opacity, 1) *
+    (
+      0.92 +
+      var(--organism-energy, 0) * 0.08
+    )
+  );
+
+  transition: opacity 1.6s ease;
+}
+
+/*
+ * RESONANCE LAYER (v2.2) — the heartbeat's echo in the shell.
+ *
+ * Two slow MEDIUM-loop rings expand from the core, their visibility
+ * scaled directly by the shared energy: a calm organism keeps them
+ * invisible (and effectively free), an active one shows the pulse
+ * travelling outward through the field. Pure transform/opacity.
+ */
+.organismResonance {
+  position: absolute;
+
+  left: 50%;
+  top: 47%;
+
+  width: 0;
+  height: 0;
+
+  pointer-events: none;
+}
+
+.organismResonanceRing {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: min(
+    58vw,
+    980px
+  );
+
+  height: min(
+    34vw,
+    580px
+  );
+
+  border:
+    1px solid
+    rgba(
+      255,
+      60,
+      44,
+      0.05
+    );
+
+  border-radius: 50%;
+
+  transform:
+    translate3d(
+      -50%,
+      -50%,
+      0
+    )
+    scale(0.62);
+
+  opacity: calc(
+    var(--organism-energy, 0) * 0.55
+  );
+
+  will-change:
+    transform,
+    opacity;
+
+  pointer-events: none;
+}
+
+.organismResonanceRingOne {
+  animation:
+    organism-resonance
+    23s
+    ease-in-out
+    -9s
+    infinite;
+}
+
+.organismResonanceRingTwo {
+  animation:
+    organism-resonance
+    31s
+    ease-in-out
+    -19s
+    infinite
+    reverse;
+}
+
+@keyframes organism-resonance {
+  0% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      scale(0.62);
+  }
+
+  55% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      scale(1.12);
+  }
+
+  100% {
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        0
+      )
+      scale(0.62);
+  }
+}
+
+/*
+ * SCENE MOODS — the organism understands the current scene through
+ * one attribute. Static attribute selectors: zero runtime cost.
+ *
+ * Layer-group moods declare their base through `--mood-opacity`
+ * instead of `opacity` so the ENERGY COUPLING rule below can modulate
+ * around the scene's resting level without overriding it.
+ */
+
+.worldBackground[data-scene="about"] .organismAtmosphere {
+  opacity: 0.82;
+}
+
+.worldBackground[data-scene="about"] .organismHeart {
+  opacity: 0.88;
+}
+
+.worldBackground[data-scene="systems"] .redMagicCloudWisps {
+  --mood-opacity: 0.8;
+}
+
+.worldBackground[data-scene="systems"] .redMagicCloudParticles {
+  --mood-opacity: 0.85;
+}
+
+.worldBackground[data-scene="magic"] .organismAtmosphere {
+  opacity: 1;
+
+  transform:
+    scale(1.045);
+}
+
+.worldBackground[data-scene="magic"] .organismHeart {
+  opacity: 1;
+}
+
+/*
+ * MAGIC mood: the resonance layer (energy-scaled heartbeat echo)
+ * runs hotter — the unstable mood shows its pulse in the field.
+ */
+.worldBackground[data-scene="magic"] .organismResonanceRing {
+  border-color:
+    rgba(
+      255,
+      72,
+      48,
+      0.075
+    );
+}
+
+.worldBackground[data-scene="magic"] .organismPulse {
+  background:
+    radial-gradient(
+      circle at 50% 47%,
+      rgba(255, 96, 64, 0.18) 0%,
+      rgba(255, 34, 18, 0.08) 30%,
+      transparent 62%
+    );
+}
+
+.worldBackground[data-scene="work"] .organismAtmosphere {
+  opacity: 0.9;
+}
+
+.worldBackground[data-scene="work"] .redMagicCloudSparks {
+  --mood-opacity: 0.75;
+}
+
+.worldBackground[data-scene="media"] .organismAtmosphere,
+.worldBackground[data-scene="archive"] .organismAtmosphere {
+  opacity: 0.72;
+}
+
+.worldBackground[data-scene="media"] .organismHeart,
+.worldBackground[data-scene="archive"] .organismHeart {
+  opacity: 0.7;
+}
+
+.worldBackground[data-scene="media"] .redMagicCloudParticles,
+.worldBackground[data-scene="archive"] .redMagicCloudParticles {
+  --mood-opacity: 0.6;
+}
+
+.worldBackground[data-scene="media"] .redMagicCloudSparks,
+.worldBackground[data-scene="archive"] .redMagicCloudSparks {
+  --mood-opacity: 0.55;
+}
+
+/*
+ * QUALITY TIERS — perceptual scaling that preserves identity.
+ * LOW trims peripheral layers; MEDIUM is the full baseline; HIGH
+ * keeps everything and lets the interaction field breathe wider.
+ */
+
+.worldBackground[data-quality="low"] .redMagicCloudRing4,
+.worldBackground[data-quality="low"] .redMagicCloudRing5,
+.worldBackground[data-quality="low"] .redMagicCloudWisp5,
+.worldBackground[data-quality="low"] .redMagicCloudWisp6,
+.worldBackground[data-quality="low"] .redMagicCloudWisp7 {
+  display: none;
+}
+
+.worldBackground[data-quality="low"] .redMagicCloudParticle:nth-child(n + 13) {
+  display: none;
+}
+
+.worldBackground[data-quality="low"] .organismPointerField,
+.worldBackground[data-quality="low"] .organismRipples,
+.worldBackground[data-quality="low"] .organismResonance {
+  display: none;
+}
+
+.worldBackground[data-quality="high"] .organismPointerField {
+  opacity: calc(
+    0.42 +
+    var(--organism-energy, 0) * 0.58
+  );
+}
+
+/* Hidden tab: suspend the entire organism explicitly. */
+
+.worldBackground[data-hidden="true"] .redMagicCloud,
+.worldBackground[data-hidden="true"] .redMagicCloud *,
+.worldBackground[data-hidden="true"] .organismResonance span,
+.worldBackground[data-hidden="true"] .organismPulse {
+  animation-play-state: paused !important;
+}
+
+/* Reduced-motion breathing keyframes: same visual language, long
+ * durations, low amplitude. */
+
+@keyframes red-magic-cloud-reduced-breathe {
+  0% {
+    transform:
+      translate3d(-50%, -50%, 0)
+      scale(0.99);
+
+    opacity: 0.7;
+  }
+
+  100% {
+    transform:
+      translate3d(-50%, -50%, 0)
+      scale(1.01);
+
+    opacity: 0.8;
+  }
+}
+
+@keyframes red-magic-cloud-reduced-core {
+  0%, 100% {
+    transform:
+      translate3d(-50%, -50%, 0)
+      scale(0.985);
+
+    opacity: 0.66;
+  }
+
+  50% {
+    transform:
+      translate3d(-50%, -50%, 0)
+      scale(1.015);
+
+    opacity: 0.78;
+  }
+}
+
+@keyframes red-magic-cloud-reduced-nucleus {
+  0%, 100% {
+    transform:
+      translate3d(-50%, -50%, 0)
+      scale(0.96);
+
+    opacity: 0.5;
+  }
+
+  50% {
+    transform:
+      translate3d(-50%, -50%, 0)
+      scale(1.05);
+
+    opacity: 0.66;
+  }
+}
+
+@keyframes organism-ripple {
+  0% {
+    opacity: 0.5;
+
+    transform:
+      translate3d(
+        var(--ripple-x, -120vw),
+        var(--ripple-y, -120vh),
+        0
+      )
+      scale(0.35);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate3d(
+        var(--ripple-x, -120vw),
+        var(--ripple-y, -120vh),
+        0
+      )
+      scale(1.55);
+  }
+}
+
+@keyframes organism-pulse {
+  0% {
+    opacity: 0;
+
+    transform:
+      scale(0.955);
+  }
+
+  20% {
+    opacity: 0.9;
+
+    transform:
+      scale(1.01);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      scale(1.045);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* READING FOCUS (v2.5)                                                        */
+/*                                                                            */
+/* Article pages set `data-reading` on <html> and publish the shared           */
+/* --reading-progress custom property (0..1) via the ReadingProgress           */
+/* controller. The organism answers by QUIETING: peripheral layers pull        */
+/* back below their archive-mood base so the article owns the reader's         */
+/* attention, while the aura warms very slightly with reading progress.        */
+/* Same law as the rest of the organism: one writer, CSS-side consumers,       */
+/* opacity-only, no per-frame JavaScript beyond the progress write. The        */
+/* layers' existing 1.6s opacity transitions smooth both entering and          */
+/* leaving the state; reduced motion keeps the calm state (it is a mood,       */
+/* not an animation) and simply loses the progress-linked aura drift.          */
+/* -------------------------------------------------------------------------- */
+
+:global(html[data-reading="true"]) .redMagicCloudWisps,
+:global(html[data-reading="true"]) .redMagicCloudSparks,
+:global(html[data-reading="true"]) .redMagicCloudParticles {
+  --mood-opacity: 0.4;
+}
+
+:global(html[data-reading="true"]) .organismAtmosphere {
+  opacity: 0.58;
+}
+
+:global(html[data-reading="true"]) .organismHeart {
+  opacity: 0.62;
+}
+
+/*
+ * The aura, rings and heart keep their own looped breathing — reading
+ * focus scales their BASE, it does not fight their animations.
+ */
+
+/* Print (v2.5.1): the organism is screen ambience — paper gets none. */
+@media print {
+  .worldBackground {
+    display: none !important;
+  }
+}

@@ -1,0 +1,715 @@
+.sceneLoadingScreen {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 3000;
+
+  display: grid;
+
+  place-items: center;
+
+  pointer-events: auto;
+
+  overflow: hidden;
+
+  background:
+    rgba(
+      3,
+      3,
+      4,
+      0.96
+    );
+
+  /*
+   * NO-JS SAFETY GATE (v3.0): the default state is HIDDEN. The
+   * pre-paint MOTION GATE script in <head> adds `reveal-js` to
+   * <html> before first paint, and only then does a visible boot
+   * gate rule apply. Without JavaScript the class never lands, so
+   * crawlers, social scrapers and no-JS visitors read the server-
+   * rendered scene content directly instead of a permanent loading
+   * overlay. With JavaScript the gate appears before first paint —
+   * the boot experience is unchanged.
+   */
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity 220ms ease,
+    visibility 220ms ease;
+
+  isolation: isolate;
+}
+
+/*
+ * JS-present visibility: boot gate covers the world only while the
+ * application becomes interactive (data-visible="true" until the
+ * shell mount effect flips it). Scoped under html.reveal-js so the
+ * rule can never apply in a no-JS environment.
+ */
+:global(html.reveal-js) .sceneLoadingScreen[data-visible="true"] {
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+.sceneLoadingScreen[data-visible="false"] {
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+}
+
+/*
+ * Scene variant (v3.5): a lightweight transition surface inside the
+ * viewport, not a blocking wall. It never blocks interaction and
+ * never appears for fast transitions: the fade-in is delayed by
+ * SCENE_OVERLAY_DELAY_MS, so warmed/cached scene chunks — which swap
+ * in before the next paint — never flash a loader. When a fetch
+ * genuinely runs long, the surface fades in quickly and cleanly
+ * (no slide, no scale on the panel itself) and communicates one
+ * honest state: intent → transfer → ready.
+ */
+.sceneLoadingScreen[data-variant="scene"] {
+  position: absolute;
+
+  z-index: 40;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(255, 32, 32, 0.05),
+      transparent 42%
+    ),
+    rgba(
+      5,
+      5,
+      6,
+      0.78
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 200ms ease
+      var(--scene-overlay-delay, 180ms),
+    visibility 200ms ease
+      var(--scene-overlay-delay, 180ms);
+
+  visibility: hidden;
+}
+
+/*
+ * Scene-variant visible state also rides the reveal-js gate: the
+ * variant only ever renders during client-side scene transitions,
+ * but the same no-JS law holds — no loader is ever visible when the
+ * runtime that drives it cannot exist.
+ */
+:global(html.reveal-js) .sceneLoadingScreen[data-variant="scene"][data-visible="true"] {
+  opacity: 1;
+
+  visibility: visible;
+}
+
+.sceneLoadingScreen[data-variant="scene"][data-visible="false"] {
+  transition:
+    opacity 140ms ease,
+    visibility 140ms ease;
+
+  opacity: 0;
+
+  visibility: hidden;
+}
+
+/*
+ * Error phase: the system stays honest about failed loads.
+ */
+.sceneLoadingScreen[data-phase="ERROR"] .title {
+  color: var(--red-hot);
+
+  text-shadow:
+    0 0 22px
+      rgba(
+        255,
+        70,
+        56,
+        0.3
+      );
+}
+
+.sceneLoadingScreen[data-phase="ERROR"] .progress span {
+  animation: none;
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+  width: 100%;
+
+  background:
+    var(--red-deep);
+}
+
+.sceneLoadingScreen[data-variant="scene"] .inner {
+  animation: none;
+}
+
+.sceneLoadingScreen[data-variant="scene"] .mark {
+  width: 54px;
+
+  height: 54px;
+
+  margin: 0 0 14px;
+
+  position: relative;
+}
+
+/*
+ * SIGNAL ARC (v3.5) — the “transfer in motion” cue. A thin conic
+ * sweep orbits the 13-point star exactly once per cycle: the loading
+ * state reads as movement of the signal itself, not as a spinner and
+ * never as a fake percentage. Compositor-only (transform), and it
+ * exists only on the scene variant so the boot gate keeps its
+ * original identity.
+ */
+.sceneLoadingScreen[data-variant="scene"] .mark::after {
+  content: "";
+
+  position: absolute;
+
+  inset: -7px;
+
+  border-radius: 50%;
+
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(255, 32, 32, 0) 0deg,
+      rgba(255, 32, 32, 0) 288deg,
+      rgba(255, 70, 56, 0.85) 348deg,
+      rgba(255, 255, 255, 0.9) 360deg
+    );
+
+  mask-image:
+    radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 62%,
+      black 66%,
+      black 100%
+    );
+
+  -webkit-mask-image:
+    radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 62%,
+      black 66%,
+      black 100%
+    );
+
+  animation:
+    sceneLoadingScreenSignal
+    1.6s
+    linear
+    infinite;
+}
+
+.sceneLoadingScreen[data-variant="scene"] .meta {
+  justify-content: center;
+
+  gap: 14px;
+}
+
+.sceneLoadingScreen[data-variant="scene"] .progress {
+  margin: 20px 0 12px;
+}
+
+.backdrop {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(
+        255,
+        32,
+        32,
+        0.075
+      ),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(
+        255,
+        255,
+        255,
+        0.018
+      ),
+      transparent 52%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(
+        4,
+        4,
+        5,
+        0.98
+      ),
+      rgba(
+        5,
+        5,
+        6,
+        0.94
+      )
+    );
+}
+
+.backdrop::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.22;
+
+  background-image:
+    linear-gradient(
+      rgba(
+        255,
+        255,
+        255,
+        0.022
+      ) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(
+        255,
+        255,
+        255,
+        0.022
+      ) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    36px
+    36px;
+
+  mask-image:
+    radial-gradient(
+      circle at center,
+      black 0%,
+      rgba(
+        0,
+        0,
+        0,
+        0.7
+      ) 42%,
+      transparent 86%
+    );
+}
+
+.backdrop::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at center,
+      transparent 18%,
+      rgba(
+        0,
+        0,
+        0,
+        0.24
+      ) 72%,
+      rgba(
+        0,
+        0,
+        0,
+        0.58
+      ) 100%
+    );
+}
+
+.inner {
+  width:
+    min(
+      calc(100% - 32px),
+      460px
+    );
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+  transform:
+    translate3d(
+      0,
+      0,
+      0
+    );
+
+  animation:
+    sceneLoadingScreenEnter
+    420ms
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    both;
+}
+
+.mark {
+  width: 78px;
+  height: 78px;
+
+  display: grid;
+
+  place-items: center;
+
+  margin:
+    0 0
+    22px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      32,
+      32,
+      0.2
+    );
+
+  border-radius: 50%;
+
+  background:
+    rgba(
+      255,
+      32,
+      32,
+      0.025
+    );
+
+  box-shadow:
+    0 0 0 1px
+      rgba(
+        255,
+        32,
+        32,
+        0.025
+      ),
+    0 0 55px
+      rgba(
+        255,
+        32,
+        32,
+        0.12
+      );
+
+  animation:
+    sceneLoadingScreenPulse
+    2.8s
+    ease-in-out
+    infinite;
+}
+
+.label {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.kicker {
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.26em;
+
+  line-height: 1.4;
+
+  text-transform: uppercase;
+}
+
+.title {
+  color: var(--text);
+
+  font-family: var(--font-mono);
+
+  font-size:
+    clamp(
+      22px,
+      4vw,
+      30px
+    );
+
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+
+  text-shadow:
+    0 0 22px
+      rgba(
+        255,
+        32,
+        32,
+        0.14
+      );
+}
+
+.progress {
+  position: relative;
+
+  width:
+    min(
+      100%,
+      280px
+    );
+
+  height: 2px;
+
+  margin:
+    30px 0
+    18px;
+
+  overflow: hidden;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+}
+
+.progress span {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 38%;
+  height: 100%;
+
+  background: var(--red);
+
+  box-shadow:
+    0 0 14px
+      rgba(
+        255,
+        32,
+        32,
+        0.6
+      );
+
+  transform:
+    translate3d(
+      -120%,
+      0,
+      0
+    );
+
+  animation:
+    sceneLoadingScreenProgress
+    1.15s
+    cubic-bezier(
+      0.65,
+      0,
+      0.35,
+      1
+    )
+    infinite;
+}
+
+.meta {
+  width:
+    min(
+      100%,
+      280px
+    );
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  color: var(--text-muted);
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+
+  line-height: 1.4;
+
+  text-transform: uppercase;
+}
+
+@keyframes sceneLoadingScreenEnter {
+  from {
+    opacity: 0;
+
+    transform:
+      translate3d(
+        0,
+        10px,
+        0
+      )
+      scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      )
+      scale(1);
+  }
+}
+
+@keyframes sceneLoadingScreenPulse {
+  0%,
+  100% {
+    opacity: 0.72;
+
+    transform: scale(0.98);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform: scale(1.02);
+  }
+}
+
+@keyframes sceneLoadingScreenSignal {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sceneLoadingScreenProgress {
+  0% {
+    transform:
+      translate3d(
+        -120%,
+        0,
+        0
+      );
+  }
+
+  100% {
+    transform:
+      translate3d(
+        360%,
+        0,
+        0
+      );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sceneLoadingScreen {
+    transition: none;
+  }
+
+  .sceneLoadingScreen[data-variant="scene"] {
+    transition: opacity 1ms linear;
+  }
+
+  .inner {
+    animation: none;
+  }
+
+  .mark {
+    animation: none;
+  }
+
+  /*
+   * The signal arc is motion: under reduced-motion it collapses to
+   * a static thin ring around the star (visible state, no sweep).
+   */
+  .sceneLoadingScreen[data-variant="scene"] .mark::after {
+    animation: none;
+
+    background:
+      radial-gradient(
+        circle at center,
+        transparent 62%,
+        rgba(255, 32, 32, 0.55) 66%,
+        rgba(255, 32, 32, 0.55) 100%
+      );
+
+    mask-image: none;
+
+    -webkit-mask-image: none;
+  }
+
+  .progress span {
+    animation: none;
+
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      );
+
+    width: 100%;
+
+    opacity: 0.65;
+  }
+}

@@ -1,0 +1,1154 @@
+.systemsScene {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+
+.systemsArchitecture {
+  position: relative;
+
+  min-height:
+    calc(
+      100vh -
+      var(--shell-header)
+    );
+
+  min-height:
+    calc(
+      100svh -
+      var(--shell-header)
+    );
+
+  min-height:
+    calc(
+      100dvh -
+      var(--shell-header)
+    );
+
+  overflow: clip;
+
+  border-bottom:
+    1px solid
+    rgba(
+      255,
+      157,
+      50,
+      0.08
+    );
+
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      circle at 72% 24%,
+      rgba(
+        255,
+        157,
+        50,
+        0.045
+      ),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 12% 82%,
+      rgba(
+        255,
+        32,
+        32,
+        0.02
+      ),
+      transparent 28%
+    );
+}
+
+.systemsBlueprint {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  overflow: hidden;
+}
+
+.systemsBlueprintGrid {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.3;
+
+  background-image:
+    linear-gradient(
+      rgba(
+        255,
+        157,
+        50,
+        0.025
+      ) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(
+        255,
+        157,
+        50,
+        0.025
+      ) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    36px 36px;
+
+  mask-image:
+    radial-gradient(
+      circle at 68% 34%,
+      black 0%,
+      rgba(
+        0,
+        0,
+        0,
+        0.65
+      ) 34%,
+      transparent 75%
+    );
+}
+
+.systemsBlueprintCross {
+  position: absolute;
+
+  width: 24px;
+  height: 24px;
+
+  opacity: 0.28;
+}
+
+.systemsBlueprintCross::before,
+.systemsBlueprintCross::after {
+  content: "";
+
+  position: absolute;
+
+  background:
+    rgba(
+      255,
+      157,
+      50,
+      0.34
+    );
+}
+
+.systemsBlueprintCross::before {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+
+  width: 1px;
+
+  transform:
+    translateX(
+      -50%
+    );
+}
+
+.systemsBlueprintCross::after {
+  top: 50%;
+  left: 0;
+  right: 0;
+
+  height: 1px;
+
+  transform:
+    translateY(
+      -50%
+    );
+}
+
+.systemsBlueprintCrossOne {
+  left: 61%;
+  top: 22%;
+}
+
+.systemsBlueprintCrossTwo {
+  right: 12%;
+  bottom: 19%;
+
+  opacity: 0.2;
+}
+
+.systemsBlueprintAxis {
+  position: absolute;
+
+  pointer-events: none;
+
+  opacity: 0.28;
+}
+
+.systemsBlueprintAxisX {
+  left: 34%;
+  top: 44%;
+
+  width: 58%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(
+        255,
+        157,
+        50,
+        0.1
+      ),
+      transparent
+    );
+}
+
+.systemsBlueprintAxisY {
+  left: 68%;
+  top: 8%;
+
+  width: 1px;
+  height: 66%;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(
+        255,
+        157,
+        50,
+        0.08
+      ),
+      transparent
+    );
+}
+
+.systemsArchitecture :global(.page-container) {
+  position: relative;
+
+  z-index: 2;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Systems header                                                             */
+/* -------------------------------------------------------------------------- */
+
+.systemsHeader {
+  display:
+    flex;
+
+  align-items:
+    flex-end;
+
+  justify-content:
+    space-between;
+
+  gap:
+    44px;
+}
+
+.systemsHeaderCopy {
+  min-width:
+    0;
+}
+
+.systemsTitle {
+  margin-top:
+    10px;
+}
+
+.systemsLead {
+  max-width:
+    650px;
+
+  margin-top:
+    22px;
+
+  white-space:
+    normal;
+
+  overflow-wrap:
+    break-word;
+
+  word-spacing:
+    0.025em;
+}
+
+.systemsStatus {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    9px;
+
+  flex:
+    0 0 auto;
+
+  padding-bottom:
+    5px;
+
+  color:
+    var(--text-muted);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    9px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.15em;
+
+  text-transform:
+    uppercase;
+}
+
+.systemsStatusDot {
+  width:
+    7px;
+
+  height:
+    7px;
+
+  border-radius:
+    50%;
+
+  background:
+    #ff9d32;
+
+  box-shadow:
+    0 0 10px
+      rgba(
+        255,
+        157,
+        50,
+        0.55
+      );
+
+  animation:
+    systemsStatusPulse
+    2.6s
+    ease-in-out
+    infinite;
+}
+
+@keyframes systemsStatusPulse {
+  0%,
+  100% {
+    opacity:
+      0.3;
+
+    transform:
+      scale(
+        0.8
+      );
+  }
+
+  50% {
+    opacity:
+      1;
+
+    transform:
+      scale(
+        1.12
+      );
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Systems modules                                                            */
+/* -------------------------------------------------------------------------- */
+
+.systemsModules {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    14px;
+
+  margin-top:
+    72px;
+}
+
+.systemsModule {
+  min-width:
+    0;
+}
+
+.systemsModuleFrame {
+  position:
+    relative;
+
+  min-height:
+    390px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  padding:
+    28px;
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.075
+    );
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(
+        16,
+        17,
+        22,
+        0.84
+      ),
+      rgba(
+        7,
+        8,
+        11,
+        0.88
+      )
+    );
+
+  box-shadow:
+    0 24px 60px
+      rgba(
+        0,
+        0,
+        0,
+        0.22
+      );
+
+  isolation:
+    isolate;
+
+  transition:
+    border-color
+      180ms ease,
+    transform
+      220ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+    background
+      180ms ease;
+}
+
+/*
+ * Hover affordance exists ONLY on modules with a real article
+ * destination (the whole card is a Link). REP and USEF are
+ * informational panels and must not look clickable.
+ */
+.systemsModule[data-article="true"]:hover
+.systemsModuleFrame {
+  transform:
+    translateY(
+      -4px
+    );
+
+  border-color:
+    rgba(
+      255,
+      157,
+      50,
+      0.18
+    );
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(
+        18,
+        20,
+        26,
+        0.88
+      ),
+      rgba(
+        7,
+        8,
+        11,
+        0.91
+      )
+    );
+}
+
+.systemsModuleFrame::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  left:
+    0;
+
+  top:
+    0;
+
+  width:
+    2px;
+
+  height:
+    100%;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ff9d32,
+      transparent
+    );
+
+  opacity:
+    0.72;
+}
+
+.systemsModuleCorner {
+  position:
+    absolute;
+
+  width:
+    12px;
+
+  height:
+    12px;
+
+  opacity:
+    0.45;
+
+  pointer-events:
+    none;
+}
+
+.systemsModuleCorner::before,
+.systemsModuleCorner::after {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  background:
+    rgba(
+      255,
+      157,
+      50,
+      0.42
+    );
+}
+
+.systemsModuleCorner::before {
+  width:
+    100%;
+
+  height:
+    1px;
+}
+
+.systemsModuleCorner::after {
+  width:
+    1px;
+
+  height:
+    100%;
+}
+
+.systemsModuleCornerTl {
+  left:
+    10px;
+
+  top:
+    10px;
+}
+
+.systemsModuleCornerTr {
+  right:
+    10px;
+
+  top:
+    10px;
+
+  transform:
+    rotate(
+      90deg
+    );
+}
+
+.systemsModuleCornerBl {
+  left:
+    10px;
+
+  bottom:
+    10px;
+
+  transform:
+    rotate(
+      -90deg
+    );
+}
+
+.systemsModuleCornerBr {
+  right:
+    10px;
+
+  bottom:
+    10px;
+
+  transform:
+    rotate(
+      180deg
+    );
+}
+
+.systemsModuleIndex {
+  color:
+    rgba(
+      255,
+      157,
+      50,
+      0.58
+    );
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    9px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.12em;
+}
+
+.systemsModuleRole {
+  align-self:
+    flex-end;
+
+  margin-top:
+    -2px;
+
+  color:
+    var(--text-muted);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    7px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.13em;
+
+  text-transform:
+    uppercase;
+}
+
+.systemsModuleCore {
+  margin-top:
+    auto;
+
+  padding:
+    34px 0 26px;
+}
+
+.systemsModuleCode {
+  display:
+    block;
+
+  color:
+    var(--text);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    clamp(
+      15px,
+      1.5vw,
+      20px
+    );
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.045em;
+
+  line-height:
+    1.2;
+}
+
+.systemsModuleLayer {
+  display:
+    block;
+
+  margin-top:
+    8px;
+
+  color:
+    rgba(
+      255,
+      157,
+      50,
+      0.62
+    );
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    8px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.13em;
+
+  line-height:
+    1.4;
+
+  text-transform:
+    uppercase;
+}
+
+.systemsModuleCore h2 {
+  max-width:
+    320px;
+
+  margin:
+    18px 0 0;
+
+  color:
+    var(--text);
+
+  font-size:
+    clamp(
+      1.55rem,
+      2.4vw,
+      2.25rem
+    );
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    -0.04em;
+
+  line-height:
+    1.04;
+
+  text-wrap:
+    pretty;
+}
+
+.systemsModuleCopy {
+  max-width:
+    420px;
+
+  margin:
+    0;
+
+  color:
+    var(--text-muted);
+
+  font-size:
+    13px;
+
+  line-height:
+    1.75;
+
+  white-space:
+    normal;
+
+  word-spacing:
+    0.025em;
+
+  overflow-wrap:
+    break-word;
+}
+
+/*
+ * Article hint inside the module card. The card itself is the link
+ * (see .systemsModule), so this is emphasis text — its hover
+ * transition is kept as part of the card's interactive language.
+ */
+.systemsModuleLink {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    10px;
+
+  margin-top:
+    18px;
+
+  color:
+    var(--red);
+
+  font-family:
+    var(--font-mono);
+
+  font-size:
+    9px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    color
+      180ms ease,
+    gap
+      180ms ease;
+}
+
+@media (hover: hover) {
+  .systemsModule[data-article="true"]:hover
+  .systemsModuleLink {
+    color:
+      var(--text);
+
+    gap:
+      16px;
+  }
+}
+
+/*
+ * Keyboard focus on the card link itself: the module is the
+ * interactive element, so the focus ring belongs on the card.
+ */
+.systemsModule:focus-visible {
+  outline:
+    1px solid
+    rgba(
+      255,
+      157,
+      50,
+      0.6
+    );
+
+  outline-offset:
+    4px;
+}
+
+.systemsModuleLine {
+  position:
+    relative;
+
+  height:
+    1px;
+
+  margin-top:
+    28px;
+
+  overflow:
+    hidden;
+
+  background:
+    rgba(
+      255,
+      157,
+      50,
+      0.08
+    );
+}
+
+.systemsModuleLine span {
+  position:
+    absolute;
+
+  left:
+    0;
+
+  top:
+    0;
+
+  width:
+    28%;
+
+  height:
+    1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(
+        255,
+        157,
+        50,
+        0.64
+      ),
+      transparent
+    );
+
+  animation:
+    systemsModuleScan
+    4.4s
+    linear
+    infinite;
+}
+
+@keyframes systemsModuleScan {
+  from {
+    transform:
+      translateX(
+        -140%
+      );
+  }
+
+  to {
+    transform:
+      translateX(
+        460%
+      );
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Systems principle                                                          */
+/* -------------------------------------------------------------------------- */
+
+.systemsPrinciple {
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      0.82fr
+    )
+    minmax(
+      0,
+      1.18fr
+    );
+
+  align-items:
+    end;
+
+  gap:
+    64px;
+
+  margin-top:
+    112px;
+
+  padding:
+    80px 0 28px;
+
+  border-top:
+    1px solid
+    var(--line);
+}
+
+.systemsPrincipleHeading {
+  min-width:
+    0;
+}
+
+.systemsPrincipleCopy {
+  max-width:
+    700px;
+
+  justify-self:
+    end;
+
+  white-space:
+    normal;
+
+  word-spacing:
+    0.025em;
+
+  overflow-wrap:
+    break-word;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Responsive                                                                 */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 1000px) {
+  .systemsModules {
+    grid-template-columns:
+      1fr;
+  }
+
+  .systemsModuleFrame {
+    min-height:
+      320px;
+  }
+
+  .systemsModuleCore {
+    padding:
+      28px 0 20px;
+  }
+
+  .systemsPrinciple {
+    grid-template-columns:
+      1fr;
+  }
+
+  .systemsPrincipleCopy {
+    justify-self:
+      start;
+  }
+}
+
+@media (max-width: 760px) {
+  .systemsHeader {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap:
+      20px;
+  }
+
+  .systemsStatus {
+    padding-bottom:
+      0;
+  }
+
+  .systemsModules {
+    margin-top:
+      56px;
+  }
+
+  .systemsModuleFrame {
+    min-height:
+      300px;
+
+    padding:
+      23px;
+  }
+
+  .systemsModuleCore {
+    padding:
+      25px 0 18px;
+  }
+
+  .systemsPrinciple {
+    margin-top:
+      82px;
+
+    padding-top:
+      58px;
+  }
+}
+
+@media (max-width: 560px) {
+  .systemsModuleFrame {
+    min-height:
+      280px;
+
+    padding:
+      20px;
+  }
+
+  .systemsModuleRole {
+    font-size:
+      6px;
+  }
+
+  .systemsModuleCode {
+    font-size:
+      14px;
+  }
+
+  .systemsModuleLayer {
+    font-size:
+      7px;
+  }
+
+  .systemsModuleCore h2 {
+    font-size:
+      1.45rem;
+  }
+
+  .systemsModuleCopy {
+    font-size:
+      11px;
+
+    line-height:
+      1.7;
+  }
+
+  .systemsBlueprintGrid {
+    background-size:
+      30px 30px;
+  }
+
+  .systemsBlueprintAxisX {
+    left:
+      24%;
+
+    width:
+      76%;
+  }
+
+  .systemsBlueprintAxisY {
+    left:
+      76%;
+  }
+}
+
+/*
+ * Reduced motion (v2.8): the status pulse and the module scan sweep
+ * stop for readers who ask the OS for reduced motion. Static tints
+ * remain, so no information is carried by the animation alone.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .systemsStatusDot,
+  .systemsModuleLine span {
+    animation: none;
+  }
+}
