@@ -2,7 +2,7 @@
   "$comment": "CANONICAL ROUTE/CONTENT REGISTRY (Runtime v2 / SEO v2). One authoritative description of every public route on WEB: identity, SEO metadata expectations, sitemap policy, structured-data expectations, navigation surfaces, and topic-hub relationships. CONSUMERS: scripts/build-blog.mjs (sitemap emission), scripts/verify-seo.mjs (route verification + graph depth), lib/routes.ts (typed app-side loader — lib/hubs.ts and lib/navigation.ts derive their route facts from here). LAWS: (1) This file is the only manually maintained route list — build-blog.mjs's sitemap and verify-seo.mjs's route table both derive from it, so the sitemap can never disagree with the verified route set. (2) lastmod values are content-revision dates bumped ONLY when a route's substantive content changes — never the build date, never 'today'; fake freshness is banned. (3) Articles are NOT listed here: they derive from content/blog/*.md through the blog pipeline (data/blog/posts.json is their registry); the registry declares the dynamic route family once under dynamicFamilies. (4) World-shell hash scenes are interaction states, not documents — they are listed under scenes for link validation and are never sitemap entries. (5) No query/filter URLs: Blog filter state (/?type=…) is view state, not a canonical document.",
   "site": {
     "name": "Parsa Tak",
-    "origin": "https://parsaetak.github.io/WEB",
+    "origin": "https://SHEYTANx13.github.io/WEB",
     "basePath": "/WEB",
     "basePathEnv": "GITHUB_ACTIONS",
     "titleSuffix": "— Parsa Tak"
