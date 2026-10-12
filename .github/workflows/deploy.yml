@@ -209,7 +209,7 @@ jobs:
           base_url="${PAGE_URL%/}"
 
           if [ -z "${base_url}" ]; then
-            base_url="https://parsaetak.github.io/WEB"
+            base_url="https://sheytanx13.github.io/WEB"
           fi
 
           verify_url="${base_url}/deployments/${EXPECTED_SHA}.json"
