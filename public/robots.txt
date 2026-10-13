@@ -1,6 +1,6 @@
 # robots.txt — Parsa Tak (WEB)
 #
-# Production site: https://parsaetak.github.io/WEB/
+# Production site: https://sheytanx13.github.io/WEB/
 #
 # All public canonical routes are crawlable: the home world shell (/),
 # the content documents (/about/, /work/, /research/, /contact/), the
@@ -21,4 +21,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://parsaetak.github.io/WEB/sitemap.xml
+Sitemap: https://sheytanx13.github.io/WEB/sitemap.xml
