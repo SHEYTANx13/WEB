@@ -11,6 +11,8 @@ import RouteProgress from "@/components/RouteProgress";
 
 import RedCursor from "@/components/RedCursor";
 
+import { ROUTE_REGISTRY } from "@/lib/routes";
+
 import {
   HOME_TITLE,
   JsonLd,
@@ -90,15 +92,14 @@ export const metadata: Metadata = {
   ],
   metadataBase:
     new URL(
-      "https://parsaetak.github.io/WEB/"
+      `${ROUTE_REGISTRY.site.origin}/`
     ),
   alternates: {
     canonical: "/"
   },
   openGraph: {
     type: "website",
-    url:
-      "https://parsaetak.github.io/WEB/",
+    url: `${ROUTE_REGISTRY.site.origin}/`,
     title: HOME_TITLE,
     description: SITE_DESCRIPTION,
     siteName: SITE_NAME,
