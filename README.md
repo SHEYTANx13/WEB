@@ -2,8 +2,8 @@
 
 A statically exported Next.js portfolio that behaves like a living system: five hash-navigated scenes, a markdown-driven blog, a generated SEO graph, and a canvas organism that loads only when the browser can afford it — plus a connected knowledge base of real, indexable topic documents.
 
-**Live Site:** https://parsaetak.github.io/WEB/
-**Repository:** https://github.com/Parsaetak/WEB
+**Live Site:** https://sheytanx13.github.io/WEB/
+**Repository:** https://github.com/SHEYTANx13/WEB
 
 ---
 
@@ -98,11 +98,11 @@ RED MAGIC is the site's living-layer experiment: a canvas-based computational or
 
 | Project | What it is | Where |
 | --- | --- | --- |
-| **SHEYTAN** | A local-first AI laboratory: managed llama.cpp (local LLM runtime) inference, a real agent loop, isolated coding workspaces, objective verification | [GitHub repository](https://github.com/Parsaetak/SHEYTAN-local-agent) + [field notes](https://parsaetak.github.io/WEB/blog/sheytan-the-local-first-laboratory/) |
-| **UHIT** | The Universal Human Intelligence Test — measurement programme realised as the AIST-2026.09 standard and the ASI-100-Elite benchmark | [Specifications](https://github.com/Parsaetak/Contents/tree/AI-Tests) + [article](https://parsaetak.github.io/WEB/blog/measuring-machine-intelligence/) |
-| **FreeIran** | Free, open-source VPN configuration manager for Windows: a Go multi-core runtime that discovers, tests, maintains, and runs public proxy configurations | [GitHub repository](https://github.com/Parsaetak/FreeIran) + [engineering notes](https://parsaetak.github.io/WEB/blog/freeiran-engineering-notes/) |
-| **RED MAGIC** | The living canvas organism experiment hosted by this website | [Live experiment](https://parsaetak.github.io/WEB/#magic) + [article](https://parsaetak.github.io/WEB/blog/why-the-website-is-a-living-system/) |
-| **WEB** | This website itself — a statically exported living system | [This repository](https://github.com/Parsaetak/WEB) + [how it works](https://parsaetak.github.io/WEB/blog/the-anatomy-of-a-fast-static-site/) |
+| **SHEYTAN** | A local-first AI laboratory: managed llama.cpp (local LLM runtime) inference, a real agent loop, isolated coding workspaces, objective verification | [GitHub repository](https://github.com/Parsaetak/SHEYTAN-local-agent) + [field notes](https://sheytanx13.github.io/WEB/blog/sheytan-the-local-first-laboratory/) |
+| **UHIT** | The Universal Human Intelligence Test — measurement programme realised as the AIST-2026.09 standard and the ASI-100-Elite benchmark | [Specifications](https://github.com/Parsaetak/Contents/tree/AI-Tests) + [article](https://sheytanx13.github.io/WEB/blog/measuring-machine-intelligence/) |
+| **FreeIran** | Free, open-source VPN configuration manager for Windows: a Go multi-core runtime that discovers, tests, maintains, and runs public proxy configurations | [GitHub repository](https://github.com/Parsaetak/FreeIran) + [engineering notes](https://sheytanx13.github.io/WEB/blog/freeiran-engineering-notes/) |
+| **RED MAGIC** | The living canvas organism experiment hosted by this website | [Live experiment](https://sheytanx13.github.io/WEB/#magic) + [article](https://sheytanx13.github.io/WEB/blog/why-the-website-is-a-living-system/) |
+| **WEB** | This website itself — a statically exported living system | [This repository](https://github.com/SHEYTANx13/WEB) + [how it works](https://sheytanx13.github.io/WEB/blog/the-anatomy-of-a-fast-static-site/) |
 
 ## Experience architecture
 
