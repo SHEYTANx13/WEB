@@ -37,7 +37,7 @@ export const SITE_NAME =
  * publisher entities, and BlogPosting author objects so identity is
  * spelled identically everywhere.
  */
-export const PERSON_NAME = "Parsa Tak";
+export const PERSON_NAME = "SHEYTAN";
 
 export const SITE_DESCRIPTION =
   "Independent software engineer, product builder, and AI systems researcher — an evolving laboratory for AI systems, local AI agents, reasoning, evaluation, software engineering, and creative technology. Home of SHEYTAN, UHIT, FreeIran, and RED MAGIC.";
@@ -56,7 +56,7 @@ export const SITE_IN_LANGUAGE = "en";
  * discovery surface.
  */
 export const HOME_TITLE =
-  "Parsa Tak — Software Engineer, Product Builder & AI Systems Researcher";
+  "SHEYTAN — Software Engineer, Product Builder & AI Systems Researcher";
 
 /*
  * Author tagline (v3.2) — one factual wording shared by the
@@ -90,7 +90,7 @@ export const SITE_OG_IMAGE_WIDTH = 1200;
 export const SITE_OG_IMAGE_HEIGHT = 630;
 
 /*
- * Public profile URLs that legitimately identify "Parsa Tak" on
+ * Public profile URLs that legitimately identify "SHEYTAN" on
  * external services. Selected by id from lib/links.ts (the site's
  * link source of truth) so this list can never drift from what the
  * site actually publishes. Contact channels (email, PayPal,
@@ -144,7 +144,7 @@ export function personEntity() {
   return {
     "@type": "Person",
     "@id": PERSON_ID,
-    name: "Parsa Tak",
+    name: "SHEYTAN",
     url: `${SITE_URL}/`,
     description:
       "Independent software engineer, product builder, and AI systems researcher. Builder of the SHEYTAN local-agent laboratory, the UHIT/AIST measurement programme, the FreeIran VPN manager, and the RED MAGIC experiments; author of the AI Instructions, REP, and USEF framework family.",
@@ -199,7 +199,7 @@ export function homeWebPageEntity() {
     url: `${SITE_URL}/`,
     name: HOME_TITLE,
     description:
-      "Parsa Tak — researcher, builder, programmer, writer, and artist working on AI systems, reasoning frameworks, local AI agents, software engineering, and creative technology. Featured systems: SHEYTAN Local Agent, UHIT, FreeIran, and RED MAGIC.",
+      "SHEYTAN — researcher, builder, programmer, writer, and artist working on AI systems, reasoning frameworks, local AI agents, software engineering, and creative technology. Featured systems: SHEYTAN Local Agent, UHIT, FreeIran, and RED MAGIC.",
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": PERSON_ID },
     inLanguage: SITE_IN_LANGUAGE

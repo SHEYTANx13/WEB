@@ -73,25 +73,26 @@ export const BACKGROUND_IDLE_TIMEOUT_MS = 1800;
 export const SCENE_OVERLAY_DELAY_MS = 180;
 
 /*
- * ROUTE PROGRESS TIMING (v4.0.5).
+ * ROUTE PROGRESS TIMING (v4.0.6).
  *
  * Document-route navigation (App Router) shows the tiny top
- * progress line (components/RouteProgress.tsx) through two bounds
+ * progress signal (components/RouteProgress.tsx) through two bounds
  * owned here so the host and its tests agree:
  *
  * - ROUTE_PROGRESS_GRACE_MS is the GRACE PERIOD between the
  *   navigation intent (the navigation island's click) and the
- *   moment the 2px line may appear. Warmed/cached/fast routes
- *   commit well inside this window and never show anything; a
- *   navigation that is still in flight after it reveals the line
- *   until the destination is actually ready. The mechanism NEVER
- *   delays a route to make itself visible — it is display-only
+ *   moment the 3px layered signal (breathing track + glowing
+ *   segment) may appear. Warmed/cached/fast routes commit well
+ *   inside this window and never show anything; a navigation that
+ *   is still in flight after it reveals the signal until the
+ *   destination is actually ready. The mechanism NEVER delays a
+ *   route to make itself visible — it is display-only
  *   (pointer-events: none).
  *
  * - ROUTE_PROGRESS_CAP_MS is a safety cap, not a duration: if a
  *   navigation silently dies (offline fetch, aborted render), the
- *   line clears itself instead of becoming a zombie. A committed
- *   route always dismisses the line earlier through the pathname
+ *   signal clears itself instead of becoming a zombie. A committed
+ *   route always dismisses the signal earlier through the pathname
  *   effect.
  *
  * Both values are documented constants (like

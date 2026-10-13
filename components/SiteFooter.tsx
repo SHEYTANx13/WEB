@@ -25,8 +25,8 @@ import SiteDocNav from "@/components/SiteDocNav";
  *   3. footerLegal       the legal notice + LICENSE / TRADEMARKS,
  *                        visually secondary
  *   4. footerBottom      the BOTTOM-MOST identity row: the 13-point
- *                        star, © 2026 Parsa Tak. All rights
- *                        reserved., Parsa Tak™
+ *                        star, © 2026 SHEYTAN. All rights
+ *                        reserved., SHEYTAN™
  *
  * The copyright/trademark identity row moved OUT of the public-
  * network meta row to the bottom of the stack (v4.0.5) — the exact
@@ -91,7 +91,7 @@ export default function SiteFooter() {
             Original website design, visual identity,
             writing, artwork, and other original creative
             materials presented on this website are the
-            work of Parsa Tak and may not be reproduced,
+            work of SHEYTAN and may not be reproduced,
             redistributed, modified, or commercially
             exploited without prior written permission,
             except where a specific material states otherwise.
@@ -99,7 +99,7 @@ export default function SiteFooter() {
 
           <div className={styles.footerLegalLinks}>
             <a
-              href="https://github.com/Parsaetak/WEB/blob/main/LICENSE.md"
+              href="https://github.com/SHEYTANx13/WEB/blob/main/LICENSE.md"
               target="_blank"
               rel="noreferrer"
             >
@@ -107,7 +107,7 @@ export default function SiteFooter() {
             </a>
 
             <a
-              href="https://github.com/Parsaetak/WEB/blob/main/TRADEMARKS.md"
+              href="https://github.com/SHEYTANx13/WEB/blob/main/TRADEMARKS.md"
               target="_blank"
               rel="noreferrer"
             >
@@ -143,11 +143,11 @@ export default function SiteFooter() {
           </span>
 
           <strong className={styles.footerCopyright}>
-            © 2026 Parsa Tak. All rights reserved.
+            © 2026 SHEYTAN. All rights reserved.
           </strong>
 
           <span className={styles.footerTrademark}>
-            Parsa Tak™
+            SHEYTAN™
           </span>
         </div>
       </div>

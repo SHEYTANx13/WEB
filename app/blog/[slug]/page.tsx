@@ -110,7 +110,7 @@ function socialImage(post: NonNullable<ReturnType<typeof getPost>>) {
 
   return {
     url: SITE_OG_IMAGE_PATH,
-    alt: `${post.title} — Parsa Tak`,
+    alt: `${post.title} — SHEYTAN`,
     width: SITE_OG_IMAGE_WIDTH,
     height: SITE_OG_IMAGE_HEIGHT
   };

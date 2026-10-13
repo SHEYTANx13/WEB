@@ -16,7 +16,7 @@ export const metadata: Metadata = contentRouteMetadata({
   route: hub.slug,
   title: hub.metaTitle,
   description: hub.metaDescription,
-  ogAlt: "AI evaluation and benchmarks by Parsa Tak — UHIT, AIST-2026.09, ASI-100-Elite, verification-first measurement"
+  ogAlt: "AI evaluation and benchmarks by SHEYTAN — UHIT, AIST-2026.09, ASI-100-Elite, verification-first measurement"
 });
 
 export default function AiEvaluationHubPage() {

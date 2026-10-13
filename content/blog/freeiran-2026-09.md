@@ -4,7 +4,7 @@ subtitle: "System-wide tunneling through the managed sing-box core — and an ev
 excerpt: "The September research line of FreeIran delivers functional Windows TUN through the managed sing-box core's native dataplane, hardens the activation gate until it fails closed, repairs the Windows GUI startup defect at the root, and proves the repair with a launch test that demands a visible window — not a live process."
 description: "FreeIran September research: system-wide TUN through the managed sing-box core, a fail-closed activation gate, and the evidence ladder keeping claims honest."
 date: "2026-09-29"
-author: "Parsa Tak"
+author: "SHEYTAN"
 category: "research"
 type: "research"
 tags: ["FreeIran", "TUN", "sing-box", "networking", "Go", "verification", "Windows", "2026"]
@@ -33,7 +33,7 @@ The hardening release replaced the two weak observations the first gate accepted
 
 ## The evidence ladder
 
-What makes TUN mode research rather than a feature announcement is [the evidence ladder](https://github.com/Parsaetak/FreeIran/blob/main/docs/tun.md) in docs/tun.md, where each class is stated at exactly the level actually proven and classes are not interchangeable. Generated-config verification: VERIFIED — the complete TUN document passes `sing-box check` of the real pinned 1.14.1 binary. Linux/unit verification: VERIFIED against deterministic seams. Windows compile verification: VERIFIED. Windows CI behavioural verification: EXECUTED BY CI, which runs no privileged TUN operation. Physical elevated Windows TUN runtime: **NOT VERIFIED** — and the repository deliberately does not claim it. **(Fact.)**
+What makes TUN mode research rather than a feature announcement is [the evidence ladder](https://github.com/SHEYTANx13/FreeIran/blob/main/docs/tun.md) in docs/tun.md, where each class is stated at exactly the level actually proven and classes are not interchangeable. Generated-config verification: VERIFIED — the complete TUN document passes `sing-box check` of the real pinned 1.14.1 binary. Linux/unit verification: VERIFIED against deterministic seams. Windows compile verification: VERIFIED. Windows CI behavioural verification: EXECUTED BY CI, which runs no privileged TUN operation. Physical elevated Windows TUN runtime: **NOT VERIFIED** — and the repository deliberately does not claim it. **(Fact.)**
 
 **(Analysis)** this ladder is the laboratory's [measurement discipline](/research/) applied to a network daemon: evidence classes are not interchangeable, and a claim that cannot name its class is not a claim — it is marketing. FreeIran would rather ship a smaller truth than a larger fiction.
 
@@ -45,6 +45,6 @@ The proof is the part worth stealing: a new Windows-only test launches the ACTUA
 
 ## Why this belongs here
 
-FreeIran carries the laboratory's constitution into the [hardest environment it builds for](/blog/building-under-constraints/): unreliable networks, restricted connectivity, and a Windows host it does not romanticise. The unified adaptive memory controller samples real measurements every two seconds and adapts within hard floors and ceilings with hysteresis; process supervision is kernel-level — job objects, so no orphan core survives; the [software engineering](/software-engineering/) through-line is the same as everywhere else in [Selected Work](/work/): bounded resources, explicit state machines, honest tests. **(Fact.)** The questions behind the engineering sit in the [research programme](/research/). The repository is public: [github.com/Parsaetak/FreeIran](https://github.com/Parsaetak/FreeIran).
+FreeIran carries the laboratory's constitution into the [hardest environment it builds for](/blog/building-under-constraints/): unreliable networks, restricted connectivity, and a Windows host it does not romanticise. The unified adaptive memory controller samples real measurements every two seconds and adapts within hard floors and ceilings with hysteresis; process supervision is kernel-level — job objects, so no orphan core survives; the [software engineering](/software-engineering/) through-line is the same as everywhere else in [Selected Work](/work/): bounded resources, explicit state machines, honest tests. **(Fact.)** The questions behind the engineering sit in the [research programme](/research/). The repository is public: [github.com/SHEYTANx13/FreeIran](https://github.com/SHEYTANx13/FreeIran).
 
 Access to information is a precondition for everything else this laboratory builds — and now the tunnel, the memory controller, and the claims about them all obey one law: nothing is Active until it is observed.

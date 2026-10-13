@@ -202,7 +202,7 @@ describe("the work catalogue is unified", () => {
 
     assert.doesNotMatch(
       scene,
-      /github\.com\/Parsaetak/,
+      /github\.com\/(Parsaetak|SHEYTANx13)/,
       "no hardcoded project URLs in the scene — every link comes from the registry"
     );
   });
@@ -336,7 +336,7 @@ describe("the 404 is a real static document", () => {
     const metadata = notFound;
     assert.match(
       metadata,
-      /title: "Page not found — Parsa Tak"/,
+      /title: "Page not found — SHEYTAN"/,
       "proper document title"
     );
   });
@@ -498,7 +498,7 @@ describe("CI and the local commands describe the real pipeline", () => {
 
     assert.equal(
       pkg.version,
-      "4.0.5",
+      "4.0.6",
       "the package version matches this release"
     );
   });

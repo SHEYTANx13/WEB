@@ -105,6 +105,14 @@ describe("RouteProgress is the one route navigation signal", () => {
     assert.match(loadPhase, /export const ROUTE_PROGRESS_GRACE_MS = \d+/);
     assert.match(loadPhase, /export const ROUTE_PROGRESS_CAP_MS = \d+/);
 
+    /*
+     * v4.0.6: the exact contract values are pinned — the grace window
+     * must stay short enough that warmed navigations never see the
+     * signal, and the cap long enough to outlive any real navigation.
+     */
+    assert.match(loadPhase, /export const ROUTE_PROGRESS_GRACE_MS = 150/);
+    assert.match(loadPhase, /export const ROUTE_PROGRESS_CAP_MS = 10000/);
+
     assert.match(host, /ROUTE_PROGRESS_GRACE_MS/);
     assert.match(host, /ROUTE_PROGRESS_CAP_MS/);
     assert.doesNotMatch(
@@ -188,6 +196,209 @@ describe("RouteProgress is the one route navigation signal", () => {
 
     assert.ok(sweep, "the sweep keyframes exist");
     assert.match(sweep[1], /translateX/, "compositor-only motion");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* 2b. The v4.0.6 layered signal: track + segment, compositor-only     */
+/* ------------------------------------------------------------------ */
+
+describe("the v4.0.6 signal is a layered, compositor-only treatment", () => {
+  it("the signal is a thin layered track + segment (3px, ::before + ::after)", async () => {
+    const css = await readText("components/RouteProgress.module.css");
+
+    /* Thin, top-of-viewport, fixed. */
+    assert.match(css, /height:\s*3px/);
+    assert.match(css, /position:\s*fixed/);
+    assert.match(css, /top:\s*0/);
+
+    /* The two layers exist: a full-width track and a moving segment. */
+    assert.match(
+      css,
+      /\.routeProgress::before/,
+      "the track layer exists"
+    );
+    assert.match(
+      css,
+      /\.routeProgress::after/,
+      "the segment layer exists"
+    );
+
+    /* Both layers animate ONLY through transform/opacity. */
+    const beforeBlock = css.slice(
+      css.indexOf(".routeProgress::before"),
+      css.indexOf(".routeProgress::after")
+    );
+
+    assert.doesNotMatch(
+      beforeBlock,
+      /width:|left:|right:|top:|bottom:/,
+      "the track never animates layout properties"
+    );
+  });
+
+  it("the segment accelerates with a transform-only timeline (translateX + scaleX)", async () => {
+    const css = await readText("components/RouteProgress.module.css");
+
+    const sweep = css.match(
+      /@keyframes\s+routeProgressSweep\s*\{([\s\S]*?)\n\}/
+    );
+
+    assert.ok(sweep, "the sweep keyframes exist");
+    assert.match(sweep[1], /translateX/, "horizontal travel");
+    assert.match(sweep[1], /scaleX/, "the launch stretch");
+    assert.doesNotMatch(
+      sweep[1],
+      /width|left|margin|top/,
+      "no layout property inside the timeline"
+    );
+  });
+
+  it("the track breathes through an opacity-only pulse", async () => {
+    const css = await readText("components/RouteProgress.module.css");
+
+    const breathe = css.match(
+      /@keyframes\s+routeProgressBreathe\s*\{([\s\S]*?)\n\}/
+    );
+
+    assert.ok(breathe, "the breathe keyframes exist");
+    assert.match(breathe[1], /opacity/, "opacity pulse");
+    assert.doesNotMatch(
+      breathe[1],
+      /transform|width|left|top/,
+      "the pulse never moves layout or geometry"
+    );
+
+    /* The pulse runs only under no-preference and only while active. */
+    const noPreference = css.slice(
+      css.indexOf("prefers-reduced-motion: no-preference")
+    );
+
+    assert.match(
+      noPreference,
+      /routeProgress\[data-active="true"\]::before[\s\S]*?routeProgressBreathe/,
+      "the track pulse is gated on the active state and motion preference"
+    );
+  });
+
+  it("reduced motion fully de-animates both layers", async () => {
+    const css = await readText("components/RouteProgress.module.css");
+
+    const reduced = css.slice(
+      css.indexOf("prefers-reduced-motion: reduce")
+    );
+
+    assert.match(
+      reduced,
+      /\.routeProgress\[data-active="true"\]::before\s*\{[^}]*animation:\s*none/,
+      "the track pulse stops"
+    );
+
+    assert.match(
+      reduced,
+      /\.routeProgress\[data-active="true"\]::after\s*\{[^}]*transform:\s*none/,
+      "the segment collapses to a static line"
+    );
+  });
+
+  it("the reveal-js gate still guards visibility in the static export", async () => {
+    const css = await readText("components/RouteProgress.module.css");
+
+    assert.match(
+      css,
+      /:global\(html\.reveal-js\)\s*\n?\s*\.routeProgress\[data-active="true"\]/,
+      "visibility rides the reveal-js gate"
+    );
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* 2c. Surface-ready reveals: ContentShell + scene loader (v4.0.6)     */
+/* ------------------------------------------------------------------ */
+
+describe("surface-ready entry reveals are CSS-only and reduced-motion safe", () => {
+  it("every ContentShell document settles in once, gated by reveal-js and reduced motion", async () => {
+    const css = await readText("components/content/content.module.css");
+
+    const surfaceReady = css.indexOf("contentSurfaceReady");
+
+    assert.ok(surfaceReady !== -1, "the surface-ready animation exists");
+
+    const gated = css.slice(0, surfaceReady);
+
+    assert.match(
+      gated,
+      /:global\(html\.reveal-js\)\s+\.main/,
+      "the reveal is gated behind the reveal-js class"
+    );
+
+    const reduced = css.slice(css.indexOf("prefers-reduced-motion: reduce"));
+
+    assert.match(
+      reduced,
+      /:global\(html\.reveal-js\) \.main\s*\{[^}]*animation:\s*none/,
+      "reduced motion disables the entry reveal"
+    );
+
+    /* Compositor-only keyframes: opacity + transform, nothing else. */
+    const keyframes = css.match(
+      /@keyframes\s+contentSurfaceReady\s*\{([\s\S]*?)\n\}/
+    );
+
+    assert.ok(keyframes, "the keyframes exist");
+    assert.match(keyframes[1], /opacity/);
+    assert.match(keyframes[1], /translate3d/);
+    assert.doesNotMatch(keyframes[1], /width|height|left|top|margin/);
+  });
+
+  it("the scene loader arrival is one-shot, visible-state-gated, and reduced-motion safe", async () => {
+    const css = await readText("components/SceneLoadingScreen.module.css");
+
+    /* The scene variant's content reveal starts only when visible. */
+    assert.match(
+      css,
+      /\.sceneLoadingScreen\[data-variant="scene"\]\[data-visible="true"\] \.inner\s*\{[^}]*sceneLoadingScreenArrive/,
+      "the arrival runs only on the visible state"
+    );
+
+    assert.match(
+      css,
+      /\.sceneLoadingScreen\[data-variant="scene"\]\[data-visible="true"\] \.mark\s*\{[^}]*sceneLoadingScreenMarkIgnite/,
+      "the star ignition runs only on the visible state"
+    );
+
+    /* Keyframes stay compositor-only. */
+    for (const name of [
+      "sceneLoadingScreenArrive",
+      "sceneLoadingScreenMarkIgnite"
+    ]) {
+      const keyframes = css.match(
+        new RegExp(`@keyframes\\s+${name}\\s*\\{([\\s\\S]*?)\\n\\}`)
+      );
+
+      assert.ok(keyframes, `the ${name} keyframes exist`);
+      assert.match(keyframes[1], /opacity|transform/);
+      assert.doesNotMatch(keyframes[1], /width|height|left|top|margin/);
+    }
+
+    /* Reduced motion disables both. */
+    const reduced = css.slice(css.indexOf("prefers-reduced-motion: reduce"));
+
+    assert.match(
+      reduced,
+      /\[data-variant="scene"\]\[data-visible="true"\] \.inner\s*\{[^}]*animation:\s*none/
+    );
+    assert.match(
+      reduced,
+      /\[data-variant="scene"\]\[data-visible="true"\] \.mark\s*\{[^}]*animation:\s*none/
+    );
+  });
+
+  it("the blog route settle is untouched (one settle per surface, no new overlays)", async () => {
+    const css = await readText("app/blog/template.css");
+
+    assert.match(css, /blog-route-settle/);
+    assert.match(css, /prefers-reduced-motion: reduce/);
   });
 });
 

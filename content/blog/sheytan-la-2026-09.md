@@ -4,7 +4,7 @@ subtitle: "A policy authority that measures the machine, admits against resident
 excerpt: "The September 2026 research release of SHEYTAN-LA adds a Runtime Governor: one resource-state model over measurable facts, admission against resident memory budgets, honest adjustment classes, a self-model with provenance — and two P0 repairs that make pause/resume and abort semantics honest at the root."
 description: "Inside SHEYTAN-LA v1.8.0: a Runtime Governor that admits workloads against resident memory budgets, explains every verdict, and keeps the host responsive."
 date: "2026-09-29"
-author: "Parsa Tak"
+author: "SHEYTAN"
 category: "research"
 type: "research"
 tags: ["SHEYTAN", "SHEYTAN-LA", "local-first", "Runtime Governor", "resource management", "verification", "Go", "2026"]
@@ -21,7 +21,7 @@ cover:
 
 Every agent system eventually collides with the same wall: the machine it runs on. The [SHEYTAN laboratory](/blog/sheytan-the-local-first-laboratory/) has spent its releases building verification gates for the model's work; the September research release (v1.8.0, current) turns the same discipline on the host itself. The headline is a **Runtime Governor** — a policy authority that continuously understands the machine and governs runtime policy while keeping the host responsive. **(Fact — the repository's v1.8.0 documentation.)**
 
-A register note, in the house style: everything below about the system's behaviour is **fact**, checkable in the [public repository](https://github.com/Parsaetak/SHEYTAN-Local-Agent); interpretation is marked as analysis.
+A register note, in the house style: everything below about the system's behaviour is **fact**, checkable in the [public repository](https://github.com/SHEYTANx13/SHEYTAN-Local-Agent); interpretation is marked as analysis.
 
 ## One process, one runtime stack
 
@@ -49,4 +49,4 @@ The abort honesty race: on a canceled run context the orchestrator published `do
 
 The laboratory's evidence model names its classes — deterministic unit, race gate, integration, E2E, CI, real-engine probe, real-host runtime, known limitation — and v1.8.0 keeps every boundary truthful: CPU load is measured on Linux while the Windows seam reports unknown rather than a fabricated utilisation number; the Governor is a policy authority, not yet a full closed-loop actuator; CI is build/test evidence, never physical-host evidence. **(Fact.)**
 
-**(Analysis)** that refusal to flatter itself is the actual research result. A local-first system that admits workloads it cannot measure is a demo; one that refuses until the evidence exists is an instrument. This is why the system anchors the laboratory's [Local AI line](/local-ai/) in [Selected Work](/work/), and why these notes sit inside the [research programme](/research/): the same rule runs through everything I build — the model proposes, the tools execute, the laboratory verifies, and now the runtime governs. The repository is public: [github.com/Parsaetak/SHEYTAN-Local-Agent](https://github.com/Parsaetak/SHEYTAN-Local-Agent).
+**(Analysis)** that refusal to flatter itself is the actual research result. A local-first system that admits workloads it cannot measure is a demo; one that refuses until the evidence exists is an instrument. This is why the system anchors the laboratory's [Local AI line](/local-ai/) in [Selected Work](/work/), and why these notes sit inside the [research programme](/research/): the same rule runs through everything I build — the model proposes, the tools execute, the laboratory verifies, and now the runtime governs. The repository is public: [github.com/SHEYTANx13/SHEYTAN-Local-Agent](https://github.com/SHEYTANx13/SHEYTAN-Local-Agent).

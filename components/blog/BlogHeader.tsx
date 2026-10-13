@@ -70,12 +70,12 @@ export default function BlogHeader() {
         <Link
           className={styles.brand}
           href="/"
-          aria-label="Parsa Tak — back to the world"
+          aria-label="SHEYTAN — back to the world"
         prefetch={false}
         >
           <span className={styles.brandEye} aria-hidden="true">
             {/*
-             * The 13-point star — the Parsa Tak site identity, as a
+             * The 13-point star — the SHEYTAN site identity, as a
              * static asset (no hydration for a logo). The link's
              * aria-label carries the accessible name.
              */}
@@ -90,7 +90,7 @@ export default function BlogHeader() {
           </span>
 
           <span className={styles.brandName}>
-            Parsa Tak
+            SHEYTAN
           </span>
         </Link>
 

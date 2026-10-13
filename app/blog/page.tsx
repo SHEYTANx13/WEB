@@ -74,13 +74,13 @@ export function generateMetadata(): Metadata {
 
   return {
     /*
-     * absolute: the layout's "%s — Parsa Tak" template only applies
+     * absolute: the layout's "%s — SHEYTAN" template only applies
      * to DEEPER segments (article pages), not to this same-segment
      * index page — so the full title is spelled out exactly once
      * here, matching the site's title convention.
      */
     title: {
-      absolute: "Blog — Parsa Tak"
+      absolute: "Laboratory Blog — SHEYTAN"
     },
     description: BLOG_DESCRIPTION,
 
@@ -90,7 +90,7 @@ export function generateMetadata(): Metadata {
 
     openGraph: {
       type: "website",
-      title: "Blog — Parsa Tak",
+      title: "Laboratory Blog — SHEYTAN",
       description: BLOG_DESCRIPTION,
       url: "/blog/",
       images: [
@@ -98,19 +98,19 @@ export function generateMetadata(): Metadata {
           url: SITE_OG_IMAGE_PATH,
           width: SITE_OG_IMAGE_WIDTH,
           height: SITE_OG_IMAGE_HEIGHT,
-          alt: "Parsa Tak — the laboratory's publication and discovery surface"
+          alt: "SHEYTAN — the laboratory's publication and discovery surface"
         }
       ]
     },
 
     twitter: {
       card: "summary_large_image",
-      title: "Blog — Parsa Tak",
+      title: "Laboratory Blog — SHEYTAN",
       description: BLOG_DESCRIPTION,
       images: [
         {
           url: SITE_OG_IMAGE_PATH,
-          alt: "Parsa Tak — the laboratory's publication and discovery surface"
+          alt: "SHEYTAN — the laboratory's publication and discovery surface"
         }
       ]
     }

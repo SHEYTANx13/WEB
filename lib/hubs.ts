@@ -173,7 +173,7 @@ export const HUB_ROUTES: readonly HubDefinition[] = [
         links: [
           {
             label: "SHEYTAN repository on GitHub",
-            href: "https://github.com/Parsaetak/SHEYTAN-local-agent",
+            href: "https://github.com/SHEYTANx13/SHEYTAN-LA",
             external: true
           },
           {
@@ -191,7 +191,7 @@ export const HUB_ROUTES: readonly HubDefinition[] = [
         links: [
           {
             label: "FreeIran repository on GitHub",
-            href: "https://github.com/Parsaetak/FreeIran",
+            href: "https://github.com/SHEYTANx13/FreeIran",
             external: true
           },
           {
@@ -325,7 +325,7 @@ export const HUB_ROUTES: readonly HubDefinition[] = [
         links: [
           {
             label: "SHEYTAN repository on GitHub",
-            href: "https://github.com/Parsaetak/SHEYTAN-local-agent",
+            href: "https://github.com/SHEYTANx13/SHEYTAN-LA",
             external: true
           }
         ]
@@ -441,7 +441,7 @@ export const HUB_ROUTES: readonly HubDefinition[] = [
         links: [
           {
             label: "SHEYTAN repository on GitHub",
-            href: "https://github.com/Parsaetak/SHEYTAN-local-agent",
+            href: "https://github.com/SHEYTANx13/SHEYTAN-LA",
             external: true
           }
         ]
@@ -652,7 +652,7 @@ export const HUB_ROUTES: readonly HubDefinition[] = [
         links: [
           {
             label: "FreeIran repository on GitHub",
-            href: "https://github.com/Parsaetak/FreeIran",
+            href: "https://github.com/SHEYTANx13/FreeIran",
             external: true
           },
           {
@@ -675,7 +675,7 @@ export const HUB_ROUTES: readonly HubDefinition[] = [
           },
           {
             label: "WEB repository on GitHub",
-            href: "https://github.com/Parsaetak/WEB",
+            href: "https://github.com/SHEYTANx13/WEB",
             external: true
           }
         ]

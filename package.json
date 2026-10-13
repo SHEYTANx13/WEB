@@ -1,6 +1,6 @@
 {
-  "name": "parsaetak-web",
-  "version": "4.0.5",
+  "name": "sheytan-web",
+  "version": "4.0.6",
   "private": true,
   "type": "module",
   "scripts": {

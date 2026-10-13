@@ -166,7 +166,7 @@ const MAX_PERSISTENT_CLICK_PARTICLES =
   100;
 
 const CLICK_PARTICLE_SESSION_KEY =
-  "parsaetak:red-magic:click-particles:v1";
+  "sheytan:red-magic:click-particles:v1";
 
 /*
  * WeakMap preserves layout dimensions without introducing

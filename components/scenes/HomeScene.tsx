@@ -749,7 +749,7 @@ export default function HomeScene({
             </div>
 
             <p className="kicker">
-              PARSA TAK — SOFTWARE ENGINEER · PRODUCT BUILDER · AI SYSTEMS RESEARCHER
+              SHEYTAN — SOFTWARE ENGINEER · PRODUCT BUILDER · AI SYSTEMS RESEARCHER
             </p>
 
             <h1 className={`hero-title ${styles.homeIdentityTitle}`}>
@@ -1163,7 +1163,7 @@ export default function HomeScene({
                   className="button button-primary"
                   href="mailto:Parsaetak@gmail.com"
                 >
-                  Email Parsa Tak
+                  Email SHEYTAN
                 </a>
 
                 <a

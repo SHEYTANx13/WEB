@@ -1,4 +1,4 @@
-# robots.txt — Parsa Tak (WEB)
+# robots.txt — SHEYTAN (WEB)
 #
 # Production site: https://sheytanx13.github.io/WEB/
 #

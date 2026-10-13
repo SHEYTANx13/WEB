@@ -4,7 +4,7 @@ import styles from "@/components/SiteHeaderStatus.module.css";
  * SITE HEADER STATUS (v4.0.5) — the ONE shared header identity for
  * the whole site:
  *
- *   [ ★ Parsa Tak ] [ ● CURRENT SURFACE ] [ navigation … ]
+ *   [ ★ SHEYTAN ] [ ● CURRENT SURFACE ] [ navigation … ]
  *
  * A small red status light beside a mono uppercase label naming the
  * surface the reader is on — the world scene (HOME / SYSTEMS /

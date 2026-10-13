@@ -16,7 +16,7 @@ export const metadata: Metadata = contentRouteMetadata({
   route: hub.slug,
   title: hub.metaTitle,
   description: hub.metaDescription,
-  ogAlt: "Software engineering notes and systems by Parsa Tak — deterministic pipelines, honest testing, static architecture"
+  ogAlt: "Software engineering notes and systems by SHEYTAN — deterministic pipelines, honest testing, static architecture"
 });
 
 export default function SoftwareEngineeringHubPage() {

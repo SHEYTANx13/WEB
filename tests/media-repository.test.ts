@@ -43,7 +43,7 @@ const TRACK = {
   source: "Album/01 Song.mp3",
   title: "01 Song",
   type: "music",
-  artist: "Parsa Tak",
+  artist: "SHEYTAN",
   album: "Laboratory",
   duration: 12.5,
   metadataSource: "embedded" as const
@@ -166,7 +166,7 @@ describe("manifest → MediaItem normalization", () => {
     const track = item!.track;
 
     assert.equal(track.title, "01 Song");
-    assert.equal(track.artist, "Parsa Tak");
+    assert.equal(track.artist, "SHEYTAN");
     assert.equal(track.album, "Laboratory");
     assert.equal(track.duration, 12.5);
     assert.equal(track.source, "embedded");

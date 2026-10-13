@@ -24,7 +24,7 @@ The roadmap is intentionally staged. Do not implement every feature as one large
 WEB should gradually become:
 
 ```text
-                         PARSA TAK
+                         SHEYTAN
                             │
         ┌───────────────────┼───────────────────┐
         │                   │                   │
@@ -572,7 +572,7 @@ A visitor can:
 
 ## Objective
 
-Add a **News** area where Parsa Tak can publish personal news, project updates, observations, and selected world news commentary.
+Add a **News** area where SHEYTAN can publish personal news, project updates, observations, and selected world news commentary.
 
 ## Content model
 
@@ -619,7 +619,7 @@ Potential structure:
 ```text
 NEWS
 ├── Latest
-├── Parsa Tak
+├── SHEYTAN
 ├── Projects
 └── World
 ```
@@ -856,6 +856,14 @@ v4.3  Secure digital delivery / purchase flow
 v4.4  News
 v4.5  Full repository + product-system polish
 ```
+
+Shipped patch releases since v4.0.2 (settle gate, connection-aware warming,
+single RouteProgress, shared header status, document unification, compact
+footer, global red cursor) include v4.0.3–v4.0.5 and v4.0.6 — the SHEYTAN
+identity rebrand (all user-facing identity, docs, JSON-LD, package name and
+SEO verifiers move from the previous owner name to SHEYTAN while the legal
+files keep their original notice) plus the polished compositor-only route
+progress and scene-loading animation pass.
 
 These version numbers are planning labels, not commitments. Keep the actual repository version consistent with the scope actually shipped.
 
@@ -1303,7 +1311,7 @@ works on every document route.
 
 Make the header identity and the footer site chrome consistent on
 every major surface: one shared header status component rendering
-`★ Parsa Tak  ● CURRENT SURFACE` on the world HUD, the blog and every
+`★ SHEYTAN  ● CURRENT SURFACE` on the world HUD, the blog and every
 ContentShell document; one deliberate footer stack — document nav →
 PUBLIC NETWORK (14 verified links, 7 + 7 on desktop) → legal →
 bottom identity row (star + © + ™).

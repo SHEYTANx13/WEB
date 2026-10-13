@@ -53,7 +53,7 @@ export const metadata: Metadata = contentRouteMetadata({
   route: ABOUT_ROUTE.slug,
   title: ABOUT_ROUTE.metaTitle,
   description: ABOUT_ROUTE.metaDescription,
-  ogAlt: "Parsa Tak — independent software engineer, product builder, and AI systems researcher"
+  ogAlt: "SHEYTAN — independent software engineer, product builder, and AI systems researcher"
 });
 
 /*
@@ -298,7 +298,7 @@ export default function AboutPage() {
 
       <ContentShell
         kicker="PROFILE"
-        title="Parsa Tak"
+        title="SHEYTAN"
         crumbs={crumbs}
         activeHref="/about/"
         docFeature={<AboutIdentityArtifact />}
@@ -428,7 +428,7 @@ export default function AboutPage() {
               },
               {
                 label: "GitHub — the public archive",
-                href: "https://github.com/Parsaetak",
+                href: "https://github.com/SHEYTANx13",
                 note: "Code, systems, experiments, and public specifications",
                 external: true
               }
@@ -573,7 +573,7 @@ export default function AboutPage() {
               className="button button-primary"
               href={EMAIL_LINK?.href ?? "mailto:Parsaetak@gmail.com"}
             >
-              Email Parsa Tak
+              Email SHEYTAN
             </a>
 
             {LINKEDIN_LINK && (
@@ -589,7 +589,7 @@ export default function AboutPage() {
 
             <a
               className="button button-secondary"
-              href="https://github.com/Parsaetak"
+              href="https://github.com/SHEYTANx13"
               target="_blank"
               rel="noreferrer"
             >

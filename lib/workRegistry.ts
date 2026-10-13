@@ -143,7 +143,7 @@ export const WORK_ENTRIES: readonly WorkEntry[] = [
     links: [
       {
         label: "SHEYTAN repository on GitHub",
-        href: "https://github.com/Parsaetak/SHEYTAN-local-agent",
+        href: "https://github.com/SHEYTANx13/SHEYTAN-LA",
         external: true,
         short: "REPOSITORY ↗"
       },
@@ -235,7 +235,7 @@ export const WORK_ENTRIES: readonly WorkEntry[] = [
     links: [
       {
         label: "FreeIran repository on GitHub",
-        href: "https://github.com/Parsaetak/FreeIran",
+        href: "https://github.com/SHEYTANx13/FreeIran",
         external: true,
         short: "REPOSITORY ↗"
       },
@@ -264,13 +264,13 @@ export const WORK_ENTRIES: readonly WorkEntry[] = [
     links: [
       {
         label: "WEB repository on GitHub",
-        href: "https://github.com/Parsaetak/WEB",
+        href: "https://github.com/SHEYTANx13/WEB",
         external: true,
         short: "REPOSITORY ↗"
       },
       {
         label: "The live site",
-        href: "https://parsaetak.github.io/WEB/",
+        href: "https://sheytanx13.github.io/WEB/",
         external: true,
         short: "LIVE ↗"
       }
@@ -376,7 +376,7 @@ export const WORK_ENTRIES: readonly WorkEntry[] = [
         tags: ["SPECS", "BOOKS", "MANIFEST"],
         href: "https://github.com/Parsaetak/Contents",
         external: true,
-        ariaLabel: "Open the Parsaetak/Contents repository on GitHub"
+        ariaLabel: "Open the public Contents repository on GitHub"
       }
     ]
   },

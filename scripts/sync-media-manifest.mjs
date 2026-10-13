@@ -55,7 +55,7 @@ const TIMEOUT_MS = Number(
 async function fetchJson(url) {
   const response = await fetch(url, {
     signal: AbortSignal.timeout(TIMEOUT_MS),
-    headers: { "user-agent": "Parsaetak-WEB-media-sync" }
+    headers: { "user-agent": "sheytan-WEB-media-sync" }
   });
 
   if (response.status === 404) {

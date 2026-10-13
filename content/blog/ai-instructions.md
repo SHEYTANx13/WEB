@@ -5,7 +5,7 @@ excerpt: "AI Instructions is the master constitutional layer of a three-framewor
 description: "What the AI Instructions framework actually is: a five-tier operating constitution for AI systems — master governance, REP reasoning, USEF enhancement, operational modules, and host runtime — and why prompts cannot replace infrastructure."
 date: "2026-09-10"
 updated: "2026-09-10"
-author: "Parsa Tak"
+author: "SHEYTAN"
 category: "research"
 type: "research"
 tags: ["AI Instructions", "AI agents", "governance", "verification", "REP", "USEF", "2026"]
@@ -22,7 +22,7 @@ cover:
 
 The most instructive failure mode of modern AI systems is not stupidity. It is unowned competence: a system fluent enough to plan, write, and call tools, with no reliable mechanism telling it what counts as done, what counts as true, and what it is allowed to touch. AI Instructions is the document built against that failure mode. It is the master constitutional layer of the framework family this site's [Systems scene](/#systems) presents — the governing layer above [REP's reasoning protocol](/blog/reasoning-is-a-system-property/#rep-strengthen-the-thinking) and [USEF's system-enhancement discipline](/blog/reasoning-is-a-system-property/#usef-improve-the-system).
 
-The canonical source lives in the open: [`Ai-instructions-Sep2026.md`](https://github.com/Parsaetak/Contents/blob/AI-frameworks/Ai-instructions-Sep2026.md) on the [Parsaetak/Contents](https://github.com/Parsaetak/Contents/tree/AI-frameworks) repository, `AI-frameworks` branch. It is roughly 136 KB of operational specification. This article does not reproduce it; it extracts the architecture and explains why the architecture is shaped the way it is.
+The canonical source lives in the open: [`Ai-instructions-Sep2026.md`](https://github.com/Parsaetak/Contents/blob/AI-frameworks/Ai-instructions-Sep2026.md) on the [public Contents repository](https://github.com/Parsaetak/Contents/tree/AI-frameworks), `AI-frameworks` branch. It is roughly 136 KB of operational specification. This article does not reproduce it; it extracts the architecture and explains why the architecture is shaped the way it is.
 
 A register note, in the house style: where I state what the framework document says, that is **fact** and it is checkable in the source. Where I interpret what the design implies, that is **analysis**. Where I commit to a position of my own, that is **position** — and the framework itself is built to let evidence retire my wrong positions.
 

@@ -213,7 +213,7 @@ def compose_og():
     tag_font = ImageFont.truetype(FONT_BOLD, 23 * SCALE)
     url_font = ImageFont.truetype(FONT_REGULAR, 21 * SCALE)
 
-    draw.text((96 * SCALE, 224 * SCALE), "PARSA TAK", font=name_font, fill=TEXT_MAIN)
+    draw.text((96 * SCALE, 224 * SCALE), "SHEYTAN", font=name_font, fill=TEXT_MAIN)
     draw.rectangle([96 * SCALE, 360 * SCALE, 300 * SCALE, 363 * SCALE], fill=RED)
     draw.text(
         (96 * SCALE, 390 * SCALE),
@@ -221,7 +221,7 @@ def compose_og():
         font=tag_font,
         fill=INK,
     )
-    draw.text((96 * SCALE, 540 * SCALE), "parsaetak.github.io/WEB", font=url_font, fill=INK_DIM)
+    draw.text((96 * SCALE, 540 * SCALE), "sheytanx13.github.io/WEB", font=url_font, fill=INK_DIM)
 
     return img.resize((OG_W, OG_H), Image.Resampling.LANCZOS).convert("RGB")
 
@@ -237,7 +237,7 @@ def compose_square():
     name_font = ImageFont.truetype(FONT_BOLD, 96 * SCALE)
     tag_font = ImageFont.truetype(FONT_BOLD, 25 * SCALE)
 
-    draw_text_center(draw, "PARSA TAK", name_font, size / 2, 880 * SCALE, TEXT_MAIN)
+    draw_text_center(draw, "SHEYTAN", name_font, size / 2, 880 * SCALE, TEXT_MAIN)
     draw.rectangle(
         [size / 2 - 102 * SCALE, 1020 * SCALE, size / 2 + 102 * SCALE, 1023 * SCALE],
         fill=RED,

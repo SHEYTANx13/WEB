@@ -2955,3 +2955,64 @@
     max-width: 96px;
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/* SURFACE READY (v4.0.6) — the one-shot document entry reveal.                */
+/*                                                                            */
+/* Every ContentShell surface (About, Work, Research, Contact and the six     */
+/* topic hubs) settles in once when it arrives: a 220ms ease-out opacity +    */
+/* slight translate, the same visual language as the blog's route settle.     */
+/* Pure CSS — no observer, no state, no new JavaScript; it runs exactly once  */
+/* per document arrival and never delays the navigation it follows.           */
+/*                                                                            */
+/* Safety laws kept identical to the reveal system: the animation is gated    */
+/* behind `html.reveal-js` (without JavaScript the document is simply there — */
+/* animation is enhancement, never a gate) and fully disabled under           */
+/* prefers-reduced-motion. The transform lasts only for the animation's       */
+/* 220ms, so no sticky/fixed descendant geometry is affected afterwards.      */
+/* (Appended last so the file's FIRST reduced-motion block stays the hero     */
+/* signal's — document-shell tests slice from that landmark.)                 */
+/* -------------------------------------------------------------------------- */
+
+:global(html.reveal-js) .main {
+  animation:
+    contentSurfaceReady
+    220ms
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    both;
+}
+
+@keyframes contentSurfaceReady {
+  from {
+    opacity: 0;
+
+    transform:
+      translate3d(
+        0,
+        10px,
+        0
+      );
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html.reveal-js) .main {
+    animation: none;
+  }
+}

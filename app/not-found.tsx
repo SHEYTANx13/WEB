@@ -62,7 +62,7 @@ const KNOWN_AREAS = REGISTRY_ROUTES.filter(
           ? "Document"
           : "Topic hub",
   name: route.title.replace(
-    /\s+—\s+Parsa\s+Tak$/,
+    /\s+—\s+SHEYTAN$/,
     ""
   )
 }));
@@ -74,7 +74,7 @@ const KNOWN_AREAS = REGISTRY_ROUTES.filter(
  * noindex, but stating it keeps the intent verifiable.
  */
 export const metadata: Metadata = {
-  title: "Page not found — Parsa Tak",
+  title: "Page not found — SHEYTAN",
   robots: {
     index: false,
     follow: false

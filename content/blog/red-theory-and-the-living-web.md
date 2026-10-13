@@ -4,7 +4,7 @@ subtitle: "Emergence, adaptation, competition, dissolution, replacement — five
 excerpt: "RED THEORY is this laboratory's model of living systems: five dynamics that turn static structure into behaviour. The website is the current test bench — its organism demonstrates every dynamic in code you can read, and the boundary between the model and the demonstration is stated honestly."
 description: "The RED THEORY model explained: emergence, adaptation, competition, dissolution and replacement as one system — and how this website's organism implements them in public code, with an honest boundary between the model, the demonstration, and what is not yet built."
 date: "2026-09-12"
-author: "Parsa Tak"
+author: "SHEYTAN"
 category: "research"
 type: "research"
 tags: ["RED THEORY", "emergence", "adaptation", "living systems", "simulation", "2026"]

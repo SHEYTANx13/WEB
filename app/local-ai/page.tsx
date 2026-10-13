@@ -17,7 +17,7 @@ export const metadata: Metadata = contentRouteMetadata({
   route: hub.slug,
   title: hub.metaTitle,
   description: hub.metaDescription,
-  ogAlt: "Local AI systems and agents by Parsa Tak — local-first agents, managed inference, verification"
+  ogAlt: "Local AI systems and agents by SHEYTAN — local-first agents, managed inference, verification"
 });
 
 export default function LocalAiHubPage() {

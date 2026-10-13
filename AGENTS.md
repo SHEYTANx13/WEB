@@ -10,7 +10,7 @@ violation as a bug to be justified, not a style preference.
 
 ## Project identity
 
-- **WEB** is the personal site of Parsa Tak: an evolving laboratory for AI
+- **WEB** is the personal site of SHEYTAN: an evolving laboratory for AI
   systems, local AI agents, reasoning, evaluation, software engineering, and
   creative technology. It hosts the canonical **Work**, **Research**, and
   **Blog** surfaces plus six topic hubs.
@@ -76,7 +76,7 @@ violation as a bug to be justified, not a style preference.
   re-exports them. Loading regressions are verified, not asserted:
   `npm run verify:loading` (export-level) and `npm run bench:loading`
   (real-browser medians) gate the state.
-- **Route progress (v4.0.5):** REAL route/tab navigation has
+- **Route progress (v4.0.6):** REAL route/tab navigation has
   ONE tiny loading signal, mounted exactly ONCE from the root
   layout (`app/layout.tsx` → `components/RouteProgress.tsx`) — the
   same root-layout law as the global Music player. The navigation
@@ -87,23 +87,28 @@ violation as a bug to be justified, not a style preference.
   independent, and `tests/route-progress.test.ts` pins both sides
   to the identical string). Contract: 150 ms grace period
   (`ROUTE_PROGRESS_GRACE_MS`, `lib/loadPhase.ts`) so fast/warmed/
-  cached navigations never show anything; then a 2px indeterminate
-  red line at the top of the viewport ONLY while the navigation is
-  unresolved; the destination commits (`usePathname` comparison
-  against the intent's origin), paints (double rAF), and the line
-  fades. The signal is display-only (pointer-events: none in every
-  state), aria-hidden (the router announces the destination),
-  race-safe by monotonic intent tokens, static under reduced
-  motion, and never visible in the static export (the
-  `html.reveal-js` gate). The v4.0.4 full-screen route overlay
-  (`GlobalRouteTransition`, `lib/routeIntent.ts`, the
-  `SceneLoadingScreen` route variant) is REMOVED — do not
-  reintroduce a second route-loading mechanism; scene loading keeps
-  its own system (`SceneLoadingScreen`, boot/scene variants only).
+  cached navigations never show anything; then a 3px layered
+  indeterminate signal at the top of the viewport — a faint
+  breathing track (`::before`, opacity pulse only) with a short
+  glowing red segment (`::after`) that accelerates across it
+  through one transform-only `translateX + scaleX` timeline —
+  visible ONLY while the navigation is unresolved; the destination
+  commits (`usePathname` comparison against the intent's origin),
+  paints (double rAF), and the signal fades. The signal is
+  display-only (pointer-events: none in every state), aria-hidden
+  (the router announces the destination), race-safe by monotonic
+  intent tokens, compositor-only (transform/opacity — never width,
+  left, or top), static under reduced motion, and never visible in
+  the static export (the `html.reveal-js` gate). The v4.0.4
+  full-screen route overlay (`GlobalRouteTransition`,
+  `lib/routeIntent.ts`, the `SceneLoadingScreen` route variant) is
+  REMOVED — do not reintroduce a second route-loading mechanism;
+  scene loading keeps its own system (`SceneLoadingScreen`,
+  boot/scene variants only).
   Behavior regressions are pinned by `tests/route-progress.test.ts`
   and the export-level inactive check in `verify:loading`.
 - **Shared header status (v4.0.5):** every major surface carries the
-  same header identity — `★ Parsa Tak  ● CURRENT SURFACE` — through
+  same header identity — `★ SHEYTAN  ● CURRENT SURFACE` — through
   ONE shared component, `components/SiteHeaderStatus.tsx` (+ its own
   module). It owns the markup, the red dot, the 2.4s transform/opacity
   pulse, the typography, the reduced-motion behavior and the
@@ -141,8 +146,8 @@ violation as a bug to be justified, not a style preference.
   CSS-only, transform/opacity accent hover (the registry's own
   `--link-accent`, static under reduced motion); the legal row
   top-aligns without baseline hacks; and the BOTTOM-MOST row is the
-  identity line (star + © 2026 Parsa Tak. All rights reserved. +
-  Parsa Tak™) in normal flow.
+  identity line (star + © 2026 SHEYTAN. All rights reserved. +
+  SHEYTAN™) in normal flow.
   `SiteFooter` must NEVER carry a `data-reveal` opt-in again — the
   reveal controller mounts only on the world shell and the blog
   layout, so an opt-in there left the entire footer invisible

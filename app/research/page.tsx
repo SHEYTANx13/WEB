@@ -50,7 +50,7 @@ export const metadata: Metadata = contentRouteMetadata({
   route: RESEARCH_ROUTE.slug,
   title: RESEARCH_ROUTE.metaTitle,
   description: RESEARCH_ROUTE.metaDescription,
-  ogAlt: "The research programme of Parsa Tak — reasoning, evaluation, local AI, AI systems"
+  ogAlt: "The research programme of SHEYTAN — reasoning, evaluation, local AI, AI systems"
 });
 
 /*

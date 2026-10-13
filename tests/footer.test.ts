@@ -410,8 +410,8 @@ describe("the legal block keeps its wording and links", () => {
   it("copyright, trademark notice, legal text, LICENSE and TRADEMARKS remain", async () => {
     const footer = await readText("components/SiteFooter.tsx");
 
-    assert.match(footer, /© 2026 Parsa Tak\. All rights reserved\./);
-    assert.match(footer, /Parsa Tak™/);
+    assert.match(footer, /© 2026 SHEYTAN\. All rights reserved\./);
+    assert.match(footer, /SHEYTAN™/);
     assert.match(
       footer,
       /Original website design, visual identity/,
@@ -456,8 +456,8 @@ describe("the copyright/trademark identity row is the bottom-most footer row", (
     const bottomBlock = footer.slice(bottomIndex);
 
     assert.match(bottomBlock, /BRAND_STAR\.red/, "the 13-point star is present");
-    assert.match(bottomBlock, /© 2026 Parsa Tak\. All rights reserved\./);
-    assert.match(bottomBlock, /Parsa Tak™/);
+    assert.match(bottomBlock, /© 2026 SHEYTAN\. All rights reserved\./);
+    assert.match(bottomBlock, /SHEYTAN™/);
   });
 
   it("the identity row sits in normal flow — no positioning hacks", async () => {

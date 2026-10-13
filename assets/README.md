@@ -1,6 +1,6 @@
 # assets/ — the WEB visual asset system (v2.9)
 
-`assets/` is the **source of truth** for the Parsa Tak brand and visual
+`assets/` is the **source of truth** for the SHEYTAN brand and visual
 system. It is organized, versioned, and generated — it is not a dump.
 
 Two layers exist on purpose:
@@ -60,7 +60,7 @@ node scripts/verify-brand.mjs   # prove the system is coherent
 
 ## The 13-point star — geometry law
 
-The star is the **primary Parsa Tak site identity**. It is a true
+The star is the **primary SHEYTAN site identity**. It is a true
 regular 13-point star polygon `{13/5}`, constructed in polar
 coordinates — never hand-drawn:
 
@@ -120,7 +120,7 @@ validated by the build).
 
 ## Identity distinction (brand law)
 
-- **13-point star = Parsa Tak / site identity** — headers, footer,
+- **13-point star = SHEYTAN / site identity** — headers, footer,
   favicon, loading surface, social artwork.
 - **Red Eye = RED MAGIC / the artistic system experience** — the RED
   MAGIC scene and its article context. The eye is never used as the

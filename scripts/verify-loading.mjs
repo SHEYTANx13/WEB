@@ -396,6 +396,104 @@ function landmarkSkeleton(route) {
 }
 
 /* ------------------------------------------------------------------ */
+/* 8. v4.0.6 loading-visual contract (source level)                    */
+/* ------------------------------------------------------------------ */
+
+{
+  /*
+   * The v4.0.6 visual upgrade is pinned at the SOURCE level (the
+   * exported CSS is minified and its CSS-module keyframes are
+   * hashed, so out/ cannot be grepped for the animation names):
+   *
+   * - the route signal is the layered track + segment treatment,
+   *   animated ONLY through transform/opacity, with both motion
+   *   layers gated behind prefers-reduced-motion: no-preference and
+   *   a static collapse under reduce;
+   * - the timing constants stay the documented loadPhase registry
+   *   values (150 ms grace, 10 s cap);
+   * - every ContentShell document carries the one-shot surface-ready
+   *   reveal, reveal-js gated and reduced-motion disabled.
+   */
+  const routeCss = fs.readFileSync(
+    path.join(ROOT, "components", "RouteProgress.module.css"),
+    "utf8"
+  );
+
+  for (const token of [
+    "routeProgressSweep",
+    "routeProgressBreathe",
+    "prefers-reduced-motion: no-preference",
+    "prefers-reduced-motion: reduce",
+    "pointer-events: none"
+  ]) {
+    if (!routeCss.includes(token)) {
+      fail(`RouteProgress.module.css is missing the v4.0.6 token "${token}"`);
+    }
+  }
+
+  if (routeCss.includes("pointer-events: auto")) {
+    fail("RouteProgress.module.css must never enable pointer events in any state");
+  }
+
+  const sweep = routeCss.match(
+    /@keyframes\s+routeProgressSweep\s*\{([\s\S]*?)\n\}/
+  );
+
+  if (!sweep) {
+    fail("RouteProgress.module.css lost the routeProgressSweep keyframes");
+  } else {
+    if (!/translateX/.test(sweep[1]) || !/scaleX/.test(sweep[1])) {
+      fail("routeProgressSweep must stay a transform-only translateX + scaleX timeline");
+    }
+
+    if (/\bwidth\b|\bleft\b|\btop\b|\bmargin\b/.test(sweep[1])) {
+      fail("routeProgressSweep must never animate layout properties");
+    }
+  }
+
+  const loadPhase = fs.readFileSync(
+    path.join(ROOT, "lib", "loadPhase.ts"),
+    "utf8"
+  );
+
+  if (
+    !/export const ROUTE_PROGRESS_GRACE_MS = 150/.test(loadPhase) ||
+    !/export const ROUTE_PROGRESS_CAP_MS = 10000/.test(loadPhase)
+  ) {
+    fail(
+      "loadPhase.ts must keep the documented route-progress bounds (grace 150ms, cap 10000ms)"
+    );
+  }
+
+  const contentCss = fs.readFileSync(
+    path.join(ROOT, "components", "content", "content.module.css"),
+    "utf8"
+  );
+
+  if (!contentCss.includes("contentSurfaceReady")) {
+    fail("content.module.css is missing the v4.0.6 surface-ready reveal");
+  } else {
+    const revealIndex = contentCss.indexOf(":global(html.reveal-js) .main");
+
+    if (revealIndex === -1) {
+      fail("the surface-ready reveal must be gated behind html.reveal-js");
+    }
+
+    const reduced = contentCss.slice(
+      contentCss.indexOf("prefers-reduced-motion: reduce")
+    );
+
+    if (!/:global\(html\.reveal-js\) \.main\s*\{[^}]*animation:\s*none/.test(reduced)) {
+      fail("the surface-ready reveal must be disabled under prefers-reduced-motion");
+    }
+  }
+
+  if (FAILURES.length === 0) {
+    ok("v4.0.6 loading-visual contract holds (layered route signal, timing bounds, surface-ready reveal)");
+  }
+}
+
+/* ------------------------------------------------------------------ */
 /* Report                                                             */
 /* ------------------------------------------------------------------ */
 

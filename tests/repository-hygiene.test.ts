@@ -170,11 +170,11 @@ describe("canonical source filenames (generated files are never sources)", () =>
 /* 3. Release wiring                                                   */
 /* ------------------------------------------------------------------ */
 
-describe("v4.0.5 release wiring", () => {
-  it("package.json declares version 4.0.5", async () => {
+describe("v4.0.6 release wiring", () => {
+  it("package.json declares version 4.0.6", async () => {
     const pkg = JSON.parse(await readText("package.json"));
 
-    assert.equal(pkg.version, "4.0.5");
+    assert.equal(pkg.version, "4.0.6");
   });
 
   it("verify-seo carries the export-level WhatsApp ban and metadata census", async () => {

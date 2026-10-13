@@ -2,7 +2,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="starTitle">
   <title id="starTitle">Star — silver</title>
   <!--
-    Parsa Tak brand star — the regular 13-point star {13/5}.
+    SHEYTAN brand star — the regular 13-point star {13/5}.
   
     outer vertices : 13          inner vertices : 13
     angular step   : 360/26 deg  inner radius   : R * cos(5pi/13)/cos(4pi/13)

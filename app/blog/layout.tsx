@@ -42,7 +42,7 @@ export function generateMetadata(): Metadata {
   return {
     title: {
       default: "Blog",
-      template: "%s — Parsa Tak"
+      template: "%s — SHEYTAN"
     },
     description: info.siteDescription,
     alternates: {
@@ -50,7 +50,7 @@ export function generateMetadata(): Metadata {
     },
     openGraph: {
       type: "website",
-      title: "Blog — Parsa Tak",
+      title: "Laboratory Blog — SHEYTAN",
       description: info.siteDescription,
       url: "/blog/",
       images: [
@@ -58,13 +58,13 @@ export function generateMetadata(): Metadata {
           url: SITE_OG_IMAGE_PATH,
           width: SITE_OG_IMAGE_WIDTH,
           height: SITE_OG_IMAGE_HEIGHT,
-          alt: "Parsa Tak — notes from the laboratory"
+          alt: "SHEYTAN — notes from the laboratory"
         }
       ]
     },
     twitter: {
       card: "summary_large_image",
-      title: "Blog — Parsa Tak",
+      title: "Laboratory Blog — SHEYTAN",
       description:
         info.siteDescription || FALLBACK_DESCRIPTION,
       images: [SITE_OG_IMAGE_PATH]

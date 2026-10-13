@@ -16,7 +16,7 @@ export const metadata: Metadata = contentRouteMetadata({
   route: hub.slug,
   title: hub.metaTitle,
   description: hub.metaDescription,
-  ogAlt: "Creative technology by Parsa Tak — RED MAGIC, the living web, and computational interfaces"
+  ogAlt: "Creative technology by SHEYTAN — RED MAGIC, the living web, and computational interfaces"
 });
 
 export default function CreativeTechnologyHubPage() {

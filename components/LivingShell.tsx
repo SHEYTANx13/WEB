@@ -375,7 +375,7 @@ export default function LivingShell({
               styles.livingShellBrand
             }
             href="#top"
-            aria-label="Parsa Tak home"
+            aria-label="SHEYTAN home"
             onClick={(
               event
             ) => {
@@ -393,10 +393,10 @@ export default function LivingShell({
               aria-hidden="true"
             >
               {/*
-               * The 13-point star — the Parsa Tak site identity. A
+               * The 13-point star — the SHEYTAN site identity. A
                * static asset on purpose: no component hydration for a
                * logo. The accessible name lives on the wrapping link
-               * (aria-label="Parsa Tak home"), so the image is
+               * (aria-label="SHEYTAN home"), so the image is
                * decorative to assistive technology.
                */}
               <img
@@ -414,7 +414,7 @@ export default function LivingShell({
                 styles.livingShellBrandName
               }
             >
-              Parsa Tak
+              SHEYTAN
             </span>
           </a>
 

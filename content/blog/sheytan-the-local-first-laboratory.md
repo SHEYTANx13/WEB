@@ -4,7 +4,7 @@ subtitle: "The model proposes. The tools execute. The laboratory verifies."
 excerpt: "SHEYTAN Local Agent is a local-first desktop AI engineering environment: a managed llama.cpp engine, a real agent loop, seventeen governed tools, an isolated Coding Lab, and objective verification gates — because the model is never the authority on whether an engineering task succeeded."
 description: "How SHEYTAN Local Agent is built: Go orchestration under a Wails v3 desktop shell, a managed llama.cpp lifecycle, the plan-verify agent loop, the isolated Coding Lab with objective verification gates, measured context budgets, and the honest status of its native C++ inference engine."
 date: "2026-09-12"
-author: "Parsa Tak"
+author: "SHEYTAN"
 category: "engineering"
 type: "work"
 tags: ["SHEYTAN", "local-first", "agents", "Go", "llama.cpp", "verification", "2026"]
@@ -21,7 +21,7 @@ cover:
 
 Most agent demos end at the impressive part: the model produces something plausible and the video cuts. SHEYTAN Local Agent — the flagship of the [AI systems line](/work/) on this site — is built for everything that happens *after* the model speaks. It is a local-first desktop AI engineering environment whose founding rule is the same one this laboratory's [reasoning frameworks](/blog/reasoning-is-a-system-property/) are built on: **the model is never the authority on whether an engineering task succeeded — objective verification is.**
 
-A register note, in the house style: everything below about the system's behaviour is **fact**, checkable in the [public repository](https://github.com/Parsaetak/SHEYTAN-local-agent); interpretation is marked as analysis.
+A register note, in the house style: everything below about the system's behaviour is **fact**, checkable in the [public repository](https://github.com/SHEYTANx13/SHEYTAN-LA); interpretation is marked as analysis.
 
 ## What it is
 
@@ -59,6 +59,6 @@ The honesty here matters enough to quote the status literally: the portable scal
 
 ## Why this belongs to the AI Systems line
 
-SHEYTAN is where the site's frameworks stop being documents: [REP's](/blog/reasoning-is-a-system-property/#rep-strengthen-the-thinking) verification discipline becomes a gate the code must pass, the [constitutional layer](/blog/ai-instructions/) becomes the shipped operating manual, and the measurement culture of [the UHIT programme](/blog/measuring-machine-intelligence/) becomes per-run metrics that are reported, not advertised. The same Go-first discipline runs through the laboratory's software line — the [FreeIran engineering notes](/blog/freeiran-engineering-notes/) document the proxy-manager runtime built on the same bounded-resource, explicit-state-machine constitution. The repository is public: [github.com/Parsaetak/SHEYTAN-local-agent](https://github.com/Parsaetak/SHEYTAN-local-agent).
+SHEYTAN is where the site's frameworks stop being documents: [REP's](/blog/reasoning-is-a-system-property/#rep-strengthen-the-thinking) verification discipline becomes a gate the code must pass, the [constitutional layer](/blog/ai-instructions/) becomes the shipped operating manual, and the measurement culture of [the UHIT programme](/blog/measuring-machine-intelligence/) becomes per-run metrics that are reported, not advertised. The same Go-first discipline runs through the laboratory's software line — the [FreeIran engineering notes](/blog/freeiran-engineering-notes/) document the proxy-manager runtime built on the same bounded-resource, explicit-state-machine constitution. The repository is public: [github.com/SHEYTANx13/SHEYTAN-LA](https://github.com/SHEYTANx13/SHEYTAN-LA).
 
 The model proposes. The tools execute. The laboratory verifies. Everything else is commentary.

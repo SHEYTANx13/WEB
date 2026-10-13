@@ -5,7 +5,7 @@ excerpt: "GitHub Pages cannot run a backend, resize an image, or render on deman
 description: "How the static-export-only constraint shaped this site's data pipeline and content architecture — and why constraints are what turn AI capability into repeatable systems instead of impressive output."
 date: "2026-09-10"
 updated: "2026-09-10"
-author: "Parsa Tak"
+author: "SHEYTAN"
 category: "systems"
 type: "article"
 tags: ["architecture", "static export", "content pipeline", "AI systems", "human will", "2026"]

@@ -4,7 +4,7 @@ subtitle: "Determinism, chunked storage, and honest testing in a Go system built
 excerpt: "FreeIran is a local-first configuration manager built around a shared Go engine: three protocol cores behind one abstraction, checksummed chunked storage with crash recovery, a deterministic fake-core test harness, and no telemetry at all. These are the engineering notes."
 description: "Inside FreeIran's architecture: a Go orchestration engine with Xray, V2Ray and sing-box behind one Core abstraction, immutable chunked local storage, deterministic backend selection, a fake-core test harness, and a C++ acceleration layer that correctness never depends on."
 date: "2026-09-12"
-author: "Parsa Tak"
+author: "SHEYTAN"
 category: "engineering"
 type: "work"
 tags: ["FreeIran", "Go", "systems", "storage", "testing", "2026"]
@@ -19,7 +19,7 @@ cover:
   height: 630
 ---
 
-FreeIran is the most quietly engineered project in [the public archive](https://github.com/Parsaetak/FreeIran): a free, open-source VPN configuration manager for Windows, built around a shared Go engine for discovering, testing, maintaining, and running publicly available proxy configurations. It exists for environments where ordinary connectivity is heavily restricted — including Iran — and it is local-first in the strict sense: no account, no central backend, no cloud service, no remote telemetry. **(Fact — the repository's own description.)**
+FreeIran is the most quietly engineered project in [the public archive](https://github.com/SHEYTANx13/FreeIran): a free, open-source VPN configuration manager for Windows, built around a shared Go engine for discovering, testing, maintaining, and running publicly available proxy configurations. It exists for environments where ordinary connectivity is heavily restricted — including Iran — and it is local-first in the strict sense: no account, no central backend, no cloud service, no remote telemetry. **(Fact — the repository's own description.)**
 
 This article documents the engineering decisions that make it trustworthy, because the interesting story is not what it does but *how little it allows itself to lie*.
 
@@ -58,6 +58,6 @@ A small C++ layer (batch hashing, CRC-32, URL scanning) sits behind a stable C A
 
 ## Why it is on this site
 
-FreeIran shares the laboratory's constitution with the rest of the [Work](/work/) line: bounded resources, explicit state machines, deterministic selection, honest tests, and a hard refusal to ship telemetry. The repository is public and the current version is 0.5.0: [github.com/Parsaetak/FreeIran](https://github.com/Parsaetak/FreeIran).
+FreeIran shares the laboratory's constitution with the rest of the [Work](/work/) line: bounded resources, explicit state machines, deterministic selection, honest tests, and a hard refusal to ship telemetry. The repository is public and the current version is 0.5.0: [github.com/SHEYTANx13/FreeIran](https://github.com/SHEYTANx13/FreeIran).
 
 Access to information is a precondition for everything else this laboratory builds. The engineering has to deserve the name.

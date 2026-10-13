@@ -5,7 +5,7 @@ excerpt: "Three connected frameworks — AI Instructions, REP, USEF — built on
 description: "Why capability is not direction: an overview of the three reasoning frameworks at the core of this research, updated for 2026 — where agentic systems are mainstream and verification has become the bottleneck."
 date: "2026-09-10"
 updated: "2026-09-11"
-author: "Parsa Tak"
+author: "SHEYTAN"
 category: "research"
 type: "research"
 tags: ["AI", "reasoning", "systems", "REP", "USEF", "human will", "2026"]

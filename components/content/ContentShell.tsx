@@ -202,7 +202,7 @@ export default function ContentShell({
               decoding="async"
             />
 
-            <span className={styles.brandName}>Parsa Tak</span>
+            <span className={styles.brandName}>SHEYTAN</span>
           </Link>
 
           {/*

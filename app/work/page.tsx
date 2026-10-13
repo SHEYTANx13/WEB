@@ -59,7 +59,7 @@ export const metadata: Metadata = contentRouteMetadata({
   route: WORK_ROUTE.slug,
   title: WORK_ROUTE.metaTitle,
   description: WORK_ROUTE.metaDescription,
-  ogAlt: "Selected work by Parsa Tak — AI systems, evaluation, software, and creative technology"
+  ogAlt: "Selected work by SHEYTAN — AI systems, evaluation, software, and creative technology"
 });
 
 export default function WorkPage() {
@@ -84,7 +84,7 @@ export default function WorkPage() {
               description: WORK_ROUTE.metaDescription,
               about: {
                 "@type": "Thing",
-                name: "Selected systems and projects by Parsa Tak"
+                name: "Selected systems and projects by SHEYTAN"
               }
             }),
             {
@@ -335,7 +335,7 @@ export default function WorkPage() {
                 external: false
               },
               {
-                label: "About Parsa Tak",
+                label: "About SHEYTAN",
                 href: "/about/",
                 note: "Who I am, how I work, and what I build",
                 external: false

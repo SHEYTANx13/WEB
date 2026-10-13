@@ -1,23 +1,33 @@
 /*
- * ROUTE PROGRESS (v4.0.5) — the 2px top navigation signal.
+ * ROUTE PROGRESS (v4.0.6) — the thin top navigation signal.
  *
  * - fixed to the very top of the viewport, above the sticky site
  *   header (z-index 1200 vs the header's 1000): the professional
  *   large-website pattern (a thin activity line on the chrome, not
  *   a wall in front of the destination);
- * - pointer-events: none in EVERY state — the line can never block
+ * - pointer-events: none in EVERY state — the signal can never block
  *   interaction, ever;
- * - opacity-gated: the line exists in the DOM but stays fully
+ * - opacity-gated: the signal exists in the DOM but stays fully
  *   transparent until the grace period elapses AND the navigation
  *   is still unresolved (data-active="true"), then fades back out
  *   after the destination paints;
  * - the html.reveal-js gate keeps it invisible without JavaScript:
  *   the static export can never ship a visible progress line;
- * - the sweep is compositor-only (transform on the segment,
- *   opacity on the line); under prefers-reduced-motion the segment
- *   collapses to a static full-width line — presence without
- *   motion;
- * - print output never includes the line (screen-only chrome).
+ * - visual language (v4.0.6): a 3px layered signal instead of the
+ *   bare v4.0.5 line —
+ *     ::before  the TRACK — a faint red rail spanning the viewport,
+ *               breathing through a slow opacity pulse so the
+ *               signal reads as alive while it is up;
+ *     ::after   the SEGMENT — a short glowing red dash that
+ *               accelerates across the track (translateX + scaleX
+ *               in one keyframe timeline: the dash stretches on
+ *               launch and settles as it hands off to the next
+ *               pass), with a soft red bloom in its wake.
+ *   Compositor-only: transform and opacity on pseudo-elements, no
+ *   width/left/top animation anywhere.
+ * - under prefers-reduced-motion everything collapses to a static
+ *   thin red line — presence without motion;
+ * - print output never includes the signal (screen-only chrome).
  */
 
 .routeProgress {
@@ -29,7 +39,7 @@
 
   right: 0;
 
-  height: 2px;
+  height: 3px;
 
   z-index: 1200;
 
@@ -46,8 +56,43 @@
 }
 
 /*
- * The indeterminate segment: a soft red pulse traveling across the
- * full width. Pure transform motion — no width/left animation.
+ * The TRACK (v4.0.6) — the faint full-width rail that gives the
+ * moving segment a surface to travel on. Only visible while the
+ * signal is active; under reduced motion it becomes the static line.
+ */
+.routeProgress::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 70, 56, 0.04),
+    rgba(255, 70, 56, 0.16),
+    rgba(255, 70, 56, 0.04)
+  );
+
+  opacity: 0.7;
+}
+
+@media
+  (prefers-reduced-motion: no-preference) {
+  .routeProgress[data-active="true"]::before {
+    animation:
+      routeProgressBreathe
+      1.15s
+      ease-in-out
+      infinite;
+  }
+}
+
+/*
+ * The SEGMENT — a short, bright, glowing dash. Motion is a single
+ * transform timeline: the dash launches by stretching (scaleX), then
+ * holds form as it crosses the viewport. Pure transform motion — no
+ * width/left animation.
  */
 .routeProgress::after {
   content: "";
@@ -60,20 +105,25 @@
 
   left: 0;
 
-  width: 34%;
+  width: 30%;
 
   background: linear-gradient(
     90deg,
     rgba(255, 70, 56, 0),
-    var(--red-hot),
+    var(--red-hot) 38%,
+    var(--red-hot) 72%,
     rgba(255, 70, 56, 0)
   );
 
   box-shadow:
-    0 0 8px
-    rgba(255, 70, 56, 0.55);
+    0 0 10px
+    rgba(255, 70, 56, 0.6);
 
-  transform: translateX(-110%);
+  transform-origin: left center;
+
+  transform:
+    translateX(-110%)
+    scaleX(0.6);
 }
 
 @media
@@ -81,7 +131,7 @@
   .routeProgress[data-active="true"]::after {
     animation:
       routeProgressSweep
-      1.1s
+      1.15s
       cubic-bezier(
         0.65,
         0,
@@ -95,10 +145,16 @@
 @media
   (prefers-reduced-motion: reduce) {
   /*
-   * Reduced motion: the traveling segment collapses to a static
-   * thin line across the full width — activity is communicated by
+   * Reduced motion: track and segment collapse to ONE static thin
+   * red line across the full width — activity is communicated by
    * presence, not motion.
    */
+  .routeProgress[data-active="true"]::before {
+    animation: none;
+
+    opacity: 0.5;
+  }
+
   .routeProgress[data-active="true"]::after {
     width: 100%;
 
@@ -112,16 +168,44 @@
   }
 }
 
+/*
+ * SEGMENT SWEEP — launch (stretch), cross, and hand off. One
+ * compositor-only transform timeline (translateX + scaleX).
+ */
 @keyframes
   routeProgressSweep {
-  from {
+  0% {
     transform:
-      translateX(-110%);
+      translateX(-110%)
+      scaleX(0.6);
   }
 
-  to {
+  45% {
     transform:
-      translateX(310%);
+      translateX(90%)
+      scaleX(1);
+  }
+
+  100% {
+    transform:
+      translateX(310%)
+      scaleX(0.85);
+  }
+}
+
+/*
+ * TRACK BREATHE — the slow opacity pulse that keeps the rail alive
+ * while the segment travels. Opacity only.
+ */
+@keyframes
+  routeProgressBreathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 1;
   }
 }
 

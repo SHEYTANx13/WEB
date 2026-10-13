@@ -16,7 +16,7 @@ export const metadata: Metadata = contentRouteMetadata({
   route: hub.slug,
   title: hub.metaTitle,
   description: hub.metaDescription,
-  ogAlt: "AI reasoning architectures by Parsa Tak — the Reasoning Enhancement Protocol and verification-first design"
+  ogAlt: "AI reasoning architectures by SHEYTAN — the Reasoning Enhancement Protocol and verification-first design"
 });
 
 export default function AiReasoningHubPage() {

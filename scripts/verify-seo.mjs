@@ -773,7 +773,7 @@ async function verifyHomeContent(articleRoutes) {
   }
 
   const requiredPhrases = [
-    ["identity", "PARSA TAK"],
+    ["identity", "SHEYTAN"],
     ["identity roles", "SOFTWARE ENGINEER"],
     ["identity roles", "PRODUCT BUILDER"],
     ["identity roles", "AI SYSTEMS RESEARCHER"],
@@ -833,7 +833,7 @@ async function verifyHomeContent(articleRoutes) {
     ["featured work", "FreeIran"],
     ["writing section", "Field notes"],
     ["writing section", "Open the Blog"],
-    ["contact CTA", "Email Parsa Tak"]
+    ["contact CTA", "Email SHEYTAN"]
   ];
 
   for (const [kind, phrase] of mainRequiredPhrases) {
@@ -856,9 +856,9 @@ async function verifyHomeContent(articleRoutes) {
 
   /* Crawlable destinations from the home scene. */
   const requiredHrefs = [
-    "https://github.com/Parsaetak/SHEYTAN-local-agent",
-    "https://github.com/Parsaetak/FreeIran",
-    "https://github.com/Parsaetak/WEB",
+    "https://github.com/SHEYTANx13/SHEYTAN-LA",
+    "https://github.com/SHEYTANx13/FreeIran",
+    "https://github.com/SHEYTANx13/WEB",
     "https://github.com/Parsaetak/Contents/tree/AI-Tests"
   ];
 
@@ -2341,7 +2341,7 @@ async function main() {
   }
 
   await verifyPage("home", "index.html", {
-    title: "Parsa Tak — Software Engineer, Product Builder & AI Systems Researcher",
+    title: "SHEYTAN — Software Engineer, Product Builder & AI Systems Researcher",
     canonical: `${SITE_ORIGIN}/`,
     types: ["WebSite", "Person", "WebPage"]
   });
@@ -2349,7 +2349,7 @@ async function main() {
   await verifyHomeContent(articleRoutes);
 
   await verifyPage("blog index", path.join("blog", "index.html"), {
-    title: "Blog — Parsa Tak",
+    title: "Laboratory Blog — SHEYTAN",
     canonical: `${SITE_ORIGIN}/blog/`,
     types: ["WebSite", "Person", "Blog"]
   });
@@ -2369,7 +2369,7 @@ async function main() {
     }
 
     await verifyPage(`blog/${slug}/`, path.join("blog", slug, "index.html"), {
-      title: `${post.title} — Parsa Tak`,
+      title: `${post.title} — SHEYTAN`,
       canonical: `${SITE_ORIGIN}/blog/${slug}/`,
       /*
        * Articles reference the Blog collection through the

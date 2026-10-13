@@ -74,7 +74,7 @@ export const PUBLIC_LINKS = {
     {
       id: "github",
       label: "GitHub",
-      href: "https://github.com/Parsaetak",
+      href: "https://github.com/SHEYTANx13",
       description: "Code, systems, experiments, and public archive.",
       category: "social",
       icon: "github",

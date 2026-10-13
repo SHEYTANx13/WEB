@@ -16,7 +16,7 @@ export const metadata: Metadata = contentRouteMetadata({
   route: hub.slug,
   title: hub.metaTitle,
   description: hub.metaDescription,
-  ogAlt: "AI systems engineering by Parsa Tak — constitutional frameworks, governed agents, verification"
+  ogAlt: "AI systems engineering by SHEYTAN — constitutional frameworks, governed agents, verification"
 });
 
 export default function AiSystemsHubPage() {

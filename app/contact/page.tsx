@@ -23,7 +23,7 @@ import styles from "@/components/content/content.module.css";
  * /contact/ (v3.2) — the single, honest contact document.
  *
  * Design laws:
- * - One primary CTA: Email Parsa Tak. The mailto is resolved from
+ * - One primary CTA: Email SHEYTAN. The mailto is resolved from
  *   lib/links.ts (the site's verified link source of truth) — the
  *   address is never duplicated as a separate constant.
  * - Secondary channels: GitHub and LinkedIn. No backend, no form, no
@@ -49,7 +49,7 @@ export const metadata: Metadata = contentRouteMetadata({
   route: CONTACT_ROUTE.slug,
   title: CONTACT_ROUTE.metaTitle,
   description: CONTACT_ROUTE.metaDescription,
-  ogAlt: "Contact Parsa Tak — research collaboration, engineering engagements, projects"
+  ogAlt: "Contact SHEYTAN — research collaboration, engineering engagements, projects"
 });
 
 const COLLABORATION_TYPES: readonly { title: string; body: string }[] = [
@@ -293,7 +293,7 @@ function ContactTransmissionArtifact() {
             className="button button-primary"
             href={emailHref}
           >
-            Email Parsa Tak
+            Email SHEYTAN
           </a>
 
           <span className={styles.transmissionAddress}>
@@ -309,7 +309,7 @@ function ContactTransmissionArtifact() {
 
         <a
           className={styles.transmissionSecondaryLink}
-          href="https://github.com/Parsaetak"
+          href="https://github.com/SHEYTANx13"
           target="_blank"
           rel="noreferrer"
         >

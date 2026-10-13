@@ -5,7 +5,7 @@ excerpt: "Most websites behave like printed pages that occasionally blink. This 
 description: "The RED MAGIC interface philosophy, updated for the v2.2 high-refresh upgrade: what it costs to make a page that behaves instead of replays, and why AI-assisted building made the difference between wanting it and shipping it."
 date: "2026-09-10"
 updated: "2026-09-11"
-author: "Parsa Tak"
+author: "SHEYTAN"
 category: "engineering"
 type: "work"
 tags: ["RED MAGIC", "Red illuminati", "interfaces", "systems", "performance", "AI-assisted engineering", "2026"]

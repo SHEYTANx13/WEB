@@ -435,7 +435,7 @@ describe("the loading benchmark harness exists and is wired", () => {
       scripts: Record<string, string>;
     };
 
-    assert.equal(pkg.version, "4.0.5");
+    assert.equal(pkg.version, "4.0.6");
 
     assert.match(
       pkg.scripts["bench:loading"] ?? "",

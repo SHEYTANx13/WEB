@@ -5,7 +5,7 @@ excerpt: "A tour of the time architecture behind this website: loading prioritie
 description: "How this static site orders its work in 2026: a five-phase loading vocabulary, a P0–P4 priority ladder, an 8.33 ms frame budget for high-refresh displays, and honest telemetry for both."
 date: "2026-09-10"
 updated: "2026-09-10"
-author: "Parsa Tak"
+author: "SHEYTAN"
 category: "engineering"
 type: "work"
 tags: ["performance", "architecture", "loading", "120Hz", "frame budget", "static export"]

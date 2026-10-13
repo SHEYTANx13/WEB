@@ -67,14 +67,14 @@
 }
 
 /*
- * Scene variant (v3.5): a lightweight transition surface inside the
- * viewport, not a blocking wall. It never blocks interaction and
- * never appears for fast transitions: the fade-in is delayed by
- * SCENE_OVERLAY_DELAY_MS, so warmed/cached scene chunks — which swap
- * in before the next paint — never flash a loader. When a fetch
- * genuinely runs long, the surface fades in quickly and cleanly
- * (no slide, no scale on the panel itself) and communicates one
- * honest state: intent → transfer → ready.
+ * Scene variant (v3.5, smoothed v4.0.6): a lightweight transition
+ * surface inside the viewport, not a blocking wall. It never blocks
+ * interaction and never appears for fast transitions: the fade-in is
+ * delayed by SCENE_OVERLAY_DELAY_MS, so warmed/cached scene chunks —
+ * which swap in before the next paint — never flash a loader. When a
+ * fetch genuinely runs long, the surface fades in with one soft
+ * ease-out arrival (no slide, no scale on the panel itself) and
+ * communicates one honest state: intent → transfer → ready.
  */
 .sceneLoadingScreen[data-variant="scene"] {
   position: absolute;
@@ -99,9 +99,9 @@
   opacity: 0;
 
   transition:
-    opacity 200ms ease
+    opacity 260ms cubic-bezier(0.22, 1, 0.36, 1)
       var(--scene-overlay-delay, 180ms),
-    visibility 200ms ease
+    visibility 260ms cubic-bezier(0.22, 1, 0.36, 1)
       var(--scene-overlay-delay, 180ms);
 
   visibility: hidden;
@@ -162,7 +162,57 @@
 }
 
 .sceneLoadingScreen[data-variant="scene"] .inner {
-  animation: none;
+  /*
+   * The boot variant's enter animation is deliberately suppressed
+   * here; the scene variant instead reveals its content only when
+   * the overlay actually becomes visible (below), so nothing
+   * animates while the surface is still hidden behind the
+   * SCENE_OVERLAY_DELAY_MS gate.
+   */
+}
+
+/*
+ * SCENE ARRIVAL (v4.0.6) — the branded transfer-in moment. When the
+ * delayed overlay finally becomes visible, its content settles in
+ * with one gentle rise-and-scale (opacity + transform only) and the
+ * 13-point star ignites from a slightly smaller scale. Both are
+ * one-shot, compositor-only, and start only when data-visible flips
+ * — a warmed scene that never shows the overlay never runs them.
+ */
+.sceneLoadingScreen[data-variant="scene"][data-visible="true"] .inner {
+  animation:
+    sceneLoadingScreenArrive
+    240ms
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    both;
+}
+
+.sceneLoadingScreen[data-variant="scene"][data-visible="true"] .mark {
+  /*
+   * Ignite first (one-shot arrival), then hand off to the shared
+   * breathing pulse — the mark stays alive for as long as the
+   * overlay is up. Compositor-only (opacity + transform).
+   */
+  animation:
+    sceneLoadingScreenMarkIgnite
+    420ms
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    )
+    both,
+    sceneLoadingScreenPulse
+    2.8s
+    ease-in-out
+    420ms
+    infinite;
 }
 
 .sceneLoadingScreen[data-variant="scene"] .mark {
@@ -641,6 +691,49 @@
   }
 }
 
+/*
+ * Scene-arrival keyframes (v4.0.6) — compositor-only companions to
+ * the rules above. The content rises 8px and settles; the mark
+ * ignites from 0.92 scale with a soft opacity ramp.
+ */
+@keyframes sceneLoadingScreenArrive {
+  from {
+    opacity: 0;
+
+    transform:
+      translate3d(
+        0,
+        8px,
+        0
+      );
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate3d(
+        0,
+        0,
+        0
+      );
+  }
+}
+
+@keyframes sceneLoadingScreenMarkIgnite {
+  from {
+    opacity: 0.4;
+
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: scale(1);
+  }
+}
+
 @keyframes sceneLoadingScreenProgress {
   0% {
     transform:
@@ -675,6 +768,20 @@
   }
 
   .mark {
+    animation: none;
+  }
+
+  /*
+   * The v4.0.6 scene-arrival animations are motion: under
+   * reduced-motion the visible-state content and mark appear
+   * statically (the selectors match the higher-specificity rules
+   * above, so these overrides win).
+   */
+  .sceneLoadingScreen[data-variant="scene"][data-visible="true"] .inner {
+    animation: none;
+  }
+
+  .sceneLoadingScreen[data-variant="scene"][data-visible="true"] .mark {
     animation: none;
   }
 

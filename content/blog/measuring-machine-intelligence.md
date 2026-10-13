@@ -4,7 +4,7 @@ subtitle: "The UHIT measurement programme: what a benchmark has to verify before
 excerpt: "UHIT is the measurement arm of this laboratory, and its public form today is two canonical specifications — AIST-2026.09 and ASI-100-Elite-2026.09 — built on one doctrine: capability is multiplicative, verification is a load-bearing factor, and an ungameable benchmark is the only benchmark worth scoring."
 description: "Inside the UHIT measurement programme: the AIST-2026.09 standard and the ASI-100-Elite benchmark — verified operational intelligence, multiplicative scoring, zero-collapse defense factors, and the honesty rules that keep a benchmark from lying."
 date: "2026-09-12"
-author: "Parsa Tak"
+author: "SHEYTAN"
 category: "research"
 type: "research"
 tags: ["UHIT", "AIST", "ASI-100", "measurement", "verification", "benchmarks", "2026"]
@@ -25,7 +25,7 @@ A register note first, in the house style: what the two specification documents 
 
 ## The public artifacts
 
-The measurement programme has two canonical, publicly readable specifications, maintained in the [`AI-Tests` branch of Parsaetak/Contents](https://github.com/Parsaetak/Contents/tree/AI-Tests):
+The measurement programme has two canonical, publicly readable specifications, maintained in the [`AI-Tests` branch of the public Contents repository](https://github.com/Parsaetak/Contents/tree/AI-Tests):
 
 - [**AIST-2026.09**](https://github.com/Parsaetak/Contents/blob/AI-Tests/AIST-2026.09.md) — the *AI Smartness Test*: a Universal Operational Intelligence Standard, psychometric measurement framework, and self-evolution engine for frontier AI systems. **(Fact — the document's own header.)**
 - [**ASI-100-Elite-2026.09**](https://github.com/Parsaetak/Contents/blob/AI-Tests/ASI-100-Elite-2026.09.md) — the *AI Smartness Index*: a frontier benchmark of ten batteries and one hundred engineered items (Q001–Q100), whose weights sum to exactly 100%, with a twelve-class canonical failure taxonomy (F1–F12). **(Fact — the document's own structure table.)**

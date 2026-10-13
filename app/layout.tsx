@@ -49,15 +49,15 @@ const SITE_ENTITY_GRAPH = {
 export const metadata: Metadata = {
   title: HOME_TITLE,
   description: SITE_DESCRIPTION,
-  applicationName: "Parsa Tak",
+  applicationName: "SHEYTAN",
   authors: [
     {
-      name: "Parsa Tak",
-      url: "https://github.com/Parsaetak"
+      name: "SHEYTAN",
+      url: "https://github.com/SHEYTANx13"
     }
   ],
-  creator: "Parsa Tak",
-  publisher: "Parsa Tak",
+  creator: "SHEYTAN",
+  publisher: "SHEYTAN",
   /*
    * Keyword discipline (v2.7, updated v3.5): every term names
    * something the site actually presents or owns and is visible in
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
    * capabilities grid, which is exactly eight entries).
    */
   keywords: [
-    "Parsa Tak",
+    "SHEYTAN",
     "AI",
     "artificial intelligence",
     "AI systems",
@@ -108,7 +108,7 @@ export const metadata: Metadata = {
         url: SITE_OG_IMAGE_PATH,
         width: SITE_OG_IMAGE_WIDTH,
         height: SITE_OG_IMAGE_HEIGHT,
-        alt: "Parsa Tak — AI systems, reasoning, and RED MAGIC"
+        alt: "SHEYTAN — AI systems, reasoning, and RED MAGIC"
       }
     ]
   },
@@ -119,7 +119,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: SITE_OG_IMAGE_PATH,
-        alt: "Parsa Tak — AI systems, reasoning, and RED MAGIC"
+        alt: "SHEYTAN — AI systems, reasoning, and RED MAGIC"
       }
     ]
   },
@@ -167,7 +167,7 @@ export const metadata: Metadata = {
    * <meta name="google-site-verification"> tag — no per-route
    * duplication. The value is verified by scripts/verify-seo.mjs on
    * every build: if the tag disappears or changes, the build fails.
-   * This token proves ownership of parsaetak.github.io/WEB in Google
+   * This token proves ownership of sheytanx13.github.io/WEB in Google
    * Search Console; it is a public verification token, not a secret,
    * and must never appear in visible page content.
    */

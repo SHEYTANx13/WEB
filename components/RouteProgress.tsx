@@ -17,7 +17,7 @@ import {
 import styles from "@/components/RouteProgress.module.css";
 
 /*
- * ROUTE PROGRESS (v4.0.5) — the ONE loading signal for real
+ * ROUTE PROGRESS (v4.0.6) — the ONE loading signal for real
  * document route navigation, mounted exactly once from the ROOT
  * layout so it survives every App Router navigation (the same law
  * as the global Music Player host). It replaces the v4.0.4
@@ -33,15 +33,18 @@ import styles from "@/components/RouteProgress.module.css";
  *       delayed — the router proceeds exactly as it would have)
  *     → GRACE PERIOD (ROUTE_PROGRESS_GRACE_MS): fast/warmed/cached
  *       navigations commit inside it and never show anything
- *     → a 2px indeterminate red line appears at the very top of
- *       the viewport — only while the navigation is unresolved
+ *     → a 3px layered signal appears at the very top of the
+ *       viewport — a faint breathing track with a short glowing
+ *       red segment accelerating across it (CSS module owns the
+ *       visual language; transform/opacity only) — shown ONLY
+ *       while the navigation is unresolved
  *     → destination pathname commits (usePathname)
- *     → the destination paints (double rAF), then the line fades
+ *     → the destination paints (double rAF), then the signal fades
  *
  * Honesty contract: display-only — pointer-events: none in every
  * state, indeterminate motion only (no fake percentage), no
  * minimum duration, no focus trap, no scroll lock, no scroll
- * noise. The line is decorative chrome (aria-hidden): the router
+ * noise. The signal is decorative chrome (aria-hidden): the router
  * itself announces the destination, so an extra live region would
  * only add noise for assistive technology.
  *
@@ -52,10 +55,10 @@ import styles from "@/components/RouteProgress.module.css";
  * dismiss (or re-show) the latest state. ROUTE_PROGRESS_CAP_MS is
  * a safety valve that clears a silently-died navigation.
  *
- * Reduced motion: the sweep collapses to a static thin line —
- * presence without motion. Without JavaScript the line never
- * shows (the html.reveal-js gate keeps it invisible in the static
- * export).
+ * Reduced motion: the layered signal collapses to a static thin
+ * line — presence without motion. Without JavaScript the signal
+ * never shows (the html.reveal-js gate keeps it invisible in the
+ * static export).
  *
  * Separation of concerns (v4.0.5): world-scene module loading
  * keeps its own system (SceneLoadingScreen, scene variant); this
