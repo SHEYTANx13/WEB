@@ -84,6 +84,15 @@ const ROUTE_REGISTRY = JSON.parse(
 const SITE_ORIGIN = ROUTE_REGISTRY.site.origin;
 
 /*
+ * PRODUCTION URL PREFIX (account migration, v4.0.5): canonical and
+ * sitemap URLs must start with the registry origin. The checks stay
+ * exactly as strict as before, but derive the production prefix
+ * from the single authoritative route registry instead of a
+ * hardcoded hostname of the retired account.
+ */
+const SITE_PREFIX = `${SITE_ORIGIN.replace(/\/+$/, "")}/`;
+
+/*
  * Google Search Console verification token (v2.9). Emitted once from
  * the root layout's metadata.verification field; every canonical page
  * must carry it EXACTLY, and CI fails the moment it disappears or is
@@ -277,7 +286,7 @@ async function verifyPage(route, file, expectations) {
     const expected = expectations.canonical;
     if (canonical !== expected) {
       fail(`${route}: canonical is "${canonical}", expected "${expected}"`);
-    } else if (!/^https:\/\/parsaetak\.github\.io\/WEB\//.test(canonical)) {
+    } else if (!canonical.startsWith(SITE_PREFIX)) {
       fail(`${route}: canonical is not a production HTTPS URL: "${canonical}"`);
     } else {
       pass(`${route}: canonical ${canonical}`);
@@ -622,7 +631,7 @@ async function verifySitemap(articleRoutes) {
   }
 
   for (const url of locs) {
-    if (!/^https:\/\/parsaetak\.github\.io\/WEB(\/|$)/.test(url)) {
+    if (!url.startsWith(SITE_PREFIX)) {
       fail(`sitemap.xml: non-production URL "${url}"`);
     }
   }
